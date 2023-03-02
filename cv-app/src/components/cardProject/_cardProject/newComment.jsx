@@ -29,8 +29,9 @@ export default function NewComment({
   const commentPost = (e) => {
     e.preventDefault();
     if (val.comment && val.firstName && val.lastName && id) {
-      // fetch(`${env.API_URL_MSG}`, {
-      const fetchCommentPost = fetch("http://localhost:4000/api/comments/", {
+      // const fetchCommentPost = fetch("http://localhost:4000/api/comments/", {
+      // const fetchCommentPost = fetch("process.env.API_COMMENTS", {
+      const fetchCommentPost = fetch("https://cv-pwzscy2qw-boogysh.vercel.app/api/comments/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(commentToPost),
