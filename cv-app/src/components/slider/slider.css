@@ -67,7 +67,10 @@
 }
 @media all and (max-width: 580px){
   .slider_content{
-    border-radius: 0;
+    border-radius: 0px;
+  }
+  .slider_img{
+    border-radius: 5px;
   }
 }
 

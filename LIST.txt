@@ -1,0 +1,7 @@
++cardProject  buttons: like commenter share... mobile: hover -> active
++bg list share -> transparent
++mobile slider border radius
++commentaire 2 -> hover ->  pointer
+
+backend pop ip -> filter
+env

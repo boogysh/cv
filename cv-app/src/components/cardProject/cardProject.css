@@ -73,13 +73,17 @@
   align-items: center;
   font-size: 1rem;
 }
+.likeAndComment_qty_comments {
+  cursor: pointer;
+ 
+}
 .likeAndComment_btn {
   padding-bottom: 5px;
 }
-.likeAndComment_btn:hover {
+.likeAndComment_btn:hover,
+.likeAndComment_qty_comments:active {
   border: 1px solid grey;
   border-radius: 5px;
-  background-color: #f3f3f3;
   background-color: var(--bg_body_dark);
 }
 .likeAndComment_btn:active .card_icon_like {
@@ -221,7 +225,8 @@ li {
 .hidden {
   display: none;
 }
-.card_comment,.card_share {
+.card_comment,
+.card_share {
   width: 100%;
   height: auto;
   height: 70px;
@@ -231,6 +236,12 @@ li {
   border-radius: 10px;
   /* background-color: #e7e7e7; */
 }
+.card_share {
+  border-top: 1px solid black;
+  background-color: #f1f1f1;
+  border-radius: 0 0 10px 10px;
+}
+
 .card_comment_name {
   width: 23%;
   margin-right: 2%;
@@ -410,7 +421,6 @@ li {
   .card_comment {
     flex-direction: column;
     height: auto;
-   
   }
   .card_comment_name {
     width: 40%;
@@ -441,7 +451,7 @@ li {
     padding: 7px 12px;
     font-size: 1rem;
   }
-  .card_comment_send{
+  .card_comment_send {
     width: 32px;
     height: 30px;
     margin-right: 10px;
@@ -449,7 +459,6 @@ li {
   .card_icon_send {
     width: 20px;
     height: 20px;
-    
   }
 
   .card_comment_h3 {
@@ -475,9 +484,19 @@ li {
     margin-top: 0px;
     padding: 5px;
   }
-  .likeAndComment_btn{
+  .likeAndComment_btn {
     padding: 3px;
   }
+
+  .likeAndComment_btn:hover {
+    background-color: transparent;
+    border: none;
+  }
+  .likeAndComment_btn:active {
+    background-color: var(--bg_body_dark);
+    border: 1px solid grey;
+  }
+
   .slider_wrapper {
     /* 440 -> 340 */
     min-width: 340px;
@@ -492,9 +511,9 @@ li {
 }
 @media all and (max-width: 580px) {
   /* -!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
-  .card_bg_hover{
+  /* .card_bg_hover{
     display: none; 
-  }
+  } */
   /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
   .card_wrapper {
     margin-bottom: 20px;
@@ -504,32 +523,35 @@ li {
     border-right: none;
     width: 100%;
   }
+
   .card {
     flex-direction: column-reverse;
     min-height: 340px;
   }
-  .card_comment_input,.card_comment_textarea,.card_comment_p , span{
+  .card_comment_input,
+  .card_comment_textarea,
+  .card_comment_p,
+  span {
     font-size: 0.8rem;
   }
   .card_comment_h3 {
     font-size: 1rem;
   }
-  .card_comment_bd_h3{
+  .card_comment_bd_h3 {
     font-size: 0.95rem;
   }
-  .card_comment_send{
+  .card_comment_send {
     margin-left: 10px;
     width: 35px;
+    margin-right: 7px;
   }
-  
-  
-  .card_share{
+
+  .card_share {
     padding-bottom: 0;
   }
-  .card_share_close_btn{
+  .card_share_close_btn {
     right: 10px;
     margin-left: 20px;
-    
   }
   .card_title {
     font-size: 20px;
@@ -548,7 +570,7 @@ li {
   .likeAndComment_container {
     height: 20%;
   }
- .card_content_container {
+  .card_content_container {
     border-radius: 0;
     min-height: fit-content;
   }
@@ -561,7 +583,7 @@ li {
   .likeAndComment_qty {
     font-size: 11px;
   }
-  .card_share_close_btn{
+  .card_share_close_btn {
     display: none;
   }
 }

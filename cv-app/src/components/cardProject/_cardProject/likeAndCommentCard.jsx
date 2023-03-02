@@ -58,11 +58,14 @@ export default function LikeAndCommentCard(props) {
     if (ip && props.id) {
       // const fetchLikePost = fetch("http://localhost:4000/api/likes/", {
       // const fetchLikePost = fetch(`process.env.API_LIKES`, {
-      const fetchLikePost = fetch("https://cv-pwzscy2qw-boogysh.vercel.app/api/likes/", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(likeToPost),
-      });
+      const fetchLikePost = fetch(
+        "https://cv-pwzscy2qw-boogysh.vercel.app/api/likes/",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(likeToPost),
+        }
+      );
       const cleanAndRefresh = async () => {
         await fetchLikePost;
         setLiked(!liked);
@@ -80,7 +83,10 @@ export default function LikeAndCommentCard(props) {
           <img src={like} className="card_icon_small" alt="like" />{" "}
           <span className="likesNr">{likesQty}</span>
         </div>
-        <button onClick={props.openAllComments} className="likeAndComment_qty">
+        <button
+          onClick={props.openAllComments}
+          className="likeAndComment_qty likeAndComment_qty_comments"
+        >
           Commentaires {props.commentsQty}
         </button>
       </div>

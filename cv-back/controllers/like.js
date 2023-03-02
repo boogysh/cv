@@ -18,21 +18,19 @@ exports.createLike = (req, res) => {
           .catch((error) => res.status(400).json({ error }));
       } else if (like) {
         //-------------------
+        //const result = like.ipList.filter((like) => like !== ip);
+        //-------------------
         const includesIp = like.ipList.includes(ip);
         const newIpList = like.ipList;
-        // const newLikes = like.ipList.length;
-        // const incrLikes = like.ipList.length + 1;
-        // const decrLikes = like.ipList.length - 1;
-        let newLikes = 0
+        let newLikes = 0;
         if (includesIp) {
           newLikes = like.ipList.length - 1;
-          newIpList.pop(ip) && newLikes;
+          // newIpList.pop(ip) && newLikes;
+          newIpList.filter((like) => like[i] !== ip);
         } else {
           newLikes = like.ipList.length + 1;
           newIpList.push(ip) && newLikes;
         }
-        //-------------------------
-
         //-------------------
         // const newIpList = like.ipList;
         // newIpList.push(ip);
