@@ -26,10 +26,13 @@ export default function LikeAndCommentCard(props) {
   const getDataIp = async () => {
     const res = await axios.get("https://geolocation-db.com/json/");
     setIP(res.data.IPv4);
+    console.log("res.data",res.data)
   };
   useEffect(() => {
     getDataIp();
   }, []);
+  
+
 
   useEffect(() => {
     data2.filter((like) => {
@@ -79,6 +82,26 @@ export default function LikeAndCommentCard(props) {
       cleanAndRefresh();
     } //else return;
   };
+  //------------------------------------
+  const isDynamicIp = async () => {
+    const response = await fetch('https://api.ipify.org?format=json');
+    const data = await response.json();
+    const currentIp = data.ip;
+    
+    const response2 = await fetch('https://ip.nf/me.json');
+    const data2 = await response2.json();
+    const isp = data2.ip.ip;
+    
+    return currentIp !== isp;
+  }
+  
+  isDynamicIp().then((result) => {
+    if (result) {
+      console.log('User has a dynamic IP address');
+    } else {
+      console.log('User has a static IP address');
+    }
+  });
   //------------------------------------
 
   return (
