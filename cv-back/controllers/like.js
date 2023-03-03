@@ -18,20 +18,23 @@ exports.createLike = (req, res) => {
         const includesIp = like.ipList.includes(ip);
         // const newIpList = like.ipList;
         let newLikes;
-        let newIpList = like.ipList;
+        let newIpList;
         function filteredIp(el) {
           return el !== ip;
         }
-        const filteredIpList = newIpList.filter(filteredIp);
+        let filteredIpList;
+        // const filteredIpList = newIpList.filter(filteredIp);
         console.log("filteredIpList:", filteredIpList);
         //-----------------------------
         if (!includesIp) {
+          newIpList = like.ipList;
           newIpList.push(ip);
           console.log("incr-newIpList:", newIpList);
           console.log("newIpList.length", newIpList.length);
           newLikes = newIpList.length;
         } else {
           // newLikes = like.ipList.length - 1;
+          filteredIpList = newIpList.filter(filteredIp);
           newLikes = filteredIpList.length;
           console.log("newLikes--else", newLikes);
           console.log("filteredIpList----else:", filteredIpList);
