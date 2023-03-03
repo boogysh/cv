@@ -34,7 +34,7 @@ exports.createLike = (req, res) => {
           newLikes = newIpList.length;
         } else {
           // newLikes = like.ipList.length - 1;
-          filteredIpList = newIpList.filter(filteredIp);
+          filteredIpList = like.ipList.filter(filteredIp);
           newLikes = filteredIpList.length;
           console.log("newLikes--else", newLikes);
           console.log("filteredIpList----else:", filteredIpList);

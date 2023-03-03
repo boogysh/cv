@@ -52,7 +52,7 @@ export default function LikeAndCommentCard(props) {
   const likeToPost = {
     project: `${props.id}`,
     ip: `${ip}`,
-    // ip: `7`,
+    // ip: `2`,
   };
 
   //------------------------------------
