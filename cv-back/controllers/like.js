@@ -26,7 +26,7 @@ exports.createLike = (req, res) => {
         // const filteredIpList = newIpList.filter(filteredIp);
         console.log("filteredIpList:", filteredIpList);
         //-----------------------------
-        if (!includesIp) {
+        if (ip && !includesIp) {
           newIpList = like.ipList;
           newIpList.push(ip);
           console.log("incr-newIpList:", newIpList);
@@ -52,7 +52,7 @@ exports.createLike = (req, res) => {
             .catch((error) => res.status(400).json({ error }));
           return LIKE;
           //-----------------------
-        } else if (includesIp) {
+        } else if (ip && includesIp) {
           filteredIpList = like.ipList.filter(filteredIp);
           newLikes = filteredIpList.length;
           console.log("newLikes--else", newLikes);

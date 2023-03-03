@@ -16,8 +16,8 @@ export default function LikeAndCommentCard(props) {
   //-----------USE FETCH-------------------
   const { data2 } = UseFetch2(
     // `process.env.API_LIKES`,
-     `http://localhost:4000/api/likes`,
-    // "https://cv-pwzscy2qw-boogysh.vercel.app/api/likes/",
+    //  `http://localhost:4000/api/likes`,
+    "https://cv-pwzscy2qw-boogysh.vercel.app/api/likes/",
     statePage // force fetch to refresh after liking or unliked !!!!!!!!!!!
   );
   //---------------------AXIOS-----------------------------------
@@ -62,8 +62,8 @@ export default function LikeAndCommentCard(props) {
     if (ip && props.id) {
       const fetchLikePost = fetch(
         //`process.env.API_LIKES`,
-        // "https://cv-pwzscy2qw-boogysh.vercel.app/api/likes/",
-        "http://localhost:4000/api/likes/",
+        "https://cv-pwzscy2qw-boogysh.vercel.app/api/likes/",
+        // "http://localhost:4000/api/likes/",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
