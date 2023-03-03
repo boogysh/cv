@@ -18,7 +18,7 @@ export default function LikeAndCommentCard(props) {
     //  `http://localhost:4000/api/likes`,
     // `process.env.API_LIKES`,
     "https://cv-pwzscy2qw-boogysh.vercel.app/api/likes/",
-    //statePage // force fetch to refresh after liking or unliked !!!!!!!!!!!
+    statePage // force fetch to refresh after liking or unliked !!!!!!!!!!!
   );
   //---------------------AXIOS-----------------------------------
   //creating function to load ip address from the API
@@ -75,7 +75,7 @@ export default function LikeAndCommentCard(props) {
         setStatePage(statePage + 1);
       };
       cleanAndRefresh();
-    } else return;
+    } //else return;
   };
   //------------------------------------
 
