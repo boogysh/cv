@@ -56,9 +56,8 @@ exports.createLike = (req, res) => {
           filteredIpList = like.ipList.filter(filteredIp);
           newLikes = filteredIpList.length;
           console.log("newLikes--else", newLikes);
-          console.log("filteredIpList----else:", filteredIpList);
           newIpList = filteredIpList;
-          console.log("newIpList-after pushing filteredIpList", newIpList);
+          console.log("newIpList-after filteredIpList", newIpList);
           //---------------------
           LIKE.updateOne(
             { project: project },
