@@ -1,7 +1,8 @@
 // import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-export function UseFetch2(url, stateComment) {
+// export function UseFetch2(url, stateComment) {
+export function UseFetch2(url) {
   const [data2, setData2] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -27,6 +28,7 @@ export function UseFetch2(url, stateComment) {
     }
     fetchData2();
     // }, [url, id]);
-  }, [url, stateComment, data2]);
+  // }, [url, stateComment]);
+  }, [url, data2]);
   return { isLoading, data2, error };
 }
