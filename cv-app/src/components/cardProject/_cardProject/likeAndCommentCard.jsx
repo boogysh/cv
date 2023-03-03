@@ -6,6 +6,7 @@ import comment from "../../../assets/comment1.png";
 import shareIcon from "../../../assets/share.png";
 import { UseFetch2 } from "../../../hooks/useFetch2";
 import axios from "axios";
+import Loader2 from "../../loader/Loader2";
 
 export default function LikeAndCommentCard(props) {
   const [ip, setIP] = useState("");
@@ -14,7 +15,7 @@ export default function LikeAndCommentCard(props) {
   const [statePage, setStatePage] = useState(0);
   const [likesQty, setLikesQty] = useState(0);
   //-----------USE FETCH-------------------
-  const { data2 } = UseFetch2(
+  const { data2, isLoading } = UseFetch2(
     // `process.env.API_LIKES`,
     //  `http://localhost:4000/api/likes`,
     "https://cv-back-1nf12093e-boogysh.vercel.app/api/likes/",
@@ -56,7 +57,7 @@ export default function LikeAndCommentCard(props) {
   };
 
   //------------------------------------
-  console.log(ip)
+  console.log(ip);
   //------------------------------------
   const likePost = () => {
     if (ip && props.id) {
@@ -97,12 +98,18 @@ export default function LikeAndCommentCard(props) {
       <div className="separe_likes"></div>
       <div className="likeAndComment_add">
         <button onClick={likePost} className="likeAndComment_btn">
-          <img
-            src={liked ? like2 : like}
-            className="card_icon card_icon_like"
-            alt="like"
-          />
-          <span className="likesNr">J'aime</span>
+          {isLoading ? (
+            <Loader2 />
+          ) : (
+            <>
+              <img
+                src={liked ? like2 : like}
+                className="card_icon card_icon_like"
+                alt="like"
+              />
+              <span className="likesNr">J'aime</span>
+            </>
+          )}
         </button>
         <button onClick={props.openComments} className="likeAndComment_btn">
           <img src={comment} className="card_icon comment_icon" alt="like" />

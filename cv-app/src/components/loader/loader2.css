@@ -1,0 +1,33 @@
+.loader_container2 {
+  width: auto;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loader2 {
+  width: 18px;
+  height: 18px;
+  /* border: 2.5px solid rgba(0, 0, 0, 0.805); */
+  border: 2px solid black;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  animation: loader 1s infinite linear;
+}
+@keyframes loader {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* @media all and (max-width: 767px) {
+  .loader_container {
+    height: 600px;
+  }
+  .loader {
+    width: 32px;
+    height: 32px;
+  }
+} */

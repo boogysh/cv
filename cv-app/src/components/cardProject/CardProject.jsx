@@ -11,6 +11,7 @@ import NewComment from "./_cardProject/newComment";
 import NewCommentAndLastTwo from "./_cardProject/newCommentAndLastTwo";
 import ShowAllComments from "./_cardProject/showAllComments";
 
+
 function CardProject({ images, title, info, id, urlProject, urlExistent }) {
   const [uri, setUri] = useState();
   const [show, setShow] = useState({
@@ -141,7 +142,6 @@ function CardProject({ images, title, info, id, urlProject, urlExistent }) {
           isLoading={isLoading}
         />
       </div>
-      
     </div>
   );
 }
