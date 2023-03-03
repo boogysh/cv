@@ -51,7 +51,7 @@ exports.createLike = (req, res) => {
               // console.log("updatedLike", updatedLike);
             })
             .catch((error) => res.status(400).json({ error }));
-            return
+            return LIKE
           //-----------------------
         } else if (includesIp) {
           filteredIpList = currentIpList.filter(filteredIp);
@@ -78,7 +78,7 @@ exports.createLike = (req, res) => {
               // console.log("updatedLike", updatedLike);
             })
             .catch((error) => res.status(400).json({ error }));
-            return
+            return LIKE
           //---------------------
         }
         //------------------------------------------------------
