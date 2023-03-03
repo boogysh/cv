@@ -11,14 +11,14 @@ export default function LikeAndCommentCard(props) {
   const [ip, setIP] = useState("");
   const [ipList, setIpList] = useState([]);
   const [liked, setLiked] = useState(false); //true or false
-  // const [statePage, setStatePage] = useState(0);
+  const [statePage, setStatePage] = useState(0);
   const [likesQty, setLikesQty] = useState(0);
   //-----------USE FETCH-------------------
   const { data2 } = UseFetch2(
     //  `http://localhost:4000/api/likes`,
-    "https://cv-pwzscy2qw-boogysh.vercel.app/api/likes/"
     // `process.env.API_LIKES`,
-    //statePage // force fetch to refresh after liking or unliked !!!!!!!!!!!
+    "https://cv-pwzscy2qw-boogysh.vercel.app/api/likes/",
+    statePage // force fetch to refresh after liking or unliked !!!!!!!!!!!
   );
   //---------------------AXIOS-----------------------------------
   //creating function to load ip address from the API
@@ -55,6 +55,8 @@ export default function LikeAndCommentCard(props) {
   };
 
   //------------------------------------
+  console.log('test')
+  //------------------------------------
   const likePost = () => {
     if (ip && props.id) {
       const fetchLikePost = fetch(
@@ -70,7 +72,7 @@ export default function LikeAndCommentCard(props) {
       const cleanAndRefresh = async () => {
         await fetchLikePost;
         setLiked(!liked);
-        // setStatePage(statePage + 1);
+        setStatePage(statePage + 1);
       };
       cleanAndRefresh();
     } else return;
