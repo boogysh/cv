@@ -8,6 +8,8 @@ const likeSchema = mongoose.Schema(
   {
     project: { type: String },
     ipList: { type: [String] },
+    //  ipList: [{ ip: {type: String }, _id:false }],
+    
     likes: { type: Number },
   },
   opts //   { timestamps: true }

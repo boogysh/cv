@@ -2,38 +2,43 @@ const LIKE = require("../models/like");
 
 exports.createLike = (req, res) => {
   const { project, ip } = req.body;
-  // const newLike = new LIKE({ project, ipList: ip, likes: 1 });
   const newLike = new LIKE({ project, ipList: ip, likes: 1 });
+  // const newLike = new LIKE({ project, ipList: [{ ip: ip }], likes: 1 });
   // console.log("likes", likes);
 
   LIKE.findOne({ project: project })
     .then((like) => {
-      // console.log("likes", like.likes);
       if (!like) {
-        //console.log("like", like); //expected null
-
         newLike
           .save()
           .then((newLike) => res.status(200).json(newLike))
           .catch((error) => res.status(400).json({ error }));
       } else if (like) {
-        //-------------------
-        //const result = like.ipList.filter((like) => like !== ip);
-        //-------------------
+        //-------------------------------------------------
         const includesIp = like.ipList.includes(ip);
         const newIpList = like.ipList;
-        let newLikes = 0;
-        if (includesIp) {
-          newLikes = like.ipList.length - 1;
-          // newIpList.pop(ip) && newLikes;
-          newIpList.filter((like) => like[i] !== ip);
-        } else {
-          newLikes = like.ipList.length + 1;
-          newIpList.push(ip) && newLikes;
+        let newLikes; 
+        function filteredIp(el) {
+          return el !== ip;
         }
-        //-------------------
+        const filteredIpList = newIpList.filter(filteredIp);
+        console.log("filteredIpList:", filteredIpList);
+        //-----------------------------
+        if (!includesIp) {
+          newLikes = like.ipList.length + 1;
+          newIpList.push(ip);
+          console.log("incr-newIpList:", newIpList);
+        } else {
+          newLikes = like.ipList.length - 1;
+          console.log("filteredIpList:", filteredIpList);
+          newIpList.splice(0, newIpList.length).push(filteredIpList);
+          console.log("decr-newIpList:", newIpList);
+        }
+        //------------------------------------------------------
+        //----------------------------
         // const newIpList = like.ipList;
-        // newIpList.push(ip);
+        // // newIpList.push(ip);
+        // newIpList.push({ip:ip});
         // const newLikes = like.ipList.length;
         // console.log("newIpList", newIpList);
         //---------------------
