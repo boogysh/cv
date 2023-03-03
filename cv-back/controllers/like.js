@@ -32,7 +32,26 @@ exports.createLike = (req, res) => {
           console.log("incr-newIpList:", newIpList);
           console.log("newIpList.length", newIpList.length);
           newLikes = newIpList.length;
-        } else {
+          //-----------------------
+          LIKE.updateOne(
+            { project: project },
+            {
+              _id: LIKE._id,
+              project: LIKE.project,
+              ipList: newIpList,
+              likes: newLikes,
+              createdAt: LIKE.createdAt,
+              updatedAt: LIKE.updatedAt,
+              __v: LIKE.__v,
+            }
+          )
+            .then((updatedLike) => {
+              res.status(200).json(updatedLike);
+              // console.log("updatedLike", updatedLike);
+            })
+            .catch((error) => res.status(400).json({ error }));
+          //-----------------------
+        } else if(includesIp) {
           // newLikes = like.ipList.length - 1;
           filteredIpList = like.ipList.filter(filteredIp);
           newLikes = filteredIpList.length;
@@ -40,6 +59,25 @@ exports.createLike = (req, res) => {
           console.log("filteredIpList----else:", filteredIpList);
           newIpList = filteredIpList;
           console.log("newIpList-after pushing filteredIpList", newIpList);
+          //---------------------
+          LIKE.updateOne(
+            { project: project },
+            {
+              _id: LIKE._id,
+              project: LIKE.project,
+              ipList: newIpList,
+              likes: newLikes,
+              createdAt: LIKE.createdAt,
+              updatedAt: LIKE.updatedAt,
+              __v: LIKE.__v,
+            }
+          )
+            .then((updatedLike) => {
+              res.status(200).json(updatedLike);
+              // console.log("updatedLike", updatedLike);
+            })
+            .catch((error) => res.status(400).json({ error }));
+          //---------------------
         }
         //------------------------------------------------------
         //----------------------------
@@ -50,23 +88,23 @@ exports.createLike = (req, res) => {
         // console.log("newIpList", newIpList);
         //---------------------
 
-        LIKE.updateOne(
-          { project: project },
-          {
-            _id: LIKE._id,
-            project: LIKE.project,
-            ipList: newIpList,
-            likes: newLikes,
-            createdAt: LIKE.createdAt,
-            updatedAt: LIKE.updatedAt,
-            __v: LIKE.__v,
-          }
-        )
-          .then((updatedLike) => {
-            res.status(200).json(updatedLike);
-            // console.log("updatedLike", updatedLike);
-          })
-          .catch((error) => res.status(400).json({ error }));
+        // LIKE.updateOne(
+        //   { project: project },
+        //   {
+        //     _id: LIKE._id,
+        //     project: LIKE.project,
+        //     ipList: newIpList,
+        //     likes: newLikes,
+        //     createdAt: LIKE.createdAt,
+        //     updatedAt: LIKE.updatedAt,
+        //     __v: LIKE.__v,
+        //   }
+        // )
+        //   .then((updatedLike) => {
+        //     res.status(200).json(updatedLike);
+        //     // console.log("updatedLike", updatedLike);
+        //   })
+        //   .catch((error) => res.status(400).json({ error }));
       } //else return;
     })
     .catch((error) => res.status(400).json({ error }));
