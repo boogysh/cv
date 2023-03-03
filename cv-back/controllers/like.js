@@ -19,9 +19,7 @@ exports.createLike = (req, res) => {
         const includesIp = like.ipList.includes(ip);
         let newLikes;
         let newIpList;
-        function filteredIp(el) {
-          return el !== ip;
-        }
+
         let filteredIpList;
         // const filteredIpList = newIpList.filter(filteredIp);
         console.log("filteredIpList:", filteredIpList);
@@ -53,6 +51,9 @@ exports.createLike = (req, res) => {
           return LIKE;
           //-----------------------
         } else if (ip && includesIp) {
+          function filteredIp(el) {
+            return el !== ip;
+          }
           filteredIpList = like.ipList.filter(filteredIp);
           newLikes = filteredIpList.length;
           console.log("newLikes--else", newLikes);
