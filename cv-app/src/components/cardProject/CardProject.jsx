@@ -35,7 +35,7 @@ function CardProject({ images, title, info, id, urlProject, urlExistent }) {
   const { data, isLoading } = UseFetch(
     // `http://localhost:4000/api/comments`,
     // `process.env.API_COMMENTS`,
-    `https://cv-back-1nf12093e-boogysh.vercel.app`,
+    `https://cv-back-1nf12093e-boogysh.vercel.app/api/comments`,
     statePage // force fetch to refresh after sending a comment and openComments
   );
   //---------- COMMENTS QUANTITY------------------------
