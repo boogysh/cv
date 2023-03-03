@@ -15,8 +15,8 @@ exports.createLike = (req, res) => {
           .catch((error) => res.status(400).json({ error }));
       } else if (like) {
         //-------------------------------------------------
-        const currentIpList = like.ipList;
-        const includesIp = currentIpList.includes(ip);
+        // const currentIpList = like.ipList;
+        const includesIp = like.ipList.includes(ip);
         let newLikes;
         let newIpList;
         function filteredIp(el) {
@@ -27,8 +27,7 @@ exports.createLike = (req, res) => {
         console.log("filteredIpList:", filteredIpList);
         //-----------------------------
         if (!includesIp) {
-          // newIpList = like.ipList;
-          newIpList = currentIpList;
+          newIpList = like.ipList;
           newIpList.push(ip);
           console.log("incr-newIpList:", newIpList);
           console.log("newIpList.length", newIpList.length);
@@ -51,10 +50,10 @@ exports.createLike = (req, res) => {
               // console.log("updatedLike", updatedLike);
             })
             .catch((error) => res.status(400).json({ error }));
-            return LIKE
+          return LIKE;
           //-----------------------
         } else if (includesIp) {
-          filteredIpList = currentIpList.filter(filteredIp);
+          filteredIpList = like.ipList.filter(filteredIp);
           newLikes = filteredIpList.length;
           console.log("newLikes--else", newLikes);
           console.log("filteredIpList----else:", filteredIpList);
@@ -78,7 +77,7 @@ exports.createLike = (req, res) => {
               // console.log("updatedLike", updatedLike);
             })
             .catch((error) => res.status(400).json({ error }));
-            return LIKE
+          return LIKE;
           //---------------------
         }
         //------------------------------------------------------
