@@ -27,6 +27,6 @@ export function UseFetch2(url, stateComment) {
     }
     fetchData2();
     // }, [url, id]);
-  }, [url, stateComment]);
+  }, [url, stateComment, data2]);
   return { isLoading, data2, error };
 }
