@@ -10,6 +10,9 @@ import Loader2 from "../../loader/Loader2";
 
 export default function LikeAndCommentCard(props) {
   const [ip, setIP] = useState("");
+  // useEffect(()=>{
+  //   setIP("1")
+  // },[])
   const [ipList, setIpList] = useState([]);
   const [liked, setLiked] = useState(false); //true or false
   const [statePage, setStatePage] = useState(0);
@@ -18,8 +21,8 @@ export default function LikeAndCommentCard(props) {
   //-----------USE FETCH-------------------
   const { data2, isLoading } = UseFetch2(
     // `process.env.API_LIKES`,
-    "https://cv-back-l828sehmj-boogysh.vercel.app/api/likes/",
-    // `http://localhost:4000/api/likes`,
+    // "https://cv-back-l828sehmj-boogysh.vercel.app/api/likes/",
+    `http://localhost:4000/api/likes`,
     statePage // force fetch to refresh after liking or unliked !!!!!!!!!!!
   );
   //---------------------AXIOS-----------------------------------
@@ -43,7 +46,8 @@ export default function LikeAndCommentCard(props) {
     if (!get_IPs) {
       return localStorage.setItem("myIPs", JSON.stringify(dynamic_IP));
     } else if (!get_IPs.includes(dynamic_IP)) {
-      myIPs.push(get_IPs, dynamic_IP);
+      myIPs.push(get_IPs);
+      dynamic_IP !== "" && myIPs.push(dynamic_IP);
       return localStorage.setItem("myIPs", JSON.stringify(myIPs.flat()));
     }
     setMyIpList(JSON.parse(localStorage.getItem("myIPs")));
@@ -68,8 +72,8 @@ export default function LikeAndCommentCard(props) {
 
     const manageLike = () => {
       const ipListIncludesIp = ipList.includes(ip);
-      ipListIncludesIp && setLiked(true);
-      FindIdenticalIp.length > 0 && setLiked(true);
+      ipListIncludesIp && setLiked(true); //?????????? on mobile likes is not seted false onload page
+      FindIdenticalIp.length > 0 && setLiked(true); //??????????
       // setStatePage(statePage + 1);
       return;
     };
@@ -86,8 +90,8 @@ export default function LikeAndCommentCard(props) {
     if (ip && props.id) {
       const fetchLikePost = fetch(
         //`process.env.API_LIKES`,
-        "https://cv-back-l828sehmj-boogysh.vercel.app/api/likes/",
-        // "http://localhost:4000/api/likes/",
+        // "https://cv-back-l828sehmj-boogysh.vercel.app/api/likes/",
+        "http://localhost:4000/api/likes/",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

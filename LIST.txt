@@ -3,31 +3,16 @@
 +mobile slider border radius
 +commentaire 2 -> hover ->  pointer
 
-backend pop ip -> filter
+
 env
+-----------------------------------------------------------
+!!!my ip list : if("") not save in my up list!!! 
+dynamic_IP !== "" && myIPs.push(dynamic_IP);                it work???
+-----------------------------------------------------------
 
--------------------------------------------------------------------
-1.onLoad, save ip in localStorage;     myIp=["81.220.9.112"]
-2.verfier si au local storage:              if myIp.length >=1
-----------
-2.1   data2.filter((like) => {
-      if (like.project === props.id) {
-        - each myIp[ip] in localStorage compare with [ipList]
-        - if ip===ipList[x] 
-            * set status liked;
-            * set reultIp(ip)
-        }
-        return  resultIp
-    });
-------------    
-3. Avant fetch
-    ???in req  ip= `${ip}  ip= ip.fromLocalStorage  
+ ["81.220.9.112","93.22.38.212","","93.22.132.228","93.22.132.211"]  
 
-            * onClick remove ip from ipList, likes---decr, remove ip from localStorage
-            * onClick, put like, push to Iplist the new-Ip(dynamic)
-
-
---------------------------------------------------------------
-localStorage.setItem('product', JSON.stringify(products)),    
-const orderFinal = JSON.parse(localStorage.getItem('product'))
----------------------------------------------------------------        
+"93.22.38.212",
+"93.22.132.228",
+"93.22.132.211"
+verifier console  mobile pourquoi le status de like n'est pas  blanc 
