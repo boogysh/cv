@@ -55,7 +55,7 @@ exports.createLike = (req, res) => {
           newIpList.push(ip);
           console.log("incr-newIpList:", newIpList);
           newLikes = newIpList.length;
-        } else if (ip && identicIPs.length === 0 && includesIp) {
+        } else if (ip && identicIPs.length <=1 && includesIp) {
           function filteredIp(el) {
             return el !== ip;
           }
