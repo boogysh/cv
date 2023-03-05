@@ -31,7 +31,7 @@ export default function NewComment({
     if (val.comment && val.firstName && val.lastName && id) {
       // const fetchCommentPost = fetch("http://localhost:4000/api/comments/", {
       // const fetchCommentPost = fetch("process.env.API_COMMENTS", {
-      const fetchCommentPost = fetch("https://cv-back-1nf12093e-boogysh.vercel.app/api/comments", {
+      const fetchCommentPost = fetch("https://cv-back-l828sehmj-boogysh.vercel.app/api/comments", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(commentToPost),

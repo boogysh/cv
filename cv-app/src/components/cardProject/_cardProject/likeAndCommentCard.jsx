@@ -14,11 +14,12 @@ export default function LikeAndCommentCard(props) {
   const [liked, setLiked] = useState(false); //true or false
   const [statePage, setStatePage] = useState(0);
   const [likesQty, setLikesQty] = useState(0);
+  // console.log("ipList", ipList);
   //-----------USE FETCH-------------------
   const { data2, isLoading } = UseFetch2(
     // `process.env.API_LIKES`,
-    //  `http://localhost:4000/api/likes`,
-    "https://cv-back-1nf12093e-boogysh.vercel.app/api/likes/",
+    "https://cv-back-l828sehmj-boogysh.vercel.app/api/likes/",
+    // `http://localhost:4000/api/likes`,
     statePage // force fetch to refresh after liking or unliked !!!!!!!!!!!
   );
   //---------------------AXIOS-----------------------------------
@@ -31,9 +32,24 @@ export default function LikeAndCommentCard(props) {
   useEffect(() => {
     getDataIp();
   }, []);
-  
-
-
+  //----------------SAVE MY-IP'S TO LOCAL STORAGE----------------------------
+  const [myIpList, setMyIpList] = useState([]);
+  //const [ipTEST] = useState("0"); //!!!!!!!!!!!!!!!!!!!!!
+  useEffect(() => {
+    const get_IPs = JSON.parse(localStorage.getItem("myIPs"));
+    const myIPs = [];
+    const dynamic_IP = `${ip}`;
+    //-----------
+    if (!get_IPs) {
+      return localStorage.setItem("myIPs", JSON.stringify(dynamic_IP));
+    } else if (!get_IPs.includes(dynamic_IP)) {
+      myIPs.push(get_IPs, dynamic_IP);
+      return localStorage.setItem("myIPs", JSON.stringify(myIPs.flat()));
+    }
+    setMyIpList(JSON.parse(localStorage.getItem("myIPs")));
+  }, [ip]);
+  // console.log("myIpList:", myIpList);
+  //------------- FILTER LIKES API-----------------------
   useEffect(() => {
     data2.filter((like) => {
       if (like.project === props.id) {
@@ -45,28 +61,32 @@ export default function LikeAndCommentCard(props) {
   }, [data2, props.id]);
   //--------MANAGE LIKE ON LOAD PAGE------------------
   useEffect(() => {
+    const FindIdenticalIp = ipList.filter((value) => myIpList.includes(value));
+    //console.log("FindIdenticalIp:", FindIdenticalIp);
+    //console.log("FindIdenticalIp-length:", FindIdenticalIp.length);
+    //console.log("myIpList:", myIpList);
+
     const manageLike = () => {
       const ipListIncludesIp = ipList.includes(ip);
       ipListIncludesIp && setLiked(true);
+      FindIdenticalIp.length > 0 && setLiked(true);
+      // setStatePage(statePage + 1);
       return;
     };
     manageLike();
-  }, [ip, ipList]);
+  }, [ip, ipList, myIpList]);
   //-------LIKE-POST-CONTENT--------------
   const likeToPost = {
     project: `${props.id}`,
     ip: `${ip}`,
-    // ip: `2`,
+    allMyIPs: `${myIpList}`,
   };
-
-  //------------------------------------
-  console.log(ip);
   //------------------------------------
   const likePost = () => {
     if (ip && props.id) {
       const fetchLikePost = fetch(
         //`process.env.API_LIKES`,
-        "https://cv-back-1nf12093e-boogysh.vercel.app/api/likes/",
+        "https://cv-back-l828sehmj-boogysh.vercel.app/api/likes/",
         // "http://localhost:4000/api/likes/",
         {
           method: "POST",
@@ -83,27 +103,6 @@ export default function LikeAndCommentCard(props) {
     } //else return;
   };
   //------------------------------------
-  // const isDynamicIp = async () => {
-  //   const response = await fetch('https://api.ipify.org?format=json');
-  //   const data = await response.json();
-  //   const currentIp = data.ip;
-    
-  //   const response2 = await fetch('https://ip.nf/me.json');
-  //   const data2 = await response2.json();
-  //   const isp = data2.ip.ip;
-    
-  //   return currentIp !== isp;
-  // }
-  
-  // isDynamicIp().then((result) => {
-  //   if (result) {
-  //     console.log('User has a dynamic IP address');
-  //   } else {
-  //     console.log('User has a static IP address');
-  //   }
-  // });
-  //------------------------------------
-
   return (
     <div className="likeAndComment_container">
       <div className="likeAndComment_result">

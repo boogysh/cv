@@ -1,11 +1,35 @@
 const LIKE = require("../models/like");
 
 exports.createLike = (req, res) => {
-  const { project, ip } = req.body;
+  const { project, ip, allMyIPs } = req.body;
   const newLike = new LIKE({ project, ipList: ip, likes: 1 });
-  // const newLike = new LIKE({ project, ipList: [{ ip: ip }], likes: 1 });
-  // console.log("likes", likes);
-
+  console.log("ip:", ip);
+  console.log("allMyIPs", allMyIPs); //1,2,3
+  ////////////////////////////////////////////////////////////////
+  const FindIdenticalElements = (array1, array2, array3) => {
+    for (let i = 0; i < array1.length; i++) {
+      for (let j = 0; j < array2.length; j++) {
+        if (array1[i] === array2[j]) {
+          array3.push(array1[i]);
+        }
+      }
+    }
+    return array3;
+  };
+  // FindIdenticalElements(array1, array2, array3) // use in Project
+  ////////////////////////////////////////////////////////////////////
+  const DeleteIdenticalElements = (array1, array2, array3) => {
+    for (let i = 0; i < array1.length; i++) {
+      for (let j = 0; j < array2.length; j++) {
+        if (array1[i] !== array2[j]) {
+          array3.push(array1[i]);
+        }
+      }
+    }
+    return array3;
+  };
+  // DeleteIdenticalElements(array1, array2, array3) // use in Project
+  ////////////////////////////////////////////////////////////////////
   LIKE.findOne({ project: project })
     .then((like) => {
       if (!like) {
@@ -15,97 +39,58 @@ exports.createLike = (req, res) => {
           .catch((error) => res.status(400).json({ error }));
       } else if (like) {
         //-------------------------------------------------
-        // const currentIpList = like.ipList;
+        const identicIPs = [];
+        FindIdenticalElements(like.ipList, allMyIPs, identicIPs);
+        console.log("identicIPs:", identicIPs);
+        console.log("identicIPs-length:", identicIPs.length);
         const includesIp = like.ipList.includes(ip);
+        console.log("includesIp:", includesIp);
         let newLikes;
         let newIpList;
-
+        let newIpList2;
         let filteredIpList;
-        // const filteredIpList = newIpList.filter(filteredIp);
-        console.log("filteredIpList:", filteredIpList);
         //-----------------------------
-        if (ip && !includesIp) {
+        if (ip && identicIPs.length === 0 && !includesIp) {
           newIpList = like.ipList;
           newIpList.push(ip);
           console.log("incr-newIpList:", newIpList);
-          console.log("newIpList.length", newIpList.length);
           newLikes = newIpList.length;
-          //-----------------------
-          LIKE.updateOne(
-            { project: project },
-            {
-              _id: LIKE._id,
-              project: LIKE.project,
-              ipList: newIpList,
-              likes: newLikes,
-              createdAt: LIKE.createdAt,
-              updatedAt: LIKE.updatedAt,
-              __v: LIKE.__v,
-            }
-          )
-            .then((updatedLike) => {
-              res.status(200).json(updatedLike);
-              // console.log("updatedLike", updatedLike);
-            })
-            .catch((error) => res.status(400).json({ error }));
-          return LIKE;
-          //-----------------------
-        } else if (ip && includesIp) {
+        } else if (ip && identicIPs.length === 0 && includesIp) {
           function filteredIp(el) {
             return el !== ip;
           }
           filteredIpList = like.ipList.filter(filteredIp);
           newLikes = filteredIpList.length;
-          console.log("newLikes--else", newLikes);
           newIpList = filteredIpList;
-          console.log("newIpList-after filteredIpList", newIpList);
-          //---------------------
-          LIKE.updateOne(
-            { project: project },
-            {
-              _id: LIKE._id,
-              project: LIKE.project,
-              ipList: newIpList,
-              likes: newLikes,
-              createdAt: LIKE.createdAt,
-              updatedAt: LIKE.updatedAt,
-              __v: LIKE.__v,
-            }
-          )
-            .then((updatedLike) => {
-              res.status(200).json(updatedLike);
-              // console.log("updatedLike", updatedLike);
-            })
-            .catch((error) => res.status(400).json({ error }));
-          return LIKE;
-          //---------------------
+        } else if (ip && identicIPs.length > 0) {
+          newIpList2 = [];
+          console.log("like.ipList:", like.ipList);
+          console.log("64-newIpList2:", newIpList2);
+          DeleteIdenticalElements(like.ipList, identicIPs, newIpList2);
+          console.log("66-newIpList2:", newIpList2);
+          newIpList = newIpList2;
+          console.log("68-newIpList", newIpList);
+          newLikes = newIpList.length;
+          console.log("71-newIpList2", newIpList2);
         }
-        //------------------------------------------------------
-        //----------------------------
-        // const newIpList = like.ipList;
-        // // newIpList.push(ip);
-        // newIpList.push({ip:ip});
-        // const newLikes = like.ipList.length;
-        // console.log("newIpList", newIpList);
-        //---------------------
 
-        // LIKE.updateOne(
-        //   { project: project },
-        //   {
-        //     _id: LIKE._id,
-        //     project: LIKE.project,
-        //     ipList: newIpList,
-        //     likes: newLikes,
-        //     createdAt: LIKE.createdAt,
-        //     updatedAt: LIKE.updatedAt,
-        //     __v: LIKE.__v,
-        //   }
-        // )
-        //   .then((updatedLike) => {
-        //     res.status(200).json(updatedLike);
-        //     // console.log("updatedLike", updatedLike);
-        //   })
-        //   .catch((error) => res.status(400).json({ error }));
+        //------------------------------------------------------
+        LIKE.updateOne(
+          { project: project },
+          {
+            _id: LIKE._id,
+            project: LIKE.project,
+            ipList: newIpList,
+            likes: newLikes,
+            createdAt: LIKE.createdAt,
+            updatedAt: LIKE.updatedAt,
+            __v: LIKE.__v,
+          }
+        )
+          .then((updatedLike) => {
+            res.status(200).json(updatedLike);
+          })
+          .catch((error) => res.status(400).json({ error }));
       } //else return;
     })
     .catch((error) => res.status(400).json({ error }));
