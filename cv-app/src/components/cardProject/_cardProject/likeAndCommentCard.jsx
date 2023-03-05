@@ -87,7 +87,7 @@ export default function LikeAndCommentCard(props) {
   };
   //------------------------------------
   const likePost = () => {
-    if (ip && props.id) {
+    if (ip && props.id && myIpList) {
       const fetchLikePost = fetch(
         //`process.env.API_LIKES`,
         "https://cv-back-ev3dh97xp-boogysh.vercel.app/api/likes",
