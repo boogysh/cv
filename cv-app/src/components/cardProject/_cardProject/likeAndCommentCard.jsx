@@ -21,7 +21,7 @@ export default function LikeAndCommentCard(props) {
   //-----------USE FETCH-------------------
   const { data2, isLoading } = UseFetch2(
     // `process.env.API_LIKES`,
-     "https://cv-back-ev3dh97xp-boogysh.vercel.app/api/likes",
+     "https://cv-backend-git-main-boogysh.vercel.app/api/likes",
     // `http://localhost:4000/api/likes`,
     statePage // force fetch to refresh after liking or unliked !!!!!!!!!!!
   );
@@ -90,7 +90,7 @@ export default function LikeAndCommentCard(props) {
     if (ip && props.id && myIpList) {
       const fetchLikePost = fetch(
         //`process.env.API_LIKES`,
-        "https://cv-back-ev3dh97xp-boogysh.vercel.app/api/likes",
+        "https://cv-backend-git-main-boogysh.vercel.app/api/likes",
         //"http://localhost:4000/api/likes/",
         {
           method: "POST",
