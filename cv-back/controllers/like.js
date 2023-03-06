@@ -58,7 +58,7 @@ exports.createLike = (req, res) => {
         let newLikes;
         let newIpList;
         let newIpList2;
-        let filteredIpList;
+        // let filteredIpList;
         //-----------------------------
         if (ip && identicIPs.length === 0 && !includesIp) {
           newIpList = like.ipList;

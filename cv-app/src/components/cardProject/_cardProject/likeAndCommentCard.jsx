@@ -5,11 +5,12 @@ import like2 from "../../../assets/like3.png";
 import comment from "../../../assets/comment1.png";
 import shareIcon from "../../../assets/share.png";
 import { UseFetch2 } from "../../../hooks/useFetch2";
-import axios from "axios";
+// import axios from "axios";
 import Loader2 from "../../loader/Loader2";
+import { UseAxios } from "../../../hooks/useForm/useAxios";
 
 export default function LikeAndCommentCard(props) {
-  const [ip, setIP] = useState("");
+  // const [ip, setIP] = useState("");
   // useEffect(() => {
   //   setIP("11jlkjhl00");
   // }, [ip]);
@@ -17,24 +18,16 @@ export default function LikeAndCommentCard(props) {
   const [liked, setLiked] = useState(false); //true or false
   const [statePage, setStatePage] = useState(0);
   const [likesQty, setLikesQty] = useState(0);
-  // console.log("ipList", ipList);
   //-----------USE FETCH-------------------
   const { data2, isLoading } = UseFetch2(
     // `process.env.API_LIKES`,
-     "https://cv-backend-git-main-boogysh.vercel.app/api/likes",
+    "https://cv-backend-git-main-boogysh.vercel.app/api/likes",
     // `http://localhost:4000/api/likes`,
     statePage // force fetch to refresh after liking or unliked !!!!!!!!!!!
   );
   //---------------------AXIOS-----------------------------------
-  //creating function to load ip address from the API
-  const getDataIp = async () => {
-    const res = await axios.get("https://geolocation-db.com/json/");
-    setIP(res.data.IPv4);
-    // console.log("res.data",res.data)
-  };
-  useEffect(() => {
-    getDataIp();
-  }, [ip]);
+  const {isLoading_ip, ip} = UseAxios("https://geolocation-db.com/json/")
+  console.log(isLoading_ip)
   //----------------SAVE MY-IP'S TO LOCAL STORAGE----------------------------
   const [myIpList, setMyIpList] = useState([]);
   useEffect(() => {
@@ -67,15 +60,10 @@ export default function LikeAndCommentCard(props) {
   //--------MANAGE LIKE ON LOAD PAGE------------------
   useEffect(() => {
     const FindIdenticalIp = ipList.filter((value) => myIpList.includes(value));
-    //console.log("FindIdenticalIp:", FindIdenticalIp);
-    //console.log("FindIdenticalIp-length:", FindIdenticalIp.length);
-    //console.log("myIpList:", myIpList);
-
     const manageLike = () => {
       const ipListIncludesIp = ipList.includes(ip);
-      ipListIncludesIp && setLiked(true); //?????????? on mobile likes is not seted false onload page
-      FindIdenticalIp.length > 0 && setLiked(true); //??????????
-      // setStatePage(statePage + 1);
+      ipListIncludesIp && setLiked(true);
+      FindIdenticalIp.length > 0 && setLiked(true); //???? IT WORKS ????
       return;
     };
     manageLike();
@@ -83,9 +71,8 @@ export default function LikeAndCommentCard(props) {
   //-------LIKE-POST-CONTENT--------------
   const likeToPost = {
     project: `${props.id}`,
-    ip: ip, //`${ip}`,
-    // My_IPs: myIpList, // `${myIpList}`,
-    allMyIPs: myIpList, // `${myIpList}`,
+    ip: ip,
+    allMyIPs: myIpList,
   };
   //------------------------------------
   console.log("myIpList:", myIpList);
@@ -108,7 +95,8 @@ export default function LikeAndCommentCard(props) {
         setStatePage(statePage + 1);
       };
       cleanAndRefresh();
-    } //else return;
+    }
+    else return console.log('Something went wrong!')
   };
   //------------------------------------
   return (
@@ -128,7 +116,7 @@ export default function LikeAndCommentCard(props) {
       <div className="separe_likes"></div>
       <div className="likeAndComment_add">
         <button onClick={likePost} className="likeAndComment_btn">
-          {isLoading ? (
+          {isLoading || isLoading_ip ? (
             <Loader2 />
           ) : (
             <>
