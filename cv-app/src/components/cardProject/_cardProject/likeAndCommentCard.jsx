@@ -46,7 +46,7 @@ export default function LikeAndCommentCard(props) {
     }
     setMyIpList(JSON.parse(localStorage.getItem("myIPs")));
   }, [ip]);
-  // console.log("myIpList:", myIpList);
+  console.log("test2-9");
   //------------- FILTER LIKES API-----------------------
   useEffect(() => {
     data2.filter((like) => {
