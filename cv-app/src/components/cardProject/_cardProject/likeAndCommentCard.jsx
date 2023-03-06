@@ -11,13 +11,14 @@ import { UseAxios } from "../../../hooks/useForm/useAxios";
 export default function LikeAndCommentCard(props) {
   // const [ip, setIP] = useState("");
   // useEffect(() => {
-  //   setIP('abcdefghij');
+  //   setIP("abcdefghij");
   // }, [ip]);
-  // console.log("ip",ip)
+  // console.log("ip", ip);
   const [ipList, setIpList] = useState([]);
   const [liked, setLiked] = useState(false); //true or false
   const [statePage, setStatePage] = useState(0);
   const [likesQty, setLikesQty] = useState(0);
+
   //-----------USE FETCH-------------------
   const { data2, isLoading } = UseFetch2(
     // `process.env.API_LIKES`,
@@ -28,24 +29,22 @@ export default function LikeAndCommentCard(props) {
   //---------------------AXIOS-----------------------------------
   const { isLoading_ip, ip } = UseAxios("https://geolocation-db.com/json/");
   //----------------SAVE MY-IP'S TO LOCAL STORAGE----------------------------
+
   const [myIpList, setMyIpList] = useState([]);
   useEffect(() => {
-    const myIPs = [];
-    const get_IPs = JSON.parse(localStorage.getItem("myIPs"));
-    // const dynamic_IP = `${ip}`;
     const dynamic_IP = ip;
+    const myIPs = [];
+    localStorage.setItem("myIPs", JSON.stringify(0));
+    const get_IPs = localStorage.getItem("myIPs");
+    const include = myIPs.includes(dynamic_IP);
     //-----------
-    if (!get_IPs) {
-      return localStorage.setItem("myIPs", JSON.stringify(dynamic_IP));
-    } else if (!get_IPs.includes(dynamic_IP)) {
-      myIPs.push(get_IPs);
-      dynamic_IP !== "" && myIPs.push(dynamic_IP);
-      return (
-        myIPs && localStorage.setItem("myIPs", JSON.stringify(myIPs.flat()))
-      );
-    }
+    get_IPs  && myIPs.push(get_IPs);
+    !include && dynamic_IP !== "" && myIPs.push(dynamic_IP);
+    const myIPs_minus_zero = myIPs.filter((item)=> item !== "0")
+    localStorage.setItem("myIPs", JSON.stringify( myIPs_minus_zero));
     setMyIpList(JSON.parse(localStorage.getItem("myIPs")));
   }, [ip]);
+
   console.log("test2-9");
   //------------- FILTER LIKES API-----------------------
   useEffect(() => {
@@ -117,7 +116,7 @@ export default function LikeAndCommentCard(props) {
       <div className="likeAndComment_add">
         <button onClick={likePost} className="likeAndComment_btn">
           {isLoading || isLoading_ip ? (
-            //  {isLoading ? (
+          // {isLoading ? (
             <Loader2 />
           ) : (
             <>
