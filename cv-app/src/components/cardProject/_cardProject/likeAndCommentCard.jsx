@@ -39,7 +39,7 @@ export default function LikeAndCommentCard(props) {
       return localStorage.setItem("myIPs", JSON.stringify(dynamic_IP));
     } else if (!get_IPs.includes(dynamic_IP)) {
       myIPs.push(get_IPs);
-      if (dynamic_IP !== "") myIPs.push(dynamic_IP);
+      dynamic_IP !== "" && myIPs.push(dynamic_IP);
       return (
         myIPs && localStorage.setItem("myIPs", JSON.stringify(myIPs.flat()))
       );
