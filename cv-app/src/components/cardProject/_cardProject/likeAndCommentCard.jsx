@@ -103,7 +103,8 @@ export default function LikeAndCommentCard(props) {
       const cleanAndRefresh = async () => {
         await fetchLikePost;
         setLiked(!liked);
-        setStatePage(statePage + 1);
+        // setStatePage(statePage + 1);
+        setStatePage((statePage) => statePage + 1);
       };
       cleanAndRefresh();
       // } else return console.log("Something went wrong!");

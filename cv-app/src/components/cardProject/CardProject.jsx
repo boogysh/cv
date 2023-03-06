@@ -60,7 +60,8 @@ function CardProject({ images, title, info, id, urlProject, urlExistent }) {
   const openComments = () => {
     // Open and close  a few comments----
     setShow((show) => ({ ...show, newCommentAndLastTwo: true }));
-    setStatePage(statePage + 1);
+    // setStatePage(statePage + 1);
+    setStatePage((statePage) => statePage + 1);
   };
   const closeComments = () => {
     setShow((show) => ({ ...show, newCommentAndLastTwo: false }));
