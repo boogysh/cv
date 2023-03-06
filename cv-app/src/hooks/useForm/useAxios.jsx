@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 export function UseAxios(url, state) {
 //-----------------------------------
@@ -13,23 +14,22 @@ export function UseAxios(url, state) {
   // }, [ip]);
 //-----------------------------------
   const [ip, set_ip] = useState([]);
-  const [isLoading_ip, setLoading] = useState(true);
+  const [isLoading_ip, setLoading_ip] = useState(true);
   const [error, setError] = useState(false);
 
   useEffect(() => {
     if (!url) return;
-    setLoading(true);
+    setLoading_ip(true);
     async function fetchip() {
       try {
-        const response = await fetch(url);
-        const ip = await response.json();
+        const res = await axios.get("https://geolocation-db.com/json/");
+        set_ip(res.data.IPv4);
 
-        set_ip(ip);
       } catch (err) {
         console.log(err);
         setError(true);
       } finally {
-        setLoading(false);
+        setLoading_ip(false);
       }
     }
     fetchip();
