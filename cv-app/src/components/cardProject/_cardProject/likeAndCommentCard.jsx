@@ -10,9 +10,10 @@ import Loader2 from "../../loader/Loader2";
 
 export default function LikeAndCommentCard(props) {
   const [ip, setIP] = useState("");
-  // useEffect(()=>{
-  //   setIP("7")
-  // },[])
+  // useEffect(() => {
+  //   setIP("111");
+  //   // window.location.reload();
+  // }, [ip]);
   const [ipList, setIpList] = useState([]);
   const [liked, setLiked] = useState(false); //true or false
   const [statePage, setStatePage] = useState(0);
@@ -34,21 +35,22 @@ export default function LikeAndCommentCard(props) {
   };
   useEffect(() => {
     getDataIp();
-  }, []);
+  }, [ip]);
   //----------------SAVE MY-IP'S TO LOCAL STORAGE----------------------------
   const [myIpList, setMyIpList] = useState([]);
-  //const [ipTEST] = useState("0"); //!!!!!!!!!!!!!!!!!!!!!
   useEffect(() => {
-    const get_IPs = JSON.parse(localStorage.getItem("myIPs"));
     const myIPs = [];
+    const get_IPs = JSON.parse(localStorage.getItem("myIPs"));
     const dynamic_IP = `${ip}`;
     //-----------
     if (!get_IPs) {
       return localStorage.setItem("myIPs", JSON.stringify(dynamic_IP));
     } else if (!get_IPs.includes(dynamic_IP)) {
       myIPs.push(get_IPs);
-      dynamic_IP !== "" && myIPs.push(dynamic_IP);
-      return localStorage.setItem("myIPs", JSON.stringify(myIPs.flat()));
+      if (dynamic_IP !== "") myIPs.push(dynamic_IP);
+      return (
+        myIPs && localStorage.setItem("myIPs", JSON.stringify(myIPs.flat()))
+      );
     }
     setMyIpList(JSON.parse(localStorage.getItem("myIPs")));
   }, [ip]);
@@ -82,16 +84,18 @@ export default function LikeAndCommentCard(props) {
   //-------LIKE-POST-CONTENT--------------
   const likeToPost = {
     project: `${props.id}`,
-    ip: `${ip}`,
-    allMyIPs: `${myIpList}`,
+    ip: ip, //`${ip}`,
+    My_IPs: myIpList, // `${myIpList}`,
   };
+  //------------------------------------
+  console.log("myIpList:", myIpList);
   //------------------------------------
   const likePost = () => {
     if (ip && props.id && myIpList) {
       const fetchLikePost = fetch(
         //`process.env.API_LIKES`,
         "https://cv-backend-git-main-boogysh.vercel.app/api/likes",
-        //"http://localhost:4000/api/likes/",
+        // "http://localhost:4000/api/likes/",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

@@ -1,10 +1,22 @@
 const LIKE = require("../models/like");
 
 exports.createLike = (req, res) => {
-  const { project, ip, allMyIPs } = req.body;
+  const { project, ip, My_IPs } = req.body;
   const newLike = new LIKE({ project, ipList: ip, likes: 1 });
-  console.log("ip:", ip);
-  console.log("allMyIPs", allMyIPs); //1,2,3
+  console.log("6-ip:", ip);
+  
+  const allMyIPs = My_IPs ;
+
+  // const allMyIPs = [];
+  // allMyIPs.push(My_IPs);
+
+  // allMyIPs.push(My_IPs);
+  // !allMyIPs.includes(ip) && allMyIPs.push(ip);
+  // if (!My_IPs.includes(ip)) {
+  //   allMyIPs.push(ip);
+  // }
+  console.log("allMyIPs", allMyIPs);
+
   ////////////////////////////////////////////////////////////////
   const FindIdenticalElements = (array1, array2, array3) => {
     for (let i = 0; i < array1.length; i++) {
@@ -55,7 +67,7 @@ exports.createLike = (req, res) => {
           newIpList.push(ip);
           console.log("incr-newIpList:", newIpList);
           newLikes = newIpList.length;
-        } else if (ip && identicIPs.length <=1 && includesIp) {
+        } else if (ip && identicIPs.length <= 0 && includesIp) {
           function filteredIp(el) {
             return el !== ip;
           }
@@ -73,7 +85,7 @@ exports.createLike = (req, res) => {
           newLikes = newIpList.length;
           console.log("71-newIpList2", newIpList2);
         }
-
+        
         //------------------------------------------------------
         LIKE.updateOne(
           { project: project },
