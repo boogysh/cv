@@ -35,7 +35,8 @@ export default function LikeAndCommentCard(props) {
   useEffect(() => {
     const myIPs = [];
     const get_IPs = JSON.parse(localStorage.getItem("myIPs"));
-    const dynamic_IP = `${ip}`;
+    // const dynamic_IP = `${ip}`;
+    const dynamic_IP = ip;
     //-----------
     if (!get_IPs) {
       return localStorage.setItem("myIPs", JSON.stringify(dynamic_IP));
