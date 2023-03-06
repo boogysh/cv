@@ -36,20 +36,15 @@ export default function LikeAndCommentCard(props) {
     const get_IPs = JSON.parse(localStorage.getItem("myIPs"));
     const dynamic_IP = ip;
     if (!get_IPs) {
-      return (
-        localStorage.setItem("myIPs", JSON.stringify(myIPs)) &&
-        setMyIpList(JSON.parse(localStorage.getItem("myIPs")))
-      );
+      return localStorage.setItem("myIPs", JSON.stringify(myIPs));
     } else if (!get_IPs.includes(dynamic_IP)) {
       myIPs.push(get_IPs);
       dynamic_IP !== "" && myIPs.push(dynamic_IP);
       return (
-        myIPs &&
-        localStorage.setItem("myIPs", JSON.stringify(myIPs.flat())) &&
-        setMyIpList(JSON.parse(localStorage.getItem("myIPs")))
+        myIPs && localStorage.setItem("myIPs", JSON.stringify(myIPs.flat()))
       );
     }
-    else return
+    setMyIpList(JSON.parse(localStorage.getItem("myIPs")));
   }, [ip]);
 
   // console.log("test2-10");
