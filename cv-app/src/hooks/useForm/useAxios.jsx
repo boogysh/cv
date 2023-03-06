@@ -33,6 +33,6 @@ export function UseAxios(url, state) {
       }
     }
     fetchip();
-  }, [url, state]);
+  }, [url, ip, state]);
   return { isLoading_ip, ip, error };
 }
