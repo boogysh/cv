@@ -58,7 +58,7 @@ exports.createLike = (req, res) => {
         let newLikes;
         let newIpList;
         let newIpList2;
-        // let filteredIpList;
+        let filteredIpList;
         //-----------------------------
         if (ip && identicIPs.length === 0 && !includesIp) {
           newIpList = like.ipList;
@@ -84,7 +84,16 @@ exports.createLike = (req, res) => {
           console.log("68-newIpList", newIpList);
           newLikes = newIpList.length;
           console.log("71-newIpList2", newIpList2);
-        } else return;
+        } 
+         else if (ip && includesIp) {
+          function filteredIp(el) {
+            return el !== ip;
+          }
+          filteredIpList = like.ipList.filter(filteredIp);
+          newLikes = filteredIpList.length;
+          newIpList = filteredIpList;
+        }
+        else return
 
         //------------------------------------------------------
         LIKE.updateOne(
