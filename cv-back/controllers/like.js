@@ -1,17 +1,9 @@
 const LIKE = require("../models/like");
 
 exports.createLike = (req, res) => {
-  // const { project, ip, My_IPs } = req.body;
   const { project, ip, allMyIPs } = req.body;
   const newLike = new LIKE({ project, ipList: ip, likes: 1 });
   console.log("6-ip:", ip);
-  // const zzz = () => {
-  //   if (!allMyIPs.includes(ip)) {
-  //     allMyIPs.push(ip);
-  //   }
-  //   return allMyIPs;
-  // };
-  // zzz();
   !allMyIPs.includes(ip) && allMyIPs.push(ip);
   console.log("allMyIPs", allMyIPs);
 
@@ -51,49 +43,29 @@ exports.createLike = (req, res) => {
         //-------------------------------------------------
         const identicIPs = [];
         FindIdenticalElements(like.ipList, allMyIPs, identicIPs);
+        console.log("like.ipList:", like.ipList);
         console.log("identicIPs:", identicIPs);
-        console.log("identicIPs-length:", identicIPs.length);
+        //----------
+        const newIpList2 = [];
+        DeleteIdenticalElements(like.ipList, identicIPs, newIpList2);
+        console.log("59-newIpList-deleted:", newIpList2);
+        //----------
         const includesIp = like.ipList.includes(ip);
         console.log("includesIp:", includesIp);
         let newLikes;
         let newIpList;
-        let newIpList2;
-        let filteredIpList;
         //-----------------------------
         if (ip && identicIPs.length === 0 && !includesIp) {
           newIpList = like.ipList;
           newIpList.push(ip);
           console.log("incr-newIpList:", newIpList);
           newLikes = newIpList.length;
-        }
-        // else if (ip && identicIPs.length <= 1 && includesIp) {
-        //   function filteredIp(el) {
-        //     return el !== ip;
-        //   }
-        //   filteredIpList = like.ipList.filter(filteredIp);
-        //   newLikes = filteredIpList.length;
-        //   newIpList = filteredIpList;
-        // }
-        else if (ip && identicIPs.length > 0) {
-          newIpList2 = [];
-          console.log("like.ipList:", like.ipList);
-          console.log("64-newIpList2:", newIpList2);
-          DeleteIdenticalElements(like.ipList, identicIPs, newIpList2);
-          console.log("66-newIpList2:", newIpList2);
+        } else if (ip && identicIPs.length > 0) {
+          //-----------
           newIpList = newIpList2;
-          console.log("68-newIpList", newIpList);
+          console.log("73-newIpList-deleted:", newIpList2);
           newLikes = newIpList.length;
-          console.log("71-newIpList2", newIpList2);
-        } 
-         else if (ip && includesIp) {
-          function filteredIp(el) {
-            return el !== ip;
-          }
-          filteredIpList = like.ipList.filter(filteredIp);
-          newLikes = filteredIpList.length;
-          newIpList = filteredIpList;
-        }
-        else return
+        } else return;
 
         //------------------------------------------------------
         LIKE.updateOne(
