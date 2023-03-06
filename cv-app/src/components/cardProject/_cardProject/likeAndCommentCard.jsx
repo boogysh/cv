@@ -26,10 +26,7 @@ export default function LikeAndCommentCard(props) {
     statePage // force fetch to refresh after liking or unliked !!!!!!!!!!!
   );
   //---------------------AXIOS-----------------------------------
-  const { isLoading_ip, ip } = UseAxios(
-    "https://geolocation-db.com/json/",
-    statePage
-  );
+  const { isLoading_ip, ip } = UseAxios("https://geolocation-db.com/json/");
   //----------------SAVE MY-IP'S TO LOCAL STORAGE----------------------------
   const [myIpList, setMyIpList] = useState([]);
   useEffect(() => {
@@ -98,8 +95,8 @@ export default function LikeAndCommentCard(props) {
         setStatePage(statePage + 1);
       };
       cleanAndRefresh();
-    // } else return console.log("Something went wrong!");
-    } else return 
+      // } else return console.log("Something went wrong!");
+    } else return;
   };
   //------------------------------------
   return (

@@ -29,7 +29,6 @@ export function UseAxios(url, state) {
         setError(true);
       } finally {
         setLoading_ip(false);
-        
       }
     }
     fetchip();
