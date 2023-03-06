@@ -26,8 +26,8 @@ export default function LikeAndCommentCard(props) {
     statePage // force fetch to refresh after liking or unliked !!!!!!!!!!!
   );
   //---------------------AXIOS-----------------------------------
-  // const {isLoading_ip, ip} = UseAxios("https://geolocation-db.com/json/")
-  const {ip} = UseAxios("https://geolocation-db.com/json/")
+  const {isLoading_ip, ip} = UseAxios("https://geolocation-db.com/json/")
+  // const {ip} = UseAxios("https://geolocation-db.com/json/")
   // console.log("ip:",ip)
   //----------------SAVE MY-IP'S TO LOCAL STORAGE----------------------------
   const [myIpList, setMyIpList] = useState([]);
@@ -117,8 +117,8 @@ export default function LikeAndCommentCard(props) {
       <div className="separe_likes"></div>
       <div className="likeAndComment_add">
         <button onClick={likePost} className="likeAndComment_btn">
-          {/* {isLoading || isLoading_ip ? ( */}
-          {isLoading ? (
+          {isLoading || isLoading_ip ? (
+          // {isLoading ? (
             <Loader2 />
           ) : (
             <>
