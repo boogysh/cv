@@ -6,10 +6,11 @@ import comment from "../../../assets/comment1.png";
 import shareIcon from "../../../assets/share.png";
 import { UseFetch2 } from "../../../hooks/useFetch2";
 import Loader2 from "../../loader/Loader2";
-import { UseAxios } from "../../../hooks/useForm/useAxios";
+import axios from "axios";
+// import { UseAxios } from "../../../hooks/useForm/useAxios";
 
 export default function LikeAndCommentCard(props) {
-  // const [ip, setIP] = useState("");
+  const [ip, setIP] = useState("");
   // useEffect(() => {
   //   setIP("aabvf");
   // }, [ip]);
@@ -28,7 +29,16 @@ export default function LikeAndCommentCard(props) {
     statePage // force fetch to refresh after liking or unliked !!!!!!!!!!!
   );
   //---------------------AXIOS-----------------------------------
-  const { isLoading_ip, ip } = UseAxios("https://geolocation-db.com/json/");
+  // const { isLoading_ip, ip } = UseAxios("https://geolocation-db.com/json/");
+  //----------------------------------------------------------------
+  //creating function to load ip address from the API
+  const getDataIp = async () => {
+    const res = await axios.get("https://geolocation-db.com/json/");
+    setIP(res.data.IPv4);
+  };
+  useEffect(() => {
+    getDataIp();
+  }, [ip]);
 
   //----------------SAVE MY-IP'S TO LOCAL STORAGE----------------------------
   useEffect(() => {
@@ -117,8 +127,8 @@ export default function LikeAndCommentCard(props) {
       <div className="separe_likes"></div>
       <div className="likeAndComment_add">
         <button onClick={likePost} className="likeAndComment_btn">
-          {isLoading || isLoading_ip ? (
-            // {isLoading ? (
+          {/* {isLoading || isLoading_ip ? ( */}
+             {isLoading ? (
             <Loader2 />
           ) : (
             <>
