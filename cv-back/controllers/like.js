@@ -1,20 +1,18 @@
 const LIKE = require("../models/like");
 
 exports.createLike = (req, res) => {
-  const { project, ip, My_IPs } = req.body;
+  // const { project, ip, My_IPs } = req.body;
+  const { project, ip, allMyIPs } = req.body;
   const newLike = new LIKE({ project, ipList: ip, likes: 1 });
   console.log("6-ip:", ip);
-  
-  const allMyIPs = My_IPs ;
-
-  // const allMyIPs = [];
-  // allMyIPs.push(My_IPs);
-
-  // allMyIPs.push(My_IPs);
-  // !allMyIPs.includes(ip) && allMyIPs.push(ip);
-  // if (!My_IPs.includes(ip)) {
-  //   allMyIPs.push(ip);
-  // }
+  // const zzz = () => {
+  //   if (!allMyIPs.includes(ip)) {
+  //     allMyIPs.push(ip);
+  //   }
+  //   return allMyIPs;
+  // };
+  // zzz();
+  !allMyIPs.includes(ip) && allMyIPs.push(ip);
   console.log("allMyIPs", allMyIPs);
 
   ////////////////////////////////////////////////////////////////
@@ -67,14 +65,16 @@ exports.createLike = (req, res) => {
           newIpList.push(ip);
           console.log("incr-newIpList:", newIpList);
           newLikes = newIpList.length;
-        } else if (ip && identicIPs.length <= 1 && includesIp) {
-          function filteredIp(el) {
-            return el !== ip;
-          }
-          filteredIpList = like.ipList.filter(filteredIp);
-          newLikes = filteredIpList.length;
-          newIpList = filteredIpList;
-        } else if (ip && identicIPs.length > 0) {
+        }
+        // else if (ip && identicIPs.length <= 1 && includesIp) {
+        //   function filteredIp(el) {
+        //     return el !== ip;
+        //   }
+        //   filteredIpList = like.ipList.filter(filteredIp);
+        //   newLikes = filteredIpList.length;
+        //   newIpList = filteredIpList;
+        // }
+        else if (ip && identicIPs.length > 0) {
           newIpList2 = [];
           console.log("like.ipList:", like.ipList);
           console.log("64-newIpList2:", newIpList2);
@@ -85,7 +85,7 @@ exports.createLike = (req, res) => {
           newLikes = newIpList.length;
           console.log("71-newIpList2", newIpList2);
         }
-        
+
         //------------------------------------------------------
         LIKE.updateOne(
           { project: project },

@@ -5,15 +5,14 @@ import like2 from "../../../assets/like3.png";
 import comment from "../../../assets/comment1.png";
 import shareIcon from "../../../assets/share.png";
 import { UseFetch2 } from "../../../hooks/useFetch2";
-import axios from "axios";
+// import axios from "axios";
 import Loader2 from "../../loader/Loader2";
 
 export default function LikeAndCommentCard(props) {
   const [ip, setIP] = useState("");
-  // useEffect(() => {
-  //   setIP("111");
-  //   // window.location.reload();
-  // }, [ip]);
+  useEffect(() => {
+    setIP("11jlkjhl00");
+  }, [ip]);
   const [ipList, setIpList] = useState([]);
   const [liked, setLiked] = useState(false); //true or false
   const [statePage, setStatePage] = useState(0);
@@ -28,14 +27,14 @@ export default function LikeAndCommentCard(props) {
   );
   //---------------------AXIOS-----------------------------------
   //creating function to load ip address from the API
-  const getDataIp = async () => {
-    const res = await axios.get("https://geolocation-db.com/json/");
-    setIP(res.data.IPv4);
-    // console.log("res.data",res.data)
-  };
-  useEffect(() => {
-    getDataIp();
-  }, [ip]);
+  // const getDataIp = async () => {
+  //   const res = await axios.get("https://geolocation-db.com/json/");
+  //   setIP(res.data.IPv4);
+  //   // console.log("res.data",res.data)
+  // };
+  // useEffect(() => {
+  //   getDataIp();
+  // }, [ip]);
   //----------------SAVE MY-IP'S TO LOCAL STORAGE----------------------------
   const [myIpList, setMyIpList] = useState([]);
   useEffect(() => {
@@ -85,7 +84,8 @@ export default function LikeAndCommentCard(props) {
   const likeToPost = {
     project: `${props.id}`,
     ip: ip, //`${ip}`,
-    My_IPs: myIpList, // `${myIpList}`,
+    // My_IPs: myIpList, // `${myIpList}`,
+    allMyIPs: myIpList, // `${myIpList}`,
   };
   //------------------------------------
   console.log("myIpList:", myIpList);
