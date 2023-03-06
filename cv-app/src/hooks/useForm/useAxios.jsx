@@ -22,14 +22,14 @@ export function UseAxios(url, state) {
     setLoading_ip(true);
     async function fetchip() {
       try {
-        const res = await axios.get("https://geolocation-db.com/json/");
+        const res = await axios.get(url); //"https://geolocation-db.com/json/"
         set_ip(res.data.IPv4);
       } catch (err) {
         console.log(err);
         setError(true);
       } finally {
         setLoading_ip(false);
-        window.location.reload();
+        
       }
     }
     fetchip();
