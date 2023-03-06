@@ -14,7 +14,7 @@ export default function LikeAndCommentCard(props) {
   //   setIP("aabvf");
   // }, [ip]);
   // console.log("ip", ip);
-  const [ipList, setIpList] = useState([]); 
+  const [ipList, setIpList] = useState([]);
   const [liked, setLiked] = useState(false); //true or false
   const [statePage, setStatePage] = useState(0);
   const [likesQty, setLikesQty] = useState(0);
@@ -36,15 +36,20 @@ export default function LikeAndCommentCard(props) {
     const get_IPs = JSON.parse(localStorage.getItem("myIPs"));
     const dynamic_IP = ip;
     if (!get_IPs) {
-      return localStorage.setItem("myIPs", JSON.stringify(myIPs));
+      return (
+        localStorage.setItem("myIPs", JSON.stringify(myIPs)) &&
+        setMyIpList(JSON.parse(localStorage.getItem("myIPs")))
+      );
     } else if (!get_IPs.includes(dynamic_IP)) {
       myIPs.push(get_IPs);
       dynamic_IP !== "" && myIPs.push(dynamic_IP);
       return (
-        myIPs && localStorage.setItem("myIPs", JSON.stringify(myIPs.flat()))
+        myIPs &&
+        localStorage.setItem("myIPs", JSON.stringify(myIPs.flat())) &&
+        setMyIpList(JSON.parse(localStorage.getItem("myIPs")))
       );
     }
-    setMyIpList(JSON.parse(localStorage.getItem("myIPs")));
+    else return
   }, [ip]);
 
   // console.log("test2-10");
@@ -118,7 +123,7 @@ export default function LikeAndCommentCard(props) {
       <div className="likeAndComment_add">
         <button onClick={likePost} className="likeAndComment_btn">
           {isLoading || isLoading_ip ? (
-          // {isLoading ? (
+            // {isLoading ? (
             <Loader2 />
           ) : (
             <>
