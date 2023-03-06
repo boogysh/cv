@@ -97,7 +97,8 @@ export default function LikeAndCommentCard(props) {
         setStatePage(statePage + 1);
       };
       cleanAndRefresh();
-    } else return console.log("Something went wrong!");
+    // } else return console.log("Something went wrong!");
+    } else return 
   };
   //------------------------------------
   return (

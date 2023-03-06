@@ -84,7 +84,7 @@ exports.createLike = (req, res) => {
           console.log("68-newIpList", newIpList);
           newLikes = newIpList.length;
           console.log("71-newIpList2", newIpList2);
-        }
+        } else return;
 
         //------------------------------------------------------
         LIKE.updateOne(
