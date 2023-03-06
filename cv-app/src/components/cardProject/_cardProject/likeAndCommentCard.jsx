@@ -17,7 +17,7 @@ export default function LikeAndCommentCard(props) {
   // console.log("ip", ip);
   const [ipList, setIpList] = useState([]);
   const [liked, setLiked] = useState(false); //true or false
-  // const [statePage, setStatePage] = useState(0);
+  const [statePage, setStatePage] = useState(0);
   const [likesQty, setLikesQty] = useState(0);
   const [myIpList, setMyIpList] = useState([]);
 
@@ -26,7 +26,7 @@ export default function LikeAndCommentCard(props) {
     // `process.env.API_LIKES`,
     "https://cv-backend-git-main-boogysh.vercel.app/api/likes",
     // `http://localhost:4000/api/likes`,
-    props.statePage // force fetch to refresh after liking or unliked !!!!!!!!!!!
+    statePage // force fetch to refresh after liking or unliked !!!!!!!!!!!
   );
   //---------------------AXIOS-----------------------------------
   // const { isLoading_ip, ip } = UseAxios("https://geolocation-db.com/json/");
@@ -105,8 +105,9 @@ export default function LikeAndCommentCard(props) {
         await fetchLikePost;
         setLiked(!liked);
         // setStatePage(statePage + 1);
-        // props.setStatePage((props.statePage) => props.statePage + 1);
-        props.setStatePage(props.statePage + 1);
+        setStatePage((statePage) => statePage + 1);
+        // props.setStatePage(props.statePage + 1);
+        
       };
       cleanAndRefresh();
       // } else return console.log("Something went wrong!");

@@ -108,8 +108,7 @@ function CardProject({ images, title, info, id, urlProject, urlExistent }) {
             urlExistent={urlExistent}
             show_shareList={show.shareList}
             show_newCommentAndLastTwo={show.newCommentAndLastTwo}
-            statePage={statePage}
-            setStatePage={setStatePage}
+            
           />
         )}
       </div>
