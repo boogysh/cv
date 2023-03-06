@@ -11,13 +11,14 @@ import { UseAxios } from "../../../hooks/useForm/useAxios";
 export default function LikeAndCommentCard(props) {
   // const [ip, setIP] = useState("");
   // useEffect(() => {
-  //   setIP("abcdefghij");
+  //   setIP("aabvf");
   // }, [ip]);
   // console.log("ip", ip);
-  const [ipList, setIpList] = useState([]);
+  const [ipList, setIpList] = useState([]); 
   const [liked, setLiked] = useState(false); //true or false
   const [statePage, setStatePage] = useState(0);
   const [likesQty, setLikesQty] = useState(0);
+  const [myIpList, setMyIpList] = useState([]);
 
   //-----------USE FETCH-------------------
   const { data2, isLoading } = UseFetch2(
@@ -28,24 +29,25 @@ export default function LikeAndCommentCard(props) {
   );
   //---------------------AXIOS-----------------------------------
   const { isLoading_ip, ip } = UseAxios("https://geolocation-db.com/json/");
-  //----------------SAVE MY-IP'S TO LOCAL STORAGE----------------------------
 
-  const [myIpList, setMyIpList] = useState([]);
+  //----------------SAVE MY-IP'S TO LOCAL STORAGE----------------------------
   useEffect(() => {
-    const dynamic_IP = ip;
     const myIPs = [];
-    localStorage.setItem("myIPs", JSON.stringify(0));
-    const get_IPs = localStorage.getItem("myIPs");
-    const include = myIPs.includes(dynamic_IP);
-    //-----------
-    get_IPs  && myIPs.push(get_IPs);
-    !include && dynamic_IP !== "" && myIPs.push(dynamic_IP);
-    const myIPs_minus_zero = myIPs.filter((item)=> item !== "0")
-    localStorage.setItem("myIPs", JSON.stringify( myIPs_minus_zero));
+    const get_IPs = JSON.parse(localStorage.getItem("myIPs"));
+    const dynamic_IP = ip;
+    if (!get_IPs) {
+      return localStorage.setItem("myIPs", JSON.stringify(myIPs));
+    } else if (!get_IPs.includes(dynamic_IP)) {
+      myIPs.push(get_IPs);
+      dynamic_IP !== "" && myIPs.push(dynamic_IP);
+      return (
+        myIPs && localStorage.setItem("myIPs", JSON.stringify(myIPs.flat()))
+      );
+    }
     setMyIpList(JSON.parse(localStorage.getItem("myIPs")));
   }, [ip]);
 
-  console.log("test2-10");
+  // console.log("test2-10");
   //------------- FILTER LIKES API-----------------------
   useEffect(() => {
     data2.filter((like) => {
