@@ -69,6 +69,7 @@ export default function LikeAndCommentCard(props) {
     });
   }, [data2, props.id]);
   //--------MANAGE LIKE ON LOAD PAGE------------------
+  
   useEffect(() => {
     const FindIdenticalIp = ipList.filter((value) => myIpList.includes(value));
     const manageLike = () => {
@@ -129,7 +130,7 @@ export default function LikeAndCommentCard(props) {
       <div className="likeAndComment_add">
         <button onClick={likePost} className="likeAndComment_btn">
           {/* {isLoading || isLoading_ip ? ( */}
-             {isLoading ? (
+          {isLoading ? (
             <Loader2 />
           ) : (
             <>
