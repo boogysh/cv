@@ -5,15 +5,15 @@ import like2 from "../../../assets/like3.png";
 import comment from "../../../assets/comment1.png";
 import shareIcon from "../../../assets/share.png";
 import { UseFetch2 } from "../../../hooks/useFetch2";
-// import axios from "axios";
 import Loader2 from "../../loader/Loader2";
 import { UseAxios } from "../../../hooks/useForm/useAxios";
 
 export default function LikeAndCommentCard(props) {
   // const [ip, setIP] = useState("");
   // useEffect(() => {
-  //   setIP("11jlkjhl00");
+  //   setIP('abcdefghij');
   // }, [ip]);
+  // console.log("ip",ip)
   const [ipList, setIpList] = useState([]);
   const [liked, setLiked] = useState(false); //true or false
   const [statePage, setStatePage] = useState(0);
@@ -77,7 +77,7 @@ export default function LikeAndCommentCard(props) {
     allMyIPs: myIpList,
   };
   //------------------------------------
-  // console.log("myIpList:", myIpList);
+  console.log("myIpList:", myIpList);
   //------------------------------------
   const likePost = () => {
     if (ip && props.id && myIpList) {
@@ -119,7 +119,7 @@ export default function LikeAndCommentCard(props) {
       <div className="likeAndComment_add">
         <button onClick={likePost} className="likeAndComment_btn">
           {isLoading || isLoading_ip ? (
-            // {isLoading ? (
+            //  {isLoading ? (
             <Loader2 />
           ) : (
             <>
