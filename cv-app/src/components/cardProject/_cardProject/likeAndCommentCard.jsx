@@ -79,6 +79,7 @@ export default function LikeAndCommentCard(props) {
     try {
       FindIdenticalIp.length > 0 && setLiked(true);
       FindIdenticalIp.length === 0 && setLiked(false);
+      ipListIncludesIp && setLiked(true);
     } catch (err) {
       console.log(err);
     } finally {
@@ -136,8 +137,7 @@ export default function LikeAndCommentCard(props) {
       <div className="separe_likes"></div>
       <div className="likeAndComment_add">
         <button onClick={likePost} className="likeAndComment_btn">
-          {/* {isLoading || isLoading_ip ? ( */}
-          {isLoading ? (
+          {isLoading || isLoading_Identical_Ip ? (
             <Loader2 />
           ) : (
             <>
