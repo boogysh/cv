@@ -40,7 +40,8 @@ export default function LikeAndCommentCard(props) {
   };
   useEffect(() => {
     getDataIp();
-  }, []);
+    window.location.reload();
+  }, [ip]);
   //----------------SAVE MY-IP'S TO LOCAL STORAGE----------------------------
 
   useMemo(() => {
@@ -74,16 +75,28 @@ export default function LikeAndCommentCard(props) {
     // else if (FindIdenticalIp.length === 0) return setLiked(false);
     // setStatePage((statePage) => statePage + 1);
     //--------------------
-    !FindIdenticalIp && setIsLoading_Identical_Ip(true);
-    FindIdenticalIp.length > 0 && setLiked(true) && setIsLoading_Identical_Ip(false);
-    FindIdenticalIp.length === 0 && setLiked(false) && setIsLoading_Identical_Ip(false);
-    ipListIncludesIp && setLiked(true) &&  setIsLoading_Identical_Ip(false);
+    !FindIdenticalIp &&
+      setIsLoading_Identical_Ip(true) &&
+      setStatePage((statePage) => statePage + 1);
 
-    
+    FindIdenticalIp.length > 0 &&
+      setLiked(true) &&
+      setIsLoading_Identical_Ip(false) &&
+      setStatePage((statePage) => statePage + 1);
+
+    ipListIncludesIp &&
+      setLiked(true) &&
+      setIsLoading_Identical_Ip(false) &&
+      setStatePage((statePage) => statePage + 1);
+
+    FindIdenticalIp.length === 0 &&
+      setLiked(false) &&
+      setIsLoading_Identical_Ip(false) &&
+      setStatePage((statePage) => statePage + 1);
   }, [ip, ipList, myIpList]);
   //---------------------------------------------------
 
-  // //-------LIKE-POST-CONTENT-------------------------
+  // //-------LIKE-POST-CONTENT------------------------
   const likeToPost = {
     project: `${props.id}`,
     ip: ip,
