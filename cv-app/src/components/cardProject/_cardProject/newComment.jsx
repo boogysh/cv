@@ -31,16 +31,19 @@ export default function NewComment({
     if (val.comment && val.firstName && val.lastName && id) {
       // const fetchCommentPost = fetch("http://localhost:4000/api/comments/", {
       // const fetchCommentPost = fetch("process.env.API_COMMENTS", {
-      const fetchCommentPost = fetch("https://cv-backend-git-main-boogysh.vercel.app/api/comments", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(commentToPost),
-      });
+      const fetchCommentPost = fetch(
+        "https://cv-backend-git-main-boogysh.vercel.app/api/comments",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(commentToPost),
+        }
+      );
       //----CLEAR INPUTS AND REFRESH COMMENTS--------
       const cleanAndRefresh = async () => {
         await fetchCommentPost;
         resetValues();
-        setStatePage(statePage + 1);
+        setStatePage(statePage +1);
       };
       cleanAndRefresh();
     } else {

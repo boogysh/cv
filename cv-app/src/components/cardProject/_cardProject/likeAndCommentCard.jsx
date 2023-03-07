@@ -1,13 +1,13 @@
 // import React, {useState} from "react";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import like from "../../../assets/like.png";
 import like2 from "../../../assets/like3.png";
 import comment from "../../../assets/comment1.png";
 import shareIcon from "../../../assets/share.png";
-import { UseFetch2 } from "../../../hooks/useFetch2";
+// import { UseFetch2 } from "../../../hooks/useFetch2";
+import { UseFetch_filtered_likes } from "../../../hooks/useFetch_filtered_likes";
 import Loader2 from "../../loader/Loader2";
 import axios from "axios";
-// import { UseAxios } from "../../../hooks/useForm/useAxios";
 
 export default function LikeAndCommentCard(props) {
   const [ip, setIP] = useState("");
@@ -15,36 +15,38 @@ export default function LikeAndCommentCard(props) {
   //   setIP("aabvf");
   // }, [ip]);
   // console.log("ip", ip);
-  const [ipList, setIpList] = useState([]);
+  // const [ipList, setIpList] = useState([]);
+  // const [ipList] = useState([]);
   const [liked, setLiked] = useState(false); //true or false
   const [statePage, setStatePage] = useState(0);
-  const [likesQty, setLikesQty] = useState(0);
   const [myIpList, setMyIpList] = useState([]);
-
   //-----------USE FETCH-------------------
-  const { data2, isLoading } = UseFetch2(
+  const { ipList, likesQty, isLoading } = UseFetch_filtered_likes(
+    
     // `process.env.API_LIKES`,
-    "https://cv-backend-git-main-boogysh.vercel.app/api/likes",
     // `http://localhost:4000/api/likes`,
-    statePage // force fetch to refresh after liking or unliked !!!!!!!!!!!
+    `https://cv-backend-git-main-boogysh.vercel.app/api/likes`,
+    props.id,
+    statePage //refresh after liking or unliked !!!!!!!!!!!
   );
+  // console.log(ipList)
   //---------------------AXIOS-----------------------------------
   // const { isLoading_ip, ip } = UseAxios("https://geolocation-db.com/json/");
+  // const { ip } = UseAxios();
   //----------------------------------------------------------------
-  //creating function to load ip address from the API
   const getDataIp = async () => {
     const res = await axios.get("https://geolocation-db.com/json/");
     setIP(res.data.IPv4);
   };
   useEffect(() => {
     getDataIp();
-  }, [ip]);
+  }, []);
 
   //----------------SAVE MY-IP'S TO LOCAL STORAGE----------------------------
-  useEffect(() => {
+  useMemo(() => {
     const myIPs = [];
-    const get_IPs = JSON.parse(localStorage.getItem("myIPs"));
     const dynamic_IP = ip;
+    const get_IPs = JSON.parse(localStorage.getItem("myIPs"));
     if (!get_IPs) {
       return localStorage.setItem("myIPs", JSON.stringify(myIPs));
     } else if (!get_IPs.includes(dynamic_IP)) {
@@ -59,41 +61,30 @@ export default function LikeAndCommentCard(props) {
 
   // console.log("test2-10");
   //------------- FILTER LIKES API-----------------------
-  useEffect(() => {
-    data2.filter((like) => {
-      if (like.project === props.id) {
-        setIpList(like.ipList);
-        setLikesQty(like.likes);
-      }
-      return like.ipList && like.likes;
-    });
-  }, [data2, props.id]);
-  //--------MANAGE LIKE ON LOAD PAGE------------------
 
-  const FindIdenticalIp = ipList.filter((value) => myIpList.includes(value));
-  const ipListIncludesIp = ipList.includes(ip);
-  useEffect(() => {
-    const manageLike = () => {
-      ipListIncludesIp && setLiked(true);
-      FindIdenticalIp.length > 0 && setLiked(true); //???? IT WORKS ????
-      return;
-    };
-    manageLike();
-  }, [ip, ipList, myIpList,FindIdenticalIp.length,ipListIncludesIp]);
-  //-------LIKE-POST-CONTENT--------------
+  //--------MANAGE LIKE ON LOAD PAGE------------------
+  useMemo(() => {
+    const FindIdenticalIp = ipList.filter((value) => myIpList.includes(value));
+    const ipListIncludesIp = ipList.includes(ip);
+    ipListIncludesIp && setLiked(true);
+    FindIdenticalIp.length > 0 && setLiked(true); //???? IT WORKS ????
+  }, [ip, ipList, myIpList]);
+  //---------------------------------------------------
+
+  // //-------LIKE-POST-CONTENT-------------------------
   const likeToPost = {
     project: `${props.id}`,
     ip: ip,
     allMyIPs: myIpList,
   };
   //------------------------------------
-  console.log("myIpList:", myIpList);
+  // console.log("myIpList:", myIpList);
   //------------------------------------
   const likePost = () => {
     if (ip && props.id && myIpList) {
       const fetchLikePost = fetch(
         //`process.env.API_LIKES`,
-        "https://cv-backend-git-main-boogysh.vercel.app/api/likes", 
+        "https://cv-backend-git-main-boogysh.vercel.app/api/likes",
         // "http://localhost:4000/api/likes/",
         {
           method: "POST",
@@ -104,10 +95,8 @@ export default function LikeAndCommentCard(props) {
       const cleanAndRefresh = async () => {
         await fetchLikePost;
         setLiked(!liked);
-        // setStatePage(statePage + 1);
-        setStatePage((statePage) => statePage + 1);
-        // props.setStatePage(props.statePage + 1);
-        
+        setStatePage(statePage + 1);
+        // setStatePage((statePage) => statePage + 1);
       };
       cleanAndRefresh();
       // } else return console.log("Something went wrong!");

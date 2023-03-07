@@ -6,11 +6,14 @@ import Loader from "../../components/loader/Loader";
 import Error500 from "../../components/errors/Error500";
 import Banner from "../../components/banner/Banner";
 import banner from "../../assets/pr-arch/front-1200.jpg";
+//import data from "../../data/pr_arch/data_arch.json";
+
 export default function Architecture() {
   const { data, isLoading, error } = UseFetch(
-    `https://boogysh.github.io/cv-api/data_arch.json`
-  ); //UseFetch(`/pr_arch/data.json`);
-  // console.log(data);
+    // `https://boogysh.github.io/cv-api/data_arch.json`
+    `/pr_arch/data_arch.json`
+  );
+  // console.log("test");
 
   if (error) return <Error500 />;
   return isLoading ? (

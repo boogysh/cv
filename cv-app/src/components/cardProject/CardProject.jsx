@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import DefaultImage from "../../assets/imgDefault.png"; //?????
+import React, { useState, useMemo } from "react";
+// import DefaultImage from "../../assets/imgDefault.png"; //?????
 import "./cardProject.css";
 import Slider from "../slider/Slider";
-import { UseFetch } from "../../hooks/useFetch";
+import { UseFetch_filtered } from "../../hooks/useFetch_filtered";
 import LikeAndCommentCard from "./_cardProject/likeAndCommentCard";
 import ShareList from "../shareButton/shareList";
 import LinkToProjectDev from "./_cardProject/linkToProjectDev";
@@ -12,17 +12,18 @@ import NewCommentAndLastTwo from "./_cardProject/newCommentAndLastTwo";
 import ShowAllComments from "./_cardProject/showAllComments";
 
 function CardProject({ images, title, info, id, urlProject, urlExistent }) {
+  // const counter = React.useRef(0);
+  // console.log(counter.current++);
+  console.log("test");
   const [uri, setUri] = useState();
   const [showNewCommentAndLastTwo, setShowNewCommentAndLastTwo] =
     useState(false);
   const [showAllComments, setShowAllComments] = useState(false);
   const [showShareList, setShowhareList] = useState(false);
   //-----------
-  const [commentsQty, setCommentsQty] = useState(0);
   const [statePage, setStatePage] = useState(0);
-  const [filteredComments, setFilteredComments] = useState([]);
   //------------------------------------------------------------------
-  useEffect(() => {
+  useMemo(() => {
     const href_arch = window.location.href.includes("/architecture");
     const href_bat = window.location.href.includes("/batiment");
     const href_dev = window.location.href.includes("/developpement");
@@ -31,18 +32,12 @@ function CardProject({ images, title, info, id, urlProject, urlExistent }) {
     href_dev && setUri("developpement");
   }, []);
   //---------------------FETCH---------------------------------
-  const { data, isLoading } = UseFetch(
+  const { filteredData, isLoading } = UseFetch_filtered(
     // `http://localhost:4000/api/comments`,
-    // `process.env.API_COMMENTS`,
     `https://cv-backend-git-main-boogysh.vercel.app/api/comments`,
-    statePage // force fetch to refresh after sending a comment and openComments
+    id,
+    statePage
   );
-  //---------- COMMENTS QUANTITY------------------------
-  useEffect(() => {
-    const result = data.filter((comment) => comment.project === id);
-    setCommentsQty(result.length);
-    setFilteredComments(result);
-  }, [data, id]);
   //----OPEN AND CLOSE SHARE LIST---------
   const openShareList = () => {
     //open and close Like card
@@ -65,7 +60,7 @@ function CardProject({ images, title, info, id, urlProject, urlExistent }) {
     setShowNewCommentAndLastTwo(false);
     setShowAllComments(false);
   };
-  // Open and close all comments
+  //Open and close all comments
   const openAllComments = () => {
     setShowNewCommentAndLastTwo(true);
     setShowAllComments(true);
@@ -84,14 +79,15 @@ function CardProject({ images, title, info, id, urlProject, urlExistent }) {
             openShareList={openShareList}
             openAllComments={openAllComments}
             openComments={openComments}
-            commentsQty={commentsQty}
+            // commentsQty={commentsQty}
+            commentsQty={filteredData.length}
           />
         </div>
         {(uri === "architecture" || uri === "batiment") && (
           <LinkToProjectArchOrBat
             uri={uri}
             id={id}
-            show_shareList={showShareList}
+            // show_shareList={showShareList}
             show_newCommentAndLastTwo={showNewCommentAndLastTwo}
             info={info}
             title={title}
@@ -104,7 +100,7 @@ function CardProject({ images, title, info, id, urlProject, urlExistent }) {
             id={id}
             urlProject={urlProject}
             urlExistent={urlExistent}
-            show_shareList={showShareList}
+            // show_shareList={showShareList}
             show_newCommentAndLastTwo={showNewCommentAndLastTwo}
           />
         )}
@@ -131,13 +127,15 @@ function CardProject({ images, title, info, id, urlProject, urlExistent }) {
         />
         <NewCommentAndLastTwo
           show_newCommentAndLastTwo={showNewCommentAndLastTwo}
-          filteredComments={filteredComments}
+          // filteredComments={filteredComments}
+          filteredComments={filteredData}
           isLoading={isLoading}
         />
         <ShowAllComments
           show_allComments={showAllComments}
           openAllComments={openAllComments}
-          filteredComments={filteredComments}
+          // filteredComments={filteredComments}
+          filteredComments={filteredData}
           isLoading={isLoading}
         />
       </div>
@@ -146,7 +144,7 @@ function CardProject({ images, title, info, id, urlProject, urlExistent }) {
 }
 export default CardProject;
 
-CardProject.defaultProps = {
-  image: DefaultImage,
-  info: ["Info"],
-};
+// CardProject.defaultProps = {
+//   image: DefaultImage,
+//   info: ["Info"],
+// };
