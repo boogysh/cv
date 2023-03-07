@@ -10,8 +10,8 @@ import banner from "../../assets/pr-arch/front-1200.jpg";
 
 export default function Architecture() {
   const { data, isLoading, error } = UseFetch(
-    // `https://boogysh.github.io/cv-api/data_arch.json`
-    `/pr_arch/data_arch.json`
+    `https://boogysh.github.io/cv-api/data_arch.json`
+    // `/pr_arch/data_arch.json`
   );
   // console.log("test");
 
