@@ -40,7 +40,7 @@ export default function LikeAndCommentCard(props) {
   };
   useEffect(() => {
     getDataIp();
-    window.location.reload();
+    // window.location.reload();
   }, []);
   //----------------SAVE MY-IP'S TO LOCAL STORAGE----------------------------
 
