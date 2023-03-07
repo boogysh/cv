@@ -41,8 +41,8 @@ export default function LikeAndCommentCard(props) {
   useEffect(() => {
     getDataIp();
   }, []);
-
   //----------------SAVE MY-IP'S TO LOCAL STORAGE----------------------------
+
   useMemo(() => {
     const myIPs = [];
     const dynamic_IP = ip;
