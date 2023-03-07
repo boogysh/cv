@@ -63,7 +63,7 @@ export default function LikeAndCommentCard(props) {
   //------------- FILTER LIKES API-----------------------
 
   //--------MANAGE LIKE ON LOAD PAGE------------------
-  useMemo(() => {
+  useEffect(() => {
     const FindIdenticalIp = ipList.filter((value) => myIpList.includes(value));
     const ipListIncludesIp = ipList.includes(ip);
     ipListIncludesIp && setLiked(true);
@@ -74,17 +74,12 @@ export default function LikeAndCommentCard(props) {
     // else if (FindIdenticalIp.length === 0) return setLiked(false);
     // setStatePage((statePage) => statePage + 1);
     //--------------------
-    if (!FindIdenticalIp) return;
-    setIsLoading_Identical_Ip(true);
-    try {
-      FindIdenticalIp.length > 0 && setLiked(true);
-      FindIdenticalIp.length === 0 && setLiked(false);
-      ipListIncludesIp && setLiked(true);
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setIsLoading_Identical_Ip(false);
-    }
+    !FindIdenticalIp && setIsLoading_Identical_Ip(true);
+    FindIdenticalIp.length > 0 && setLiked(true) && setIsLoading_Identical_Ip(false);
+    FindIdenticalIp.length === 0 && setLiked(false) && setIsLoading_Identical_Ip(false);
+    ipListIncludesIp && setLiked(true) &&  setIsLoading_Identical_Ip(false);
+
+    
   }, [ip, ipList, myIpList]);
   //---------------------------------------------------
 
