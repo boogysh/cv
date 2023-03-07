@@ -21,6 +21,7 @@ export default function LikeAndCommentCard(props) {
   const [statePage, setStatePage] = useState(0);
   const [myIpList, setMyIpList] = useState([]);
   const [isLoading_Identical_Ip, setIsLoading_Identical_Ip] = useState(false);
+  const [isFindIdenticalIp, setFindIdenticalIp] = useState([]);
   //-----------USE FETCH-------------------
   const { ipList, likesQty, isLoading } = UseFetch_filtered_likes(
     // `process.env.API_LIKES`,
@@ -66,6 +67,8 @@ export default function LikeAndCommentCard(props) {
   //--------MANAGE LIKE ON LOAD PAGE------------------
   useEffect(() => {
     const FindIdenticalIp = ipList.filter((value) => myIpList.includes(value));
+    setFindIdenticalIp(FindIdenticalIp)
+    
     const ipListIncludesIp = ipList.includes(ip);
     ipListIncludesIp && setLiked(true);
     //FindIdenticalIp.length > 0 && setLiked(true); //???? IT WORKS ????
@@ -95,7 +98,7 @@ export default function LikeAndCommentCard(props) {
       setStatePage((statePage) => statePage + 1);
   }, [ip, ipList, myIpList]);
   //---------------------------------------------------
-
+  console.log("FindIdenticalIp",isFindIdenticalIp)
   // //-------LIKE-POST-CONTENT------------------------
   const likeToPost = {
     project: `${props.id}`,
@@ -106,7 +109,7 @@ export default function LikeAndCommentCard(props) {
   // console.log("myIpList:", myIpList);
   //------------------------------------
   const likePost = () => {
-    if (ip && props.id && myIpList) {
+    if (ip && props.id && myIpList && isFindIdenticalIp && isFindIdenticalIp.length === 0) {
       const fetchLikePost = fetch(
         //`process.env.API_LIKES`,
         "https://cv-backend-git-main-boogysh.vercel.app/api/likes",
