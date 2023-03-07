@@ -11,14 +11,13 @@ import NewComment from "./_cardProject/newComment";
 import NewCommentAndLastTwo from "./_cardProject/newCommentAndLastTwo";
 import ShowAllComments from "./_cardProject/showAllComments";
 
-
 function CardProject({ images, title, info, id, urlProject, urlExistent }) {
   const [uri, setUri] = useState();
-  const [show, setShow] = useState({
-    newCommentAndLastTwo: false,
-    allComments: false,
-    shareList: false,
-  });
+  const [showNewCommentAndLastTwo, setShowNewCommentAndLastTwo] =
+    useState(false);
+  const [showAllComments, setShowAllComments] = useState(false);
+  const [showShareList, setShowhareList] = useState(false);
+  //-----------
   const [commentsQty, setCommentsQty] = useState(0);
   const [statePage, setStatePage] = useState(0);
   const [filteredComments, setFilteredComments] = useState([]);
@@ -47,30 +46,29 @@ function CardProject({ images, title, info, id, urlProject, urlExistent }) {
   //----OPEN AND CLOSE SHARE LIST---------
   const openShareList = () => {
     //open and close Like card
-    setShow((show) => ({ ...show, shareList: true }));
+    setShowhareList(true);
     //close Share after a few seconds
     const timeout = setTimeout(() => {
-      setShow((show) => ({ ...show, shareList: false }));
+      setShowhareList(false);
     }, 5000);
     return () => clearTimeout(timeout);
   };
   const closeShareList = () => {
-    setShow((show) => ({ ...show, shareList: false }));
+    setShowhareList(false);
   };
   const openComments = () => {
     // Open and close  a few comments----
-    setShow((show) => ({ ...show, newCommentAndLastTwo: true }));
-    // setStatePage(statePage + 1);
+    setShowNewCommentAndLastTwo(true);
     setStatePage((statePage) => statePage + 1);
   };
   const closeComments = () => {
-    setShow((show) => ({ ...show, newCommentAndLastTwo: false }));
-    setShow((show) => ({ ...show, allComments: false }));
+    setShowNewCommentAndLastTwo(false);
+    setShowAllComments(false);
   };
   // Open and close all comments
   const openAllComments = () => {
-    setShow((show) => ({ ...show, newCommentAndLastTwo: true }));
-    setShow((show) => ({ ...show, allComments: true }));
+    setShowNewCommentAndLastTwo(true);
+    setShowAllComments(true);
   };
 
   //------------------
@@ -93,8 +91,8 @@ function CardProject({ images, title, info, id, urlProject, urlExistent }) {
           <LinkToProjectArchOrBat
             uri={uri}
             id={id}
-            show_shareList={show.shareList}
-            show_newCommentAndLastTwo={show.newCommentAndLastTwo}
+            show_shareList={showShareList}
+            show_newCommentAndLastTwo={showNewCommentAndLastTwo}
             info={info}
             title={title}
           />
@@ -106,9 +104,8 @@ function CardProject({ images, title, info, id, urlProject, urlExistent }) {
             id={id}
             urlProject={urlProject}
             urlExistent={urlExistent}
-            show_shareList={show.shareList}
-            show_newCommentAndLastTwo={show.newCommentAndLastTwo}
-            
+            show_shareList={showShareList}
+            show_newCommentAndLastTwo={showNewCommentAndLastTwo}
           />
         )}
       </div>
@@ -116,12 +113,12 @@ function CardProject({ images, title, info, id, urlProject, urlExistent }) {
         title={title}
         id={id}
         url={`${window.location.href}#${id}`}
-        show_shareList={show.shareList}
+        show_shareList={showShareList}
         closeShareList={closeShareList}
       />
       <div // -----------------COMMENTS---------------
         className={
-          show.newCommentAndLastTwo
+          showNewCommentAndLastTwo
             ? "card_comments_container"
             : "card_comments_container hidden"
         }
@@ -133,12 +130,12 @@ function CardProject({ images, title, info, id, urlProject, urlExistent }) {
           statePage={statePage}
         />
         <NewCommentAndLastTwo
-          show_newCommentAndLastTwo={show.newCommentAndLastTwo}
+          show_newCommentAndLastTwo={showNewCommentAndLastTwo}
           filteredComments={filteredComments}
           isLoading={isLoading}
         />
         <ShowAllComments
-          show_allComments={show.allComments}
+          show_allComments={showAllComments}
           openAllComments={openAllComments}
           filteredComments={filteredComments}
           isLoading={isLoading}

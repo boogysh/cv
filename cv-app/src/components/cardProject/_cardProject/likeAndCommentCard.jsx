@@ -70,16 +70,16 @@ export default function LikeAndCommentCard(props) {
   }, [data2, props.id]);
   //--------MANAGE LIKE ON LOAD PAGE------------------
 
+  const FindIdenticalIp = ipList.filter((value) => myIpList.includes(value));
+  const ipListIncludesIp = ipList.includes(ip);
   useEffect(() => {
-    const FindIdenticalIp = ipList.filter((value) => myIpList.includes(value));
     const manageLike = () => {
-      const ipListIncludesIp = ipList.includes(ip);
       ipListIncludesIp && setLiked(true);
       FindIdenticalIp.length > 0 && setLiked(true); //???? IT WORKS ????
       return;
     };
     manageLike();
-  }, [ip, ipList, myIpList]);
+  }, [ip, ipList, myIpList,FindIdenticalIp.length,ipListIncludesIp]);
   //-------LIKE-POST-CONTENT--------------
   const likeToPost = {
     project: `${props.id}`,
@@ -93,7 +93,7 @@ export default function LikeAndCommentCard(props) {
     if (ip && props.id && myIpList) {
       const fetchLikePost = fetch(
         //`process.env.API_LIKES`,
-        "https://cv-backend-git-main-boogysh.vercel.app/api/likes",
+        "https://cv-backend-git-main-boogysh.vercel.app/api/likes", 
         // "http://localhost:4000/api/likes/",
         {
           method: "POST",
