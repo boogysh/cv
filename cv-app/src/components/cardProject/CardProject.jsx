@@ -14,7 +14,7 @@ import ShowAllComments from "./_cardProject/showAllComments";
 function CardProject({ images, title, info, id, urlProject, urlExistent }) {
   // const counter = React.useRef(0);
   // console.log(counter.current++);
-  console.log("test");
+  console.log("test12");
   const [uri, setUri] = useState();
   const [showNewCommentAndLastTwo, setShowNewCommentAndLastTwo] =
     useState(false);

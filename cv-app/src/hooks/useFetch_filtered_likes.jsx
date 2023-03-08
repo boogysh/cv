@@ -14,7 +14,7 @@ export function UseFetch_filtered_likes(url, id, statePage) {
   const dispatch = useDispatch();
 
   //-----------------------------------------------
-  // const onLine = window.navigator.onLine
+  const onLine = window.navigator.onLine
 
   useEffect(() => {
     if (!url) return;
@@ -26,7 +26,7 @@ export function UseFetch_filtered_likes(url, id, statePage) {
         //-----------------
         const res = await axios.get("https://geolocation-db.com/json/");
         // setIp(`${res.data.IPv4}---6`);
-        setIp(res.data.IPv4);
+        onLine && setIp(res.data.IPv4);
         //--------
         dispatch(IP(res.data.IPv4))
         // dispatch(IP(`${res.data.IPv4}---6`))
@@ -47,6 +47,6 @@ export function UseFetch_filtered_likes(url, id, statePage) {
     }
     fetchData();
     // dispatch(IP(ip));
-  }, [url, id, statePage, dispatch, ip]);
+  }, [url, id, statePage, dispatch, ip, onLine]);
   return { isLoading, error, ipList, likesQty, ip };
 }
