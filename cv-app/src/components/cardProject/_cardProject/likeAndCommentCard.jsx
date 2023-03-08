@@ -32,7 +32,7 @@ export default function LikeAndCommentCard(props) {
   //--------------------------AXIOS---------------------------------------------
   async function getIp (){
     const res = await axios.get("https://geolocation-db.com/json/");
-    setIp(res.data.IPv4);
+    res && setIp(res.data.IPv4);
   }
   useEffect(()=>{
     getIp()
