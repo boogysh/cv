@@ -27,7 +27,7 @@ export default function LikeAndCommentCard(props) {
   const [isLoading_Identical_Ip, setIsLoading_Identical_Ip] = useState(false);
   const [isFindIdenticalIp, setFindIdenticalIp] = useState([]);
   //-----------USE FETCH-------------------
-  const { ipList, likesQty, isLoading ,ip } = UseFetch_filtered_likes(
+  const { ipList, likesQty, isLoading, ip } = UseFetch_filtered_likes(
     // `process.env.API_LIKES`,
     // `http://localhost:4000/api/likes`,
     `https://cv-backend-git-main-boogysh.vercel.app/api/likes`,
@@ -36,7 +36,7 @@ export default function LikeAndCommentCard(props) {
   );
   // console.log(ipList)
   //---------------------AXIOS-----------------------------------
-  
+
   // const getDataIp = async () => {
   //   const res = await axios.get("https://geolocation-db.com/json/");
   //   setIP(res.data.IPv4);
@@ -44,7 +44,7 @@ export default function LikeAndCommentCard(props) {
   // useEffect(() => {
   //   getDataIp();
   // }, [ip]);
-  
+
   //----------------SAVE MY-IP'S TO LOCAL STORAGE----------------------------
 
   useMemo(() => {
@@ -71,21 +71,22 @@ export default function LikeAndCommentCard(props) {
     const FindIdenticalIp = ipList.filter((value) => myIpList.includes(value));
     setFindIdenticalIp(FindIdenticalIp);
     const ipListIncludesIp = ipList.includes(ip);
-    ipListIncludesIp && setLiked(true);
+    // ipListIncludesIp && setLiked(true);
     //-------------------------------------------------------------------
     if (!FindIdenticalIp) {
       return setIsLoading_Identical_Ip(true);
     } else if (FindIdenticalIp) {
       if (FindIdenticalIp.length > 0) {
         console.log("FindIdenticalIp.length > 0");
-        const liked = setLiked(true) && setIsLoading_Identical_Ip(false);
-        return liked;
-      } else if (FindIdenticalIp.length === 0) {
-        console.log("FindIdenticalIp.length === 0");
-        const unliked = setLiked(false) && setIsLoading_Identical_Ip(false);
-        return unliked;
+        return setLiked(true) && setIsLoading_Identical_Ip(false);
+      } else if (FindIdenticalIp.length === 0 && ipListIncludesIp) {
+        console.log("FindIdenticalIp.length === 0 && liked");
+        return setLiked(true) && setIsLoading_Identical_Ip(false);
+      } else if(FindIdenticalIp.length === 0 && !ipListIncludesIp){
+        console.log("FindIdenticalIp.length === 0 && notVoted")
+        return setLiked(false) && setIsLoading_Identical_Ip(false);
       }
-      //return
+    
     }
   }, [ip, ipList, myIpList]);
   //---------------------------------------------------
