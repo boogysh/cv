@@ -103,8 +103,8 @@ export default function LikeAndCommentCard(props) {
     ) {
       const fetchLikePost = fetch(
         //`process.env.API_LIKES`,
-        // // "https://cv-backend-git-main-boogysh.vercel.app/api/likes",
-        "http://localhost:4000/api/likes/",
+        "https://cv-backend-git-main-boogysh.vercel.app/api/likes",
+        // "http://localhost:4000/api/likes/",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
