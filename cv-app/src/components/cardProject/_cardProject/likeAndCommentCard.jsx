@@ -6,23 +6,21 @@ import comment from "../../../assets/comment1.png";
 import shareIcon from "../../../assets/share.png";
 import { UseFetch_filtered_likes } from "../../../hooks/useFetch_filtered_likes";
 import Loader2 from "../../loader/Loader2";
-import axios from "axios";
+// import axios from "axios";
 
 // import { useSelector  } from "react-redux";
 
 export default function LikeAndCommentCard(props) {
   const [ip, setIp] = useState("");
+  useEffect(()=>{
+    setIp('ooooo')
+  },[])
   const [liked, setLiked] = useState(false); //true or false
   const [myIpList, setMyIpList] = useState([]);
-  // const [isLoading_Identical_Ip, setIsLoading_Identical_Ip] = useState(false);
-  // const [isFindIdenticalIp, setFindIdenticalIp] = useState([]);
 
-  // const [isLoading_Identical_Ip, setIsLoading_Identical_Ip] = useState(false);
-  // const [isFindIdenticalIp, setFindIdenticalIp] = useState([]);
   const [statePage, setStatePage] = useState(0);
   //-----------USE FETCH-------------------
-  // const { likesQty, isLoading, ip, ipList } = UseFetch_filtered_likes(
-  const {isLoading,ipList } = UseFetch_filtered_likes(
+  const { isLoading, ipList } = UseFetch_filtered_likes(
     // `http://localhost:4000/api/likes`,
     `https://cv-back-git-main-boogysh.vercel.app/api/likes`,
     props.id,
@@ -30,13 +28,13 @@ export default function LikeAndCommentCard(props) {
   );
   console.log("liked", liked);
   //--------------------------AXIOS---------------------------------------------
-  async function getIp (){
-    const res = await axios.get("https://geolocation-db.com/json/");
-    res && setIp(res.data.IPv4);
-  }
-  useEffect(()=>{
-    getIp()
-  },[])
+  // async function getIp() {
+  //   const res = await axios.get("https://geolocation-db.com/json/");
+  //   res && setIp(res.data.IPv4);
+  // }
+  // useEffect(() => {
+  //   getIp();
+  // }, []);
 
   //----------------SAVE MY-IP'S TO LOCAL STORAGE----------------------------
 
@@ -59,30 +57,12 @@ export default function LikeAndCommentCard(props) {
 
   useEffect(() => {
     const FindIdenticalIp = ipList.filter((value) => myIpList.includes(value));
-    // setFindIdenticalIp(FindIdenticalIp);
     const ipListIncludesIp = ipList.includes(ip);
     ipListIncludesIp && setLiked(true);
     FindIdenticalIp.length > 0 && setLiked(true);
     console.log("isFindIdenticalIp ", FindIdenticalIp);
     console.log("ipListIncludesIp ", ipListIncludesIp);
-    // setStatePage(statePage=>statePage+1)
-    //-------------------------------------------------------------------
-    // if (!FindIdenticalIp) {
-    //   return setIsLoading_Identical_Ip(true);
-    // } else if (FindIdenticalIp) {
-    //   if (FindIdenticalIp.length > 0) {
-    //     console.log("FindIdenticalIp.length > 0");
-    //     return setLiked(true) && setIsLoading_Identical_Ip(false);
-    //   } else if (FindIdenticalIp.length === 0 && ipListIncludesIp) {
-    //     console.log("FindIdenticalIp.length === 0 && liked");
-    //     return setLiked(true) && setIsLoading_Identical_Ip(false);
-    //   } else if (FindIdenticalIp.length === 0 && !ipListIncludesIp) {
-    //     console.log("FindIdenticalIp.length === 0 && notVoted");
-    //     return setLiked(false) && setIsLoading_Identical_Ip(false);
-    //   }
-    // }
   }, [ip, ipList, myIpList]);
-  //---------------------------------------------------
 
   // //-------LIKE-POST-CONTENT------------------------
   const likeToPost = {
@@ -92,13 +72,7 @@ export default function LikeAndCommentCard(props) {
   };
   //------------------------------------
   const likePost = () => {
-    if (
-      ip &&
-      props.id &&
-      myIpList 
-      
-    
-    ) {
+    if (ip && props.id && myIpList) {
       const fetchLikePost = fetch(
         //`process.env.API_LIKES`,
         "https://cv-back-git-main-boogysh.vercel.app/api/likes",
@@ -125,7 +99,6 @@ export default function LikeAndCommentCard(props) {
       <div className="likeAndComment_result">
         <div className="likeAndComment_qty">
           <img src={like} className="card_icon_small" alt="like" />{" "}
-          {/* <span className="likesNr">{likesQty}</span> */}
           <span className="likesNr">{ipList.length}</span>
         </div>
         <button
@@ -138,7 +111,6 @@ export default function LikeAndCommentCard(props) {
       <div className="separe_likes"></div>
       <div className="likeAndComment_add">
         <button onClick={likePost} className="likeAndComment_btn">
-          {/* {isLoading || isLoading_Identical_Ip ? ( */}
           {isLoading ? (
             <Loader2 />
           ) : (

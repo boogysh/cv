@@ -6,31 +6,16 @@ exports.createLike = (req, res) => {
   console.log("6-ip:", ip);
   !allMyIPs.includes(ip) && allMyIPs.push(ip);
   console.log("allMyIPs", allMyIPs);
+  //-------------------------------
+  Array.prototype.diff = function (a) {
+    return this.filter(function (i) {
+      return a.indexOf(i) < 0;
+    });
+    // const dif1 = [1, 2, 3, 4, 5, 6].diff([3, 4, 5]);
+    // console.log(dif1); // => [1, 2, 6]
+  };
+  //---------------
 
-  ////////////////////////////////////////////////////////////////
-  const FindIdenticalElements = (array1, array2, array3) => {
-    for (let i = 0; i < array1.length; i++) {
-      for (let j = 0; j < array2.length; j++) {
-        if (array1[i] === array2[j]) {
-          array3.push(array1[i]);
-        }
-      }
-    }
-    return array3;
-  };
-  // FindIdenticalElements(array1, array2, array3) // use in Project
-  ////////////////////////////////////////////////////////////////////
-  const DeleteIdenticalElements = (array1, array2, array3) => {
-    for (let i = 0; i < array1.length; i++) {
-      for (let j = 0; j < array2.length; j++) {
-        if (array1[i] !== array2[j]) {
-          array3.push(array1[i]);
-        }
-      }
-    }
-    return array3;
-  };
-  // DeleteIdenticalElements(array1, array2, array3) // use in Project
   ////////////////////////////////////////////////////////////////////
   LIKE.findOne({ project: project })
     .then((like) => {
@@ -41,15 +26,13 @@ exports.createLike = (req, res) => {
           .catch((error) => res.status(400).json({ error }));
       } else if (like) {
         //-------------------------------------------------
-        const identicIPs = [];
-        FindIdenticalElements(like.ipList, allMyIPs, identicIPs);
+        const identicIPs = like.ipList.filter((x) => allMyIPs.includes(x));
+        console.log("intersection", identicIPs);
         console.log("like.ipList:", like.ipList);
-        console.log("identicIPs:", identicIPs);
-        //----------
-        const newIpList2 = [];
-        DeleteIdenticalElements(like.ipList, identicIPs, newIpList2);
-        console.log("59-newIpList-deleted:", newIpList2);
-        //----------
+        //-----------
+        const filteredIPs = like.ipList.diff(identicIPs);
+        console.log("IPLIST -minus- identicIps", filteredIPs);
+        //-----------
         const includesIp = like.ipList.includes(ip);
         console.log("includesIp:", includesIp);
         let newLikes;
@@ -62,8 +45,7 @@ exports.createLike = (req, res) => {
           newLikes = newIpList.length;
         } else if (ip && identicIPs.length > 0) {
           //-----------
-          newIpList = newIpList2;
-          console.log("73-newIpList-deleted:", newIpList2);
+          newIpList = filteredIPs;
           newLikes = newIpList.length;
         } else return;
 
