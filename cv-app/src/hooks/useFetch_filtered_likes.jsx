@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
+
 
 export function UseFetch_filtered_likes(url, id, statePage) {
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [ipList, setIpList] = useState([]);
   const [likesQty, setlikesQty] = useState(0);
+  const [ip, setIp] = useState("");
 
   // useMemo(() => {
   //   data2.filter((like) => {
@@ -24,6 +27,10 @@ export function UseFetch_filtered_likes(url, id, statePage) {
       try {
         const response = await fetch(url);
         const data = await response.json();
+        //-----------------
+        const res = await axios.get("https://geolocation-db.com/json/");
+        setIp(res.data.IPv4);
+        //-------------------
         data.filter((like) => {
           if (like.project === id) {
             setIpList(() => like.ipList);
@@ -39,6 +46,6 @@ export function UseFetch_filtered_likes(url, id, statePage) {
       }
     }
     fetchData();
-  }, [url, id, statePage]);
-  return { isLoading, error, ipList, likesQty };
+  }, [url, id, statePage, ip]);
+  return { isLoading, error, ipList, likesQty, ip };
 }

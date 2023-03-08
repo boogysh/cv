@@ -7,7 +7,6 @@ import shareIcon from "../../../assets/share.png";
 // import { UseFetch2 } from "../../../hooks/useFetch2";
 import { UseFetch_filtered_likes } from "../../../hooks/useFetch_filtered_likes";
 import Loader2 from "../../loader/Loader2";
-import axios from "axios";
 // import { IP } from "../../../redux/action";
 // import { useSelector, useDispatch } from "react-redux";
 
@@ -15,7 +14,7 @@ export default function LikeAndCommentCard(props) {
   // const { storedIp } = useSelector((state) => state.cartReducer);
   // const dispatch = useDispatch();
   // console.log(storedIp);
-  const [ip, setIP] = useState("");
+  // const [ip, setIP] = useState("");
   // useEffect(() => {
   //   setIP("aabvf");
   // }, [ip]);
@@ -28,7 +27,7 @@ export default function LikeAndCommentCard(props) {
   const [isLoading_Identical_Ip, setIsLoading_Identical_Ip] = useState(false);
   const [isFindIdenticalIp, setFindIdenticalIp] = useState([]);
   //-----------USE FETCH-------------------
-  const { ipList, likesQty, isLoading } = UseFetch_filtered_likes(
+  const { ipList, likesQty, isLoading ,ip } = UseFetch_filtered_likes(
     // `process.env.API_LIKES`,
     // `http://localhost:4000/api/likes`,
     `https://cv-backend-git-main-boogysh.vercel.app/api/likes`,
@@ -37,16 +36,14 @@ export default function LikeAndCommentCard(props) {
   );
   // console.log(ipList)
   //---------------------AXIOS-----------------------------------
-  // const { isLoading_ip, ip } = UseAxios("https://geolocation-db.com/json/");
-  // const { ip } = UseAxios();
-  //----------------------------------------------------------------
-  const getDataIp = async () => {
-    const res = await axios.get("https://geolocation-db.com/json/");
-    setIP(res.data.IPv4);
-  };
-  useEffect(() => {
-    getDataIp();
-  }, [ip]);
+  
+  // const getDataIp = async () => {
+  //   const res = await axios.get("https://geolocation-db.com/json/");
+  //   setIP(res.data.IPv4);
+  // };
+  // useEffect(() => {
+  //   getDataIp();
+  // }, [ip]);
   
   //----------------SAVE MY-IP'S TO LOCAL STORAGE----------------------------
 
