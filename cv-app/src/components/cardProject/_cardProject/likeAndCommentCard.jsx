@@ -41,7 +41,6 @@ export default function LikeAndCommentCard(props) {
   };
   useEffect(() => {
     getDataIp();
-    // window.location.reload();
   }, []);
   //----------------SAVE MY-IP'S TO LOCAL STORAGE----------------------------
 
@@ -75,9 +74,11 @@ export default function LikeAndCommentCard(props) {
       return setIsLoading_Identical_Ip(true);
     } else if (FindIdenticalIp) {
       if (FindIdenticalIp.length > 0) {
+        console.log("FindIdenticalIp.length > 0")
         const liked = setLiked(true) && setIsLoading_Identical_Ip(false);
         return liked;
       } else if (FindIdenticalIp.length === 0) {
+        console.log("FindIdenticalIp.length === 0")
         const unliked = setLiked(false) && setIsLoading_Identical_Ip(false);
         return unliked;
       }
@@ -87,7 +88,7 @@ export default function LikeAndCommentCard(props) {
   //---------------------------------------------------
 
   //---------------------------------------------------
-  console.log("FindIdenticalIp", isFindIdenticalIp);
+  // console.log("FindIdenticalIp", isFindIdenticalIp);
   // //-------LIKE-POST-CONTENT------------------------
   const likeToPost = {
     project: `${props.id}`,
@@ -102,6 +103,7 @@ export default function LikeAndCommentCard(props) {
       ip &&
       props.id &&
       myIpList &&
+      isFindIdenticalIp && 
       ((isFindIdenticalIp.length === 0 && liked === false) ||
         (isFindIdenticalIp.length !== 0 && liked === true))
     ) {
