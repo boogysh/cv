@@ -36,7 +36,7 @@ export function UseFetch_filtered_likes(url, id, statePage) {
       } catch (err) {
         console.log(err);
         setError(true);
-        window.location.reload();
+        err && window.location.reload();
       } finally {
         setLoading(false);
       }
