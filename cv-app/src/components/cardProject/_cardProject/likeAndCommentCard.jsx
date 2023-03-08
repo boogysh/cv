@@ -8,8 +8,13 @@ import shareIcon from "../../../assets/share.png";
 import { UseFetch_filtered_likes } from "../../../hooks/useFetch_filtered_likes";
 import Loader2 from "../../loader/Loader2";
 import axios from "axios";
+// import { IP } from "../../../redux/action";
+// import { useSelector, useDispatch } from "react-redux";
 
 export default function LikeAndCommentCard(props) {
+  // const { storedIp } = useSelector((state) => state.cartReducer);
+  // const dispatch = useDispatch();
+  // console.log(storedIp);
   const [ip, setIP] = useState("");
   // useEffect(() => {
   //   setIP("aabvf");
@@ -41,7 +46,8 @@ export default function LikeAndCommentCard(props) {
   };
   useEffect(() => {
     getDataIp();
-  }, []);
+  }, [ip]);
+  
   //----------------SAVE MY-IP'S TO LOCAL STORAGE----------------------------
 
   useMemo(() => {
@@ -74,11 +80,11 @@ export default function LikeAndCommentCard(props) {
       return setIsLoading_Identical_Ip(true);
     } else if (FindIdenticalIp) {
       if (FindIdenticalIp.length > 0) {
-        console.log("FindIdenticalIp.length > 0")
+        console.log("FindIdenticalIp.length > 0");
         const liked = setLiked(true) && setIsLoading_Identical_Ip(false);
         return liked;
       } else if (FindIdenticalIp.length === 0) {
-        console.log("FindIdenticalIp.length === 0")
+        console.log("FindIdenticalIp.length === 0");
         const unliked = setLiked(false) && setIsLoading_Identical_Ip(false);
         return unliked;
       }
@@ -103,7 +109,7 @@ export default function LikeAndCommentCard(props) {
       ip &&
       props.id &&
       myIpList &&
-      isFindIdenticalIp && 
+      isFindIdenticalIp &&
       ((isFindIdenticalIp.length === 0 && liked === false) ||
         (isFindIdenticalIp.length !== 0 && liked === true))
     ) {
