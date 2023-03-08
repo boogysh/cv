@@ -17,7 +17,7 @@ export function UseFetch_filtered_likes(url, id, statePage) {
   const onLine = window.navigator.onLine
 
   useEffect(() => {
-    if (!url) return;
+    if (!url || !onLine) return;
     setLoading(true);
     async function fetchData() {
       try {
@@ -26,6 +26,7 @@ export function UseFetch_filtered_likes(url, id, statePage) {
         //-----------------
         const res = await axios.get("https://geolocation-db.com/json/");
         // setIp(`${res.data.IPv4}---6`);
+        setIp(res.data.IPv4);
         onLine && setIp(res.data.IPv4);
         //--------
         dispatch(IP(res.data.IPv4))
