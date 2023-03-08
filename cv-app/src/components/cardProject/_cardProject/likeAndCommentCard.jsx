@@ -12,10 +12,8 @@ export default function LikeAndCommentCard(props) {
   const [liked, setLiked] = useState(false); //true or false
   const [myIpList, setMyIpList] = useState([]);
   // const [isLoading_Identical_Ip, setIsLoading_Identical_Ip] = useState(false);
-  const [isFindIdenticalIp, setFindIdenticalIp] = useState([]);
+  // const [isFindIdenticalIp, setFindIdenticalIp] = useState([]);
 
-
-  
   // const [isLoading_Identical_Ip, setIsLoading_Identical_Ip] = useState(false);
   // const [isFindIdenticalIp, setFindIdenticalIp] = useState([]);
   const [statePage, setStatePage] = useState(0);
@@ -52,10 +50,13 @@ export default function LikeAndCommentCard(props) {
 
   useEffect(() => {
     const FindIdenticalIp = ipList.filter((value) => myIpList.includes(value));
-    setFindIdenticalIp(FindIdenticalIp);
+    // setFindIdenticalIp(FindIdenticalIp);
     const ipListIncludesIp = ipList.includes(ip);
     ipListIncludesIp && setLiked(true);
-    isFindIdenticalIp && setLiked(true);
+    FindIdenticalIp.length > 0 && setLiked(true);
+    console.log("isFindIdenticalIp ", FindIdenticalIp);
+    console.log("ipListIncludesIp ", ipListIncludesIp);
+    // setStatePage(statePage=>statePage+1)
     //-------------------------------------------------------------------
     // if (!FindIdenticalIp) {
     //   return setIsLoading_Identical_Ip(true);
@@ -85,11 +86,11 @@ export default function LikeAndCommentCard(props) {
     if (
       ip &&
       props.id &&
-      myIpList &&
-      isFindIdenticalIp
+      myIpList 
+      
       //&&
       // ((isFindIdenticalIp.length === 0 && liked === false) ||
-        // (isFindIdenticalIp.length !== 0 && liked === true))
+      // (isFindIdenticalIp.length !== 0 && liked === true))
     ) {
       const fetchLikePost = fetch(
         //`process.env.API_LIKES`,
