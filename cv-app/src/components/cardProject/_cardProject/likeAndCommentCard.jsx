@@ -6,15 +6,15 @@ import comment from "../../../assets/comment1.png";
 import shareIcon from "../../../assets/share.png";
 import { UseFetch_filtered_likes } from "../../../hooks/useFetch_filtered_likes";
 import Loader2 from "../../loader/Loader2";
-// import axios from "axios";
+import axios from "axios";
 
 // import { useSelector  } from "react-redux";
 
 export default function LikeAndCommentCard(props) {
   const [ip, setIp] = useState("");
-  useEffect(()=>{
-    setIp('ooooo')
-  },[])
+  // useEffect(()=>{
+  //   setIp('ooooo')
+  // },[])
   const [liked, setLiked] = useState(false); //true or false
   const [myIpList, setMyIpList] = useState([]);
 
@@ -28,13 +28,13 @@ export default function LikeAndCommentCard(props) {
   );
   console.log("liked", liked);
   //--------------------------AXIOS---------------------------------------------
-  // async function getIp() {
-  //   const res = await axios.get("https://geolocation-db.com/json/");
-  //   res && setIp(res.data.IPv4);
-  // }
-  // useEffect(() => {
-  //   getIp();
-  // }, []);
+  async function getIp() {
+    const res = await axios.get("https://geolocation-db.com/json/");
+    res && setIp(res.data.IPv4);
+  }
+  useEffect(() => {
+    getIp();
+  }, []);
 
   //----------------SAVE MY-IP'S TO LOCAL STORAGE----------------------------
 
