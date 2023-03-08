@@ -32,7 +32,7 @@ export default function NewComment({
       // const fetchCommentPost = fetch("http://localhost:4000/api/comments/", {
       // const fetchCommentPost = fetch("process.env.API_COMMENTS", {
       const fetchCommentPost = fetch(
-        "https://cv-backend-git-main-boogysh.vercel.app/api/comments",
+        "https://cv-back-git-main-boogysh.vercel.app/api/comments",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

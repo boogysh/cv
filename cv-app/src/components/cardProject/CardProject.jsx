@@ -34,7 +34,7 @@ function CardProject({ images, title, info, id, urlProject, urlExistent }) {
   //---------------------FETCH---------------------------------
   const { filteredData, isLoading } = UseFetch_filtered(
     // `http://localhost:4000/api/comments`,
-    `https://cv-backend-git-main-boogysh.vercel.app/api/comments`,
+    `https://cv-back-git-main-boogysh.vercel.app/api/comments`,
     id,
     statePage
   );
