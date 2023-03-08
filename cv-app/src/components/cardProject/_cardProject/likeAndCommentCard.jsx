@@ -6,33 +6,29 @@ import comment from "../../../assets/comment1.png";
 import shareIcon from "../../../assets/share.png";
 import { UseFetch_filtered_likes } from "../../../hooks/useFetch_filtered_likes";
 import Loader2 from "../../loader/Loader2";
-import { useSelector  } from "react-redux";
+// import { useSelector  } from "react-redux";
 
 export default function LikeAndCommentCard(props) {
-  const { storedIp } = useSelector((state) => state.cardReducer);
-  console.log("storedIp:",storedIp);
-  console.log("window.navigator:",window.navigator.onLine,);
-
-  
-  // const dispatch = useDispatch();
-
-  // const [ip, setIP] = useState("");
-
-  
-  // const [ipList, setIpList] = useState([]);
   const [liked, setLiked] = useState(false); //true or false
-  const [statePage, setStatePage] = useState(0);
   const [myIpList, setMyIpList] = useState([]);
   const [isLoading_Identical_Ip, setIsLoading_Identical_Ip] = useState(false);
   const [isFindIdenticalIp, setFindIdenticalIp] = useState([]);
+
+
+  
+  // const [isLoading_Identical_Ip, setIsLoading_Identical_Ip] = useState(false);
+  // const [isFindIdenticalIp, setFindIdenticalIp] = useState([]);
+  const [statePage, setStatePage] = useState(0);
   //-----------USE FETCH-------------------
-  const { ipList, likesQty, isLoading, ip } = UseFetch_filtered_likes(
+  const { likesQty, isLoading, ip, ipList } = UseFetch_filtered_likes(
     // `http://localhost:4000/api/likes`,
     `https://cv-backend-git-main-boogysh.vercel.app/api/likes`,
     props.id,
     statePage //refresh after liking or unliked !!!!!!!!!!!
   );
-  console.log("ip:",ip)
+  console.log("liked", liked);
+
+  // console.log("ip:",ip)
   // console.log(ipList)
 
   //----------------SAVE MY-IP'S TO LOCAL STORAGE----------------------------
@@ -52,10 +48,8 @@ export default function LikeAndCommentCard(props) {
     }
     setMyIpList(JSON.parse(localStorage.getItem("myIPs")));
   }, [ip]);
-
-  // console.log("test2-10");
-
   //--------MANAGE LIKE ON LOAD PAGE------------------
+
   useEffect(() => {
     const FindIdenticalIp = ipList.filter((value) => myIpList.includes(value));
     setFindIdenticalIp(FindIdenticalIp);

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { IP } from "./../redux/action";
-import { useDispatch } from "react-redux";
+// import { IP } from "./../redux/action";
+// import { useDispatch } from "react-redux";
 
 export function UseFetch_filtered_likes(url, id, statePage) {
   const [isLoading, setLoading] = useState(true);
@@ -11,13 +11,11 @@ export function UseFetch_filtered_likes(url, id, statePage) {
   const [ip, setIp] = useState("");
   //-----------------------------------------
   // const { storedIp } = useSelector((state) => state.cardReducer);
-  const dispatch = useDispatch();
-
+  // const dispatch = useDispatch();
   //-----------------------------------------------
-  const onLine = window.navigator.onLine
 
   useEffect(() => {
-    if (!url || !onLine) return;
+    if (!url) return;
     setLoading(true);
     async function fetchData() {
       try {
@@ -25,12 +23,8 @@ export function UseFetch_filtered_likes(url, id, statePage) {
         const data = await response.json();
         //-----------------
         const res = await axios.get("https://geolocation-db.com/json/");
-        // setIp(`${res.data.IPv4}---6`);
         setIp(res.data.IPv4);
-        onLine && setIp(res.data.IPv4);
-        //--------
-        dispatch(IP(res.data.IPv4))
-        // dispatch(IP(`${res.data.IPv4}---6`))
+        // dispatch(IP(res.data.IPv4));
         //-------------------
         data.filter((like) => {
           if (like.project === id) {
@@ -42,12 +36,18 @@ export function UseFetch_filtered_likes(url, id, statePage) {
       } catch (err) {
         console.log(err);
         setError(true);
+        window.location.reload();
       } finally {
         setLoading(false);
       }
     }
     fetchData();
-    // dispatch(IP(ip));
-  }, [url, id, statePage, dispatch, ip, onLine]);
-  return { isLoading, error, ipList, likesQty, ip };
+  }, [url, id, statePage, ip]);
+  return {
+    isLoading,
+    error,
+    likesQty,
+    ip,
+    ipList
+  };
 }
