@@ -67,38 +67,27 @@ export default function LikeAndCommentCard(props) {
   //--------MANAGE LIKE ON LOAD PAGE------------------
   useEffect(() => {
     const FindIdenticalIp = ipList.filter((value) => myIpList.includes(value));
-    setFindIdenticalIp(FindIdenticalIp)
-    
+    setFindIdenticalIp(FindIdenticalIp);
     const ipListIncludesIp = ipList.includes(ip);
     ipListIncludesIp && setLiked(true);
-    //FindIdenticalIp.length > 0 && setLiked(true); //???? IT WORKS ????
     //-------------------------------------------------------------------
-
-    // if (FindIdenticalIp.length > 0) return setLiked(true);
-    // else if (FindIdenticalIp.length === 0) return setLiked(false);
-    // setStatePage((statePage) => statePage + 1);
-    //--------------------
-    !FindIdenticalIp &&
-      setIsLoading_Identical_Ip(true) &&
-      setStatePage((statePage) => statePage + 1);
-
-    FindIdenticalIp.length > 0 &&
-      setLiked(true) &&
-      setIsLoading_Identical_Ip(false) &&
-      setStatePage((statePage) => statePage + 1);
-
-    ipListIncludesIp &&
-      setLiked(true) &&
-      setIsLoading_Identical_Ip(false) &&
-      setStatePage((statePage) => statePage + 1);
-
-    FindIdenticalIp.length === 0 &&
-      setLiked(false) &&
-      setIsLoading_Identical_Ip(false) &&
-      setStatePage((statePage) => statePage + 1);
+    if (!FindIdenticalIp) {
+      return setIsLoading_Identical_Ip(true);
+    } else if (FindIdenticalIp) {
+      if (FindIdenticalIp.length > 0) {
+        const liked = setLiked(true) && setIsLoading_Identical_Ip(false);
+        return liked;
+      } else if (FindIdenticalIp.length === 0) {
+        const unliked = setLiked(false) && setIsLoading_Identical_Ip(false);
+        return unliked;
+      }
+      //return
+    }
   }, [ip, ipList, myIpList]);
   //---------------------------------------------------
-  console.log("FindIdenticalIp",isFindIdenticalIp)
+
+  //---------------------------------------------------
+  console.log("FindIdenticalIp", isFindIdenticalIp);
   // //-------LIKE-POST-CONTENT------------------------
   const likeToPost = {
     project: `${props.id}`,
@@ -109,7 +98,13 @@ export default function LikeAndCommentCard(props) {
   // console.log("myIpList:", myIpList);
   //------------------------------------
   const likePost = () => {
-    if (ip && props.id && myIpList && isFindIdenticalIp && isFindIdenticalIp.length === 0) {
+    if (
+      ip &&
+      props.id &&
+      myIpList &&
+      ((isFindIdenticalIp.length === 0 && liked === false) ||
+        (isFindIdenticalIp.length !== 0 && liked === true))
+    ) {
       const fetchLikePost = fetch(
         //`process.env.API_LIKES`,
         "https://cv-backend-git-main-boogysh.vercel.app/api/likes",
