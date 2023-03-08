@@ -11,7 +11,7 @@ import Loader2 from "../../loader/Loader2";
 export default function LikeAndCommentCard(props) {
   const [liked, setLiked] = useState(false); //true or false
   const [myIpList, setMyIpList] = useState([]);
-  const [isLoading_Identical_Ip, setIsLoading_Identical_Ip] = useState(false);
+  // const [isLoading_Identical_Ip, setIsLoading_Identical_Ip] = useState(false);
   const [isFindIdenticalIp, setFindIdenticalIp] = useState([]);
 
 
@@ -54,22 +54,23 @@ export default function LikeAndCommentCard(props) {
     const FindIdenticalIp = ipList.filter((value) => myIpList.includes(value));
     setFindIdenticalIp(FindIdenticalIp);
     const ipListIncludesIp = ipList.includes(ip);
-    // ipListIncludesIp && setLiked(true);
+    ipListIncludesIp && setLiked(true);
+    FindIdenticalIp && setLiked(true);
     //-------------------------------------------------------------------
-    if (!FindIdenticalIp) {
-      return setIsLoading_Identical_Ip(true);
-    } else if (FindIdenticalIp) {
-      if (FindIdenticalIp.length > 0) {
-        console.log("FindIdenticalIp.length > 0");
-        return setLiked(true) && setIsLoading_Identical_Ip(false);
-      } else if (FindIdenticalIp.length === 0 && ipListIncludesIp) {
-        console.log("FindIdenticalIp.length === 0 && liked");
-        return setLiked(true) && setIsLoading_Identical_Ip(false);
-      } else if (FindIdenticalIp.length === 0 && !ipListIncludesIp) {
-        console.log("FindIdenticalIp.length === 0 && notVoted");
-        return setLiked(false) && setIsLoading_Identical_Ip(false);
-      }
-    }
+    // if (!FindIdenticalIp) {
+    //   return setIsLoading_Identical_Ip(true);
+    // } else if (FindIdenticalIp) {
+    //   if (FindIdenticalIp.length > 0) {
+    //     console.log("FindIdenticalIp.length > 0");
+    //     return setLiked(true) && setIsLoading_Identical_Ip(false);
+    //   } else if (FindIdenticalIp.length === 0 && ipListIncludesIp) {
+    //     console.log("FindIdenticalIp.length === 0 && liked");
+    //     return setLiked(true) && setIsLoading_Identical_Ip(false);
+    //   } else if (FindIdenticalIp.length === 0 && !ipListIncludesIp) {
+    //     console.log("FindIdenticalIp.length === 0 && notVoted");
+    //     return setLiked(false) && setIsLoading_Identical_Ip(false);
+    //   }
+    // }
   }, [ip, ipList, myIpList]);
   //---------------------------------------------------
 
@@ -85,9 +86,10 @@ export default function LikeAndCommentCard(props) {
       ip &&
       props.id &&
       myIpList &&
-      isFindIdenticalIp &&
-      ((isFindIdenticalIp.length === 0 && liked === false) ||
-        (isFindIdenticalIp.length !== 0 && liked === true))
+      isFindIdenticalIp
+      //&&
+      // ((isFindIdenticalIp.length === 0 && liked === false) ||
+        // (isFindIdenticalIp.length !== 0 && liked === true))
     ) {
       const fetchLikePost = fetch(
         //`process.env.API_LIKES`,
@@ -127,7 +129,8 @@ export default function LikeAndCommentCard(props) {
       <div className="separe_likes"></div>
       <div className="likeAndComment_add">
         <button onClick={likePost} className="likeAndComment_btn">
-          {isLoading || isLoading_Identical_Ip ? (
+          {/* {isLoading || isLoading_Identical_Ip ? ( */}
+          {isLoading ? (
             <Loader2 />
           ) : (
             <>
