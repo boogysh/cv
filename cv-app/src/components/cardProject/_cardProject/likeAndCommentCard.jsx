@@ -55,7 +55,7 @@ export default function LikeAndCommentCard(props) {
     setFindIdenticalIp(FindIdenticalIp);
     const ipListIncludesIp = ipList.includes(ip);
     ipListIncludesIp && setLiked(true);
-    FindIdenticalIp && setLiked(true);
+    isFindIdenticalIp && setLiked(true);
     //-------------------------------------------------------------------
     // if (!FindIdenticalIp) {
     //   return setIsLoading_Identical_Ip(true);
