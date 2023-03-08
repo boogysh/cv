@@ -1,14 +1,17 @@
 // import React, {useState} from "react";
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import like from "../../../assets/like.png";
 import like2 from "../../../assets/like3.png";
 import comment from "../../../assets/comment1.png";
 import shareIcon from "../../../assets/share.png";
 import { UseFetch_filtered_likes } from "../../../hooks/useFetch_filtered_likes";
 import Loader2 from "../../loader/Loader2";
+import axios from "axios";
+
 // import { useSelector  } from "react-redux";
 
 export default function LikeAndCommentCard(props) {
+  const [ip, setIp] = useState("");
   const [liked, setLiked] = useState(false); //true or false
   const [myIpList, setMyIpList] = useState([]);
   // const [isLoading_Identical_Ip, setIsLoading_Identical_Ip] = useState(false);
@@ -18,20 +21,26 @@ export default function LikeAndCommentCard(props) {
   // const [isFindIdenticalIp, setFindIdenticalIp] = useState([]);
   const [statePage, setStatePage] = useState(0);
   //-----------USE FETCH-------------------
-  const { likesQty, isLoading, ip, ipList } = UseFetch_filtered_likes(
+  // const { likesQty, isLoading, ip, ipList } = UseFetch_filtered_likes(
+  const {isLoading,ipList } = UseFetch_filtered_likes(
     // `http://localhost:4000/api/likes`,
     `https://cv-backend-git-main-boogysh.vercel.app/api/likes`,
     props.id,
     statePage //refresh after liking or unliked !!!!!!!!!!!
   );
   console.log("liked", liked);
-
-  // console.log("ip:",ip)
-  // console.log(ipList)
+  //--------------------------AXIOS---------------------------------------------
+  async function getIp (){
+    const res = await axios.get("https://geolocation-db.com/json/");
+    setIp(res.data.IPv4);
+  }
+  useEffect(()=>{
+    getIp()
+  },[])
 
   //----------------SAVE MY-IP'S TO LOCAL STORAGE----------------------------
 
-  useMemo(() => {
+  useEffect(() => {
     const myIPs = [];
     const dynamic_IP = ip;
     const get_IPs = JSON.parse(localStorage.getItem("myIPs"));
@@ -94,8 +103,8 @@ export default function LikeAndCommentCard(props) {
     ) {
       const fetchLikePost = fetch(
         //`process.env.API_LIKES`,
-        "https://cv-backend-git-main-boogysh.vercel.app/api/likes",
-        // "http://localhost:4000/api/likes/",
+        // // "https://cv-backend-git-main-boogysh.vercel.app/api/likes",
+        "http://localhost:4000/api/likes/",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -118,7 +127,8 @@ export default function LikeAndCommentCard(props) {
       <div className="likeAndComment_result">
         <div className="likeAndComment_qty">
           <img src={like} className="card_icon_small" alt="like" />{" "}
-          <span className="likesNr">{likesQty}</span>
+          {/* <span className="likesNr">{likesQty}</span> */}
+          <span className="likesNr">{ipList.length}</span>
         </div>
         <button
           onClick={props.openAllComments}

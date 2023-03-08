@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+// import axios from "axios";
 // import { IP } from "./../redux/action";
 // import { useDispatch } from "react-redux";
 
@@ -7,8 +7,8 @@ export function UseFetch_filtered_likes(url, id, statePage) {
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [ipList, setIpList] = useState([]);
-  const [likesQty, setlikesQty] = useState(0);
-  const [ip, setIp] = useState("");
+  // const [likesQty, setlikesQty] = useState(0);
+  // const [ip, setIp] = useState("");
   //-----------------------------------------
   // const { storedIp } = useSelector((state) => state.cardReducer);
   // const dispatch = useDispatch();
@@ -22,14 +22,15 @@ export function UseFetch_filtered_likes(url, id, statePage) {
         const response = await fetch(url);
         const data = await response.json();
         //-----------------
-        const res = await axios.get("https://geolocation-db.com/json/");
-        setIp(res.data.IPv4);
+        // const res = await axios.get("https://geolocation-db.com/json/");
+        // setIp(res.data.IPv4);
         // dispatch(IP(res.data.IPv4));
         //-------------------
         data.filter((like) => {
           if (like.project === id) {
             setIpList(() => like.ipList);
-            setlikesQty(() => like.likes);
+            // setlikesQty(() => like.likes);
+            // setlikesQty(() => like.ipList.length);
           }
           return like.pList && like.likes;
         });
@@ -42,12 +43,11 @@ export function UseFetch_filtered_likes(url, id, statePage) {
       }
     }
     fetchData();
-  }, [url, id, statePage, ip]);
+  }, [url, id, statePage]);
   return {
     isLoading,
     error,
-    likesQty,
-    ip,
-    ipList
+    //likesQty,
+    ipList,
   };
 }
