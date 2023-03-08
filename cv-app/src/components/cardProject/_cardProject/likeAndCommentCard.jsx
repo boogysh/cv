@@ -4,23 +4,22 @@ import like from "../../../assets/like.png";
 import like2 from "../../../assets/like3.png";
 import comment from "../../../assets/comment1.png";
 import shareIcon from "../../../assets/share.png";
-// import { UseFetch2 } from "../../../hooks/useFetch2";
 import { UseFetch_filtered_likes } from "../../../hooks/useFetch_filtered_likes";
 import Loader2 from "../../loader/Loader2";
-// import { IP } from "../../../redux/action";
-// import { useSelector, useDispatch } from "react-redux";
+import { useSelector  } from "react-redux";
 
 export default function LikeAndCommentCard(props) {
-  // const { storedIp } = useSelector((state) => state.cartReducer);
+  const { storedIp } = useSelector((state) => state.cardReducer);
+  console.log("storedIp:",storedIp);
+  console.log("window.navigator:",window.navigator.onLine,);
+
+  
   // const dispatch = useDispatch();
-  // console.log(storedIp);
+
   // const [ip, setIP] = useState("");
-  // useEffect(() => {
-  //   setIP("aabvf");
-  // }, [ip]);
-  // console.log("ip", ip);
+
+  
   // const [ipList, setIpList] = useState([]);
-  // const [ipList] = useState([]);
   const [liked, setLiked] = useState(false); //true or false
   const [statePage, setStatePage] = useState(0);
   const [myIpList, setMyIpList] = useState([]);
@@ -28,22 +27,13 @@ export default function LikeAndCommentCard(props) {
   const [isFindIdenticalIp, setFindIdenticalIp] = useState([]);
   //-----------USE FETCH-------------------
   const { ipList, likesQty, isLoading, ip } = UseFetch_filtered_likes(
-    // `process.env.API_LIKES`,
     // `http://localhost:4000/api/likes`,
     `https://cv-backend-git-main-boogysh.vercel.app/api/likes`,
     props.id,
     statePage //refresh after liking or unliked !!!!!!!!!!!
   );
+  console.log("ip:",ip)
   // console.log(ipList)
-  //---------------------AXIOS-----------------------------------
-
-  // const getDataIp = async () => {
-  //   const res = await axios.get("https://geolocation-db.com/json/");
-  //   setIP(res.data.IPv4);
-  // };
-  // useEffect(() => {
-  //   getDataIp();
-  // }, [ip]);
 
   //----------------SAVE MY-IP'S TO LOCAL STORAGE----------------------------
 
@@ -64,7 +54,6 @@ export default function LikeAndCommentCard(props) {
   }, [ip]);
 
   // console.log("test2-10");
-  //------------- FILTER LIKES API-----------------------
 
   //--------MANAGE LIKE ON LOAD PAGE------------------
   useEffect(() => {
@@ -82,25 +71,20 @@ export default function LikeAndCommentCard(props) {
       } else if (FindIdenticalIp.length === 0 && ipListIncludesIp) {
         console.log("FindIdenticalIp.length === 0 && liked");
         return setLiked(true) && setIsLoading_Identical_Ip(false);
-      } else if(FindIdenticalIp.length === 0 && !ipListIncludesIp){
-        console.log("FindIdenticalIp.length === 0 && notVoted")
+      } else if (FindIdenticalIp.length === 0 && !ipListIncludesIp) {
+        console.log("FindIdenticalIp.length === 0 && notVoted");
         return setLiked(false) && setIsLoading_Identical_Ip(false);
       }
-    
     }
   }, [ip, ipList, myIpList]);
   //---------------------------------------------------
 
-  //---------------------------------------------------
-  // console.log("FindIdenticalIp", isFindIdenticalIp);
   // //-------LIKE-POST-CONTENT------------------------
   const likeToPost = {
     project: `${props.id}`,
     ip: ip,
     allMyIPs: myIpList,
   };
-  //------------------------------------
-  // console.log("myIpList:", myIpList);
   //------------------------------------
   const likePost = () => {
     if (
@@ -124,8 +108,8 @@ export default function LikeAndCommentCard(props) {
       const cleanAndRefresh = async () => {
         await fetchLikePost;
         setLiked(!liked);
-        setStatePage(statePage + 1);
-        // setStatePage((statePage) => statePage + 1);
+        // setStatePage(statePage + 1);
+        setStatePage((statePage) => statePage + 1);
       };
       cleanAndRefresh();
       // } else return console.log("Something went wrong!");

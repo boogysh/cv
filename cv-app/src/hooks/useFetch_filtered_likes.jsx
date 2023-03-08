@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-
+import { IP } from "./../redux/action";
+import { useDispatch } from "react-redux";
 
 export function UseFetch_filtered_likes(url, id, statePage) {
   const [isLoading, setLoading] = useState(true);
@@ -8,17 +9,12 @@ export function UseFetch_filtered_likes(url, id, statePage) {
   const [ipList, setIpList] = useState([]);
   const [likesQty, setlikesQty] = useState(0);
   const [ip, setIp] = useState("");
+  //-----------------------------------------
+  // const { storedIp } = useSelector((state) => state.cardReducer);
+  const dispatch = useDispatch();
 
-  // useMemo(() => {
-  //   data2.filter((like) => {
-  //     if (like.project === props.id) {
-  //       setIpList(() => like.ipList);
-  //       setLikesQty(() => like.likes);
-  //     }
-  //     // return like;
-  //     return like.ipList && like.likes;
-  //   });
-  // }, [data2, props.id]);
+  //-----------------------------------------------
+  // const onLine = window.navigator.onLine
 
   useEffect(() => {
     if (!url) return;
@@ -29,7 +25,11 @@ export function UseFetch_filtered_likes(url, id, statePage) {
         const data = await response.json();
         //-----------------
         const res = await axios.get("https://geolocation-db.com/json/");
+        // setIp(`${res.data.IPv4}---6`);
         setIp(res.data.IPv4);
+        //--------
+        dispatch(IP(res.data.IPv4))
+        // dispatch(IP(`${res.data.IPv4}---6`))
         //-------------------
         data.filter((like) => {
           if (like.project === id) {
@@ -46,6 +46,7 @@ export function UseFetch_filtered_likes(url, id, statePage) {
       }
     }
     fetchData();
-  }, [url, id, statePage, ip]);
+    // dispatch(IP(ip));
+  }, [url, id, statePage, dispatch, ip]);
   return { isLoading, error, ipList, likesQty, ip };
 }
