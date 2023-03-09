@@ -8,7 +8,6 @@ import { UseFetch_filtered_likes } from "../../../hooks/useFetch_filtered_likes"
 import Loader2 from "../../loader/Loader2";
 import axios from "axios";
 
-// import { useSelector  } from "react-redux";
 
 export default function LikeAndCommentCard(props) {
   const [ip, setIp] = useState("");
@@ -36,8 +35,8 @@ export default function LikeAndCommentCard(props) {
     getIp();
   }, []);
 
+  
   //----------------SAVE MY-IP'S TO LOCAL STORAGE----------------------------
-
   useEffect(() => {
     const myIPs = [];
     const dynamic_IP = ip;
