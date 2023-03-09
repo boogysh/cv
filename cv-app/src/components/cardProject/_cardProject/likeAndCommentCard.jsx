@@ -27,7 +27,7 @@ export default function LikeAndCommentCard(props) {
     statePage //refresh after liking or unliked !!!!!!!!!!!
   );
   console.log("liked", liked);
-  //--------------------------AXIOS---------------------------------------------
+  //--------------------------AXIOS---------------------------------------
   async function getIp() {
     const res = await axios.get("https://geolocation-db.com/json/");
     res && setIp(res.data.IPv4);
@@ -36,7 +36,7 @@ export default function LikeAndCommentCard(props) {
     getIp();
   }, []);
 
-  //----------------SAVE MY-IP'S TO LOCAL STORAGE----------------------------
+  //----------------SAVE MY-IP'S TO LOCAL STORAGE-------------------------
 
   useEffect(() => {
     const myIPs = [];
