@@ -1,31 +1,28 @@
 import React from "react";
-import Loader from "../../components/loader/Loader";
-import { UseFetch } from "../../hooks/useFetch";
-import Error500 from "../../components/errors/Error500";
 import "./building.css";
-import "../../components/header/header.css"
+import "../../components/header/header.css";
 import CardProject from "../../components/cardProject/CardProject";
 import Banner from "../../components/banner/Banner";
 import banner_bat from "../../assets/pr-bat/7.png";
+import { useSelector } from "react-redux";
 
 export default function Building() {
-  const { data, isLoading, error } = UseFetch(`https://boogysh.github.io/cv-api/data_bat.json`); //UseFetch(`/pr_bat/data.json`)
-  // console.log(data);
+  const { t } = useSelector((state) => state.langReducer);
 
-  
-
-  if (error) return <Error500 />;
-  return isLoading ? (
-    <Loader />
-  ) : (
+  return (
     <main className="main_building main-scroll">
-      {/* <Banner3x /> */}
-      <Banner title="Bâtiment" src={banner_bat} />
+      <Banner title={t.batTitle} src={banner_bat} />
       <section id="cards" className="cards_bat">
-        {data.map((item) => {
+        {t.cardBat.map((item) => {
           const { id, pictures, title, info } = item;
           return (
-            <CardProject key={id} images={pictures} title={title} info={info} id={id} />
+            <CardProject
+              key={id}
+              images={pictures}
+              title={title}
+              info={info}
+              id={id}
+            />
           );
         })}
       </section>

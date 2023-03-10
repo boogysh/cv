@@ -1,0 +1,20 @@
+.langSelect{
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 26px;
+    border-radius: 5px;
+}
+.langSelect option{
+    font-size: 0.9rem;
+    padding: 40px!important;
+    
+}
+@media all and (max-width: 370px) {
+    .langSelect{
+        height: 20px;
+        font-size: 0.8rem;  
+    }
+   
+}

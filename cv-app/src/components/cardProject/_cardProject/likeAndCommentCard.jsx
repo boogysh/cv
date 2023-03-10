@@ -7,10 +7,14 @@ import shareIcon from "../../../assets/share.png";
 import { UseFetch_filtered_likes } from "../../../hooks/useFetch_filtered_likes";
 import Loader2 from "../../loader/Loader2";
 import axios from "axios";
+import { useSelector } from "react-redux";
+
 
 // import { useSelector  } from "react-redux";
 
 export default function LikeAndCommentCard(props) {
+  const  {t} =
+  useSelector((state) => state.langReducer);
   const [ip, setIp] = useState("");
   // useEffect(()=>{
   //   setIp('ooooo')
@@ -105,7 +109,7 @@ export default function LikeAndCommentCard(props) {
           onClick={props.openAllComments}
           className="likeAndComment_qty likeAndComment_qty_comments"
         >
-          Commentaires {props.commentsQty}
+          {t.comments} {props.commentsQty}
         </button>
       </div>
       <div className="separe_likes"></div>
@@ -120,17 +124,17 @@ export default function LikeAndCommentCard(props) {
                 className="card_icon card_icon_like"
                 alt="like"
               />
-              <span className="likesNr">J'aime</span>
+              <span className="likesNr">{t.iLike}</span>
             </>
           )}
         </button>
         <button onClick={props.openComments} className="likeAndComment_btn">
           <img src={comment} className="card_icon comment_icon" alt="like" />
-          <span className="likesNr">Commenter</span>
+          <span className="likesNr">{t.comment}</span>
         </button>
         <button onClick={props.openShareList} className="likeAndComment_btn">
           <img src={shareIcon} className="card_icon" alt="share icon" />
-          <span className="likesNr">Distribuer</span>
+          <span className="likesNr">{t.share}</span>
         </button>
       </div>
     </div>

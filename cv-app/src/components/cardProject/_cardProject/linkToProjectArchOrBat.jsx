@@ -1,9 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
+import { useSelector } from "react-redux";
+
 
 // export default function LinkToProjectArchOrBat(props) {
 export default function LinkToProjectArchOrBat({uri,id,show_shareList,show_newCommentAndLastTwo,title, info}) {
+  const  {t} =
+  useSelector((state) => state.langReducer);
   return (
     <Link to={`/${uri}/${id}`} className="card__link">
       <div
@@ -14,7 +18,7 @@ export default function LinkToProjectArchOrBat({uri,id,show_shareList,show_newCo
         }
       >
         <div className="card_bg_hover">
-          <h2>Découvrir le projet...</h2>
+          <h2>{t.discoverProject}</h2>
         </div>
         <div className="card_content">
           <h2 className="card_title">{title}</h2>
