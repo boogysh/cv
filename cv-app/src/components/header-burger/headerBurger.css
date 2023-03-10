@@ -5,6 +5,7 @@
   width: 26px;
   height: 26px;
   overflow: hidden;
+  margin-left: 20px;
 }
 .burger_container {
   width: 100%;

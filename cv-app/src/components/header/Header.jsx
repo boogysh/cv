@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
-
 // import Banner3x from "../banner3x/Banner3x"
 import "./header.css";
 import html from "../../assets/pr-dev/html.png";
@@ -12,8 +11,13 @@ import balise_ouvr from "../../assets/pr-dev/balise-ouvr.png";
 import balise_ferm from "../../assets/pr-dev/balise-ferm.png";
 import HeaderContact from "../header-contact/HeaderContact.jsx";
 import HeaderBurger from "../header-burger/HeaderBurger";
+import LangSelect from "../lang/langSelect";
+import {useSelector} from "react-redux"
+
 
 function Header() {
+  const  {t} =
+    useSelector((state) => state.langReducer);
   const activeLink = "item_nav active";
   const normalLink = "item_nav";
 
@@ -132,12 +136,7 @@ function Header() {
   };
   window.onscroll = scrollFunction;
   window.onload = scrollFunction;
-  // window.onscroll  = function () {
-  //   scrollFunction();
-  // };
-
-  //------------------------------------
-
+  
   return (
     // <div onClick={bgHover} className="header_container">
     <div className="header_container">
@@ -161,7 +160,7 @@ function Header() {
           <h3
             className={isH3Arch ? "h3_pr_arch h3_pr_arch_anim" : "h3_pr_arch"}
           >
-            Architecture
+            {t.archTitle}
           </h3>
           <h4 className="h4_pr_arch">2004 - 2011</h4>
         </div>
@@ -178,7 +177,7 @@ function Header() {
             }
           ></div>
           <h3 className={isH3Bat ? "h3_pr_bat h3_pr_arch_anim" : "h3_pr_bat"}>
-            Bâtiment
+          {t.batTitle}
           </h3>
           <h4 className="h4_pr_bat">2011 - 2021</h4>
         </div>
@@ -196,7 +195,7 @@ function Header() {
           ></div>
 
           <h3 className={isH3Dev ? "h3_pr_dev h3_pr_arch_anim" : "h3_pr_dev"}>
-            Développement
+          {t.devTitle}
           </h3>
           <div className="container_logos">
             <img src={html} alt="html logo" />
@@ -217,6 +216,7 @@ function Header() {
         <div className="header_contact_container">
           <div className="header_contact">
             <h3 className="h3_header">Buga Victor</h3>
+            <LangSelect/>
             <HeaderContact />
           </div>
           <HeaderBurger toggle={toggleNav} Animation={isAnimated} />
@@ -236,7 +236,7 @@ function Header() {
             to="/architecture"
             className={({ isActive }) => (isActive ? activeLink : normalLink)}
           >
-            Architecture
+            {t.archTitle}
           </NavLink>
           <NavLink
             onClick={addBgAndTitleBat}
@@ -244,7 +244,7 @@ function Header() {
             to="/batiment"
             className={({ isActive }) => (isActive ? activeLink : normalLink)}
           >
-            Bâtiment
+            {t.batTitle}
           </NavLink>
           <NavLink
             onClick={addBgAndTitleDev}
@@ -252,7 +252,7 @@ function Header() {
             to="/developpement"
             className={({ isActive }) => (isActive ? activeLink : normalLink)}
           >
-            Développement
+            {t.devTitleNav}
           </NavLink>
         </nav>
       </div>

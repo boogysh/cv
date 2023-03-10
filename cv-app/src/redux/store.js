@@ -1,8 +1,8 @@
 import { createStore, combineReducers } from "redux";
-import cardReducer from "./cardReducer";
+import langReducer from "./langReducer";
 
 const rootReducer = combineReducers({
-  cardReducer
+  langReducer,
 });
 
 const store = createStore(rootReducer);

@@ -1,7 +1,11 @@
 import React from "react";
 import { v4 as uuidv4 } from "uuid";
+import { useSelector } from "react-redux";
+
 
 export default function LinkToProjectDev(props) {
+  const  {t} =
+  useSelector((state) => state.langReducer);
   return (
     <a
       href={props.urlProject}
@@ -18,7 +22,7 @@ export default function LinkToProjectDev(props) {
         }
       >
         <div className="card_bg_hover">
-          <h2>Découvrir le projet...</h2>
+          <h2>{t.discoverProject}</h2>
         </div>
         <div className="card_content">
           <h2 className="card_title">{props.title}</h2>

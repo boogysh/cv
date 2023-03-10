@@ -1,29 +1,18 @@
-import { UseFetch } from "../../hooks/useFetch";
 import "./architecture.css";
 import "../../components/header/header.css";
 import CardProject from "../../components/cardProject/CardProject";
-import Loader from "../../components/loader/Loader";
-import Error500 from "../../components/errors/Error500";
 import Banner from "../../components/banner/Banner";
 import banner from "../../assets/pr-arch/front-1200.jpg";
-//import data from "../../data/pr_arch/data_arch.json";
+import { useSelector } from "react-redux";
 
 export default function Architecture() {
-  const { data, isLoading, error } = UseFetch(
-    `https://boogysh.github.io/cv-api/data_arch.json`
-    // `/pr_arch/data_arch.json`
-  );
-  // console.log("test");
+  const { t } = useSelector((state) => state.langReducer);
 
-  if (error) return <Error500 />;
-  return isLoading ? (
-    <Loader />
-  ) : (
+  return (
     <main className="main_architecture main-scroll">
-      {/* <Banner3x /> */}
-      <Banner src={banner} title="Architecture" />
+      <Banner src={banner} title={t.archTitle} />
       <section id="cards">
-        {data.map((item) => {
+        {t.cardArch.map((item) => {
           const { id, pictures, title, info } = item;
 
           return (

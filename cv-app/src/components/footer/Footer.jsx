@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "../footer/footer.css";
-//import logo_footer from '../../assets/logo-footer.png'
 import logo_tel from "../../assets/logos/telephone.png";
 import logo_gmail from "../../assets/logos/gmail.png";
 import logo_linkedin from "../../assets/logos/linkedin.png";
+import { useSelector } from "react-redux";
 
 function Footer() {
+  const { t } = useSelector((state) => state.langReducer);
   const [show, setShow] = useState(false);
   useEffect(() => {
     setTimeout(() => {
@@ -36,9 +37,13 @@ function Footer() {
             </a>
           </div>
         </div>
-        <h5 className="h5_footer">&copy; Boogysh. All right reserved. v_1.09</h5>
-        <h5 className="h6_footer">Updated : 17/02/2023</h5>
-       
+        <h5 className="h5_footer">
+          &copy; {t.footer_p1}
+          <span className="h5_footer_span">v_1.11</span>
+        </h5>
+        <h5 className="h6_footer">
+          {t.footer_p2} : <span className="h5_footer_span">10/03/2023</span>{" "}
+        </h5>
       </footer>
     )
   );
