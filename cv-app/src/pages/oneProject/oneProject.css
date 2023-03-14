@@ -12,8 +12,9 @@
   color: var(--primary);
 }
 .DD_wrapper {
-  margin-bottom: 30px;
-  width: 640px;
+  text-align: center;
+  margin: 0 auto 30px  auto;
+  width: auto;
 }
 
 @media all and (max-width: 992px) {
@@ -22,9 +23,6 @@
   }
 }
 @media all and (max-width: 767px) {
-  .DD_wrapper {
-    width: 90%;
-  }
   .h1_one_projectBtm {
     font-size: 26px;
     padding: 15px;

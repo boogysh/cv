@@ -10,8 +10,11 @@ import LinkToProjectArchOrBat from "./_cardProject/linkToProjectArchOrBat";
 import NewComment from "./_cardProject/newComment";
 import NewCommentAndLastTwo from "./_cardProject/newCommentAndLastTwo";
 import ShowAllComments from "./_cardProject/showAllComments";
+import { useSelector } from "react-redux";
 
 function CardProject({ images, title, info, id, urlProject, urlExistent }) {
+  const { t } = useSelector((state) => state.langReducer);
+
   // const counter = React.useRef(0);
   // console.log(counter.current++);
   // console.log("test12");
@@ -24,13 +27,13 @@ function CardProject({ images, title, info, id, urlProject, urlExistent }) {
   const [statePage, setStatePage] = useState(0);
   //------------------------------------------------------------------
   useMemo(() => {
-    const href_arch = window.location.href.includes("/architecture");
-    const href_bat = window.location.href.includes("/batiment");
-    const href_dev = window.location.href.includes("/developpement");
-    href_arch && setUri("architecture");
-    href_bat && setUri("batiment");
-    href_dev && setUri("developpement");
-  }, []);
+    const hrefArch = window.location.href.includes(t.archNav);
+    const hrefBat = window.location.href.includes(t.batNav);
+    const hrefDev = window.location.href.includes(t.devNav);
+    hrefArch && setUri(t.archNav);
+    hrefBat && setUri(t.batNav);
+    hrefDev && setUri(t.devNav);
+  }, [t.archNav, t.batNav, t.devNav]);
   //---------------------FETCH---------------------------------
   const { filteredData, isLoading } = UseFetch_filtered(
     // `http://localhost:4000/api/comments`,
@@ -83,7 +86,8 @@ function CardProject({ images, title, info, id, urlProject, urlExistent }) {
             commentsQty={filteredData.length}
           />
         </div>
-        {(uri === "architecture" || uri === "batiment") && (
+
+        {(uri === t.archNav || uri === t.batNav) && (
           <LinkToProjectArchOrBat
             uri={uri}
             id={id}
@@ -93,7 +97,8 @@ function CardProject({ images, title, info, id, urlProject, urlExistent }) {
             title={title}
           />
         )}
-        {uri === "developpement" && (
+
+        {uri === t.devNav && (
           <LinkToProjectDev
             title={title}
             info={info}

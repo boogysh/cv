@@ -1,47 +1,47 @@
 .title_content {
-  width: 100%;
-  height: 47px;
-  flex-shrink: 0;
-  background-color: var(--DD_title_bg);
-  border-radius: 5px;
   display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: auto;
+  height: auto;
+  background-color: var(--DD_title_bg);
   align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 0 10px var(--box_shadow_dd);
+  cursor: pointer;
 }
 .h3_DD {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   color: var(--h3_DD);
   font-weight: 600;
-  font-size: 18px;
+  font-size: 2.2rem;
+  font-family: var(--h3_DD_FF);
   margin: 0;
   padding-left: 18px;
+  padding-right: 18px;
+  
 }
-.h3_DD_about {
-  color: var(--h3_DD_about);
-  font-weight: 500;
-  font-size: 24px;
-  margin: 0;
-  padding-left: 18px;
-}
+
 .arrow_content {
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   padding: 0 20px 0 20px;
   background: transparent;
   box-sizing: content-box;
 }
 @media all and (max-width: 767px) {
-  .title_content {
-    height: 36px;
-  }
-  .h3_DD,
-  .h3_DD_about {
-    font-size: 15px;
-    padding-left: 12px;
+  .h3_DD {
+    font-size: 1.7rem;
   }
   .arrow_content {
-    width: 15px;
-    height: 15px;
+    width: 24px;
+    height: 24px;
     padding: 10px;
+  }
+}
+@media all and (max-width: 540px) {
+  .h3_DD {
+    font-size: 1.2rem;
   }
 }

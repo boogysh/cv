@@ -1,15 +1,88 @@
 export const en = {
+  home: "/",
+  locale: "en",
+  localeNav: "/en",
+  archNav: "architecture",
+  batNav: "building",
+  devNav: "development",
   archTitle: "Architecture",
   batTitle: "Building",
   devTitle: "Development web",
   devTitleNav: "Development",
-  comments:"Comments",
-  iLike:"I Like",
-  comment:"Comment",
-  share:"Share",
-  discoverProject:"Discover the project...",
-  footer_p1:"Boogysh. All right reserved.",
-  footer_p2:"Updated:",
+  comments: "Comments",
+  iLike: "I Like",
+  comment: "Comment",
+  share: "Share",
+  discoverProject: "Discover the project...",
+  footer_p1: "Boogysh. All right reserved.",
+  footer_p2: "Updated:",
+  identity: "Identity",
+  lastName: "Last Name",
+  firstName: "First Name",
+  birthDay: "Birth Day",
+  birthPlace:"Birth Place",
+  countryOfBirth:"Country of Birth",
+  country: "R. of Moldova",
+  nationalities: "Nationalities",
+  nationalities_val: "Moldavian and Romanian",
+  ssNumber: "S.S. Number",
+  adress:"Address",
+  tel: "Telephone",
+  email:"E-mail",
+  civilStatus:"Civil Status",
+  civilStatus_val: "Married, two children.",
+  studies: "Studies and Degrees",
+  school:"General School MERENI",
+  highSchool: "Real University Republican High School, Physics-Mathematics Profile",
+  bac:"Bachelor's degree",
+  college:"Technical University of Moldova, Faculty of Urbanism and Architecture Speciality:Engineering Urban Planning",
+  master:"Master: Civil Construction Engineering",
+  master_stopped: "Interrupted, the profile did not correspond to the desired program, too far from the Architecture",
+  archicad_3dsMax: "Training AUTOCAD, ARCHICAD, 3DS MAX",
+  devWeb: "Web Developer, Openclassrooms",
+  devWeb_val: "Level 5 degree (bac +2)",
+  experience: "Experience",
+  internship_1: "Internship planning “IGC CONSTRUCT”",
+  internship_2: "Internship preparation Degree “IGC CONSTRUCT”",
+  apprenticeship: "Apprenticeship “IGC CONSTRUCT”",
+  armanda: "Non-salaried activity : Company “Armanda”, 75012 Paris",
+  armanda_2: "Director : Company “Armanda” 75012 Paris",
+  catalan: "Non-salaried activity Multi-tasking Company “Catalan Building”.",
+  heres:"Company “Hères Construction”",
+  heres_val: "Team leader, many teams leader, Site manager",
+  characteristics: "Characteristics",
+  characteristics_val: "Responsibility, Commitment, Punctuality, Sociability, Ability to work with customers to find an individual solution. Ability to work in a team, fast and efficient. Ability to evaluate situations, to overcome obstacles and to take actions (solutions) that correspond. Ability and willingness to learn new areas quickly and efficiently.",
+  software: "Software",
+  advenced: "advenced",
+  medium:"medium",
+  basic: "basic",
+  dev_Technologies: "Development technology",
+  install:"Installation & Maintenance",
+  install_val:"WINDOWS, Software and Office Equipment.",
+  languages: "Languages",
+  rom_mold:"Romanian/Moldavian",
+  french:"French",
+  native: "native",
+  russian:"Russian",
+  english: "English",
+  writtenExpression: "written expression (code and commentary in English)",
+  writtenComprehension: "written comprehension (average), oral comprehension (average), oral expression (beginner)",
+  driver_sLicense:"Driver's license",
+  driverCategory: "Category B",
+  download:"Download",
+
+
+
+  
+  
+  
+  
+  
+
+
+
+  
+
 
   cardArch: [
     {
@@ -159,8 +232,7 @@ export const en = {
   cardBat: [
     {
       id: "pr1-terasse",
-      title:
-        "Creation of a travertine terrace and renovation of the pool.",
+      title: "Creation of a travertine terrace and renovation of the pool.",
       cover: "https://boogysh.github.io/cv-api/images/bat/pr1/pr1-1.jpg",
       pictures: [
         "https://boogysh.github.io/cv-api/images/bat/pr1/pr1-1.jpg",
@@ -361,8 +433,7 @@ export const en = {
     },
     {
       id: "pr6-api-piquante",
-      title:
-        "Build a secure API for a food review application",
+      title: "Build a secure API for a food review application",
       cover: "https://boogysh.github.io/cv-api/images/dev/piquante/1.png",
       pictures: [
         "https://boogysh.github.io/cv-api/images/dev/piquante/1.png",

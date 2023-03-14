@@ -1,14 +1,12 @@
 import React from 'react'
-import arrowBottom from '../../assets/arrowBottom.png'
+import arrowBottom from '../../assets/down.png'
 import './dropDownTitle.css'
 
-function DropDownTitle({ toggle, title, classTitle, arrow }) {
+function DropDownTitle({ toggle, title, classTitle, topArrow }) {
   return (
-    <div className="title_content">
+    <div className="title_content" onClick={toggle}>
       <h3 className={classTitle}>{title}</h3>
-      <button onClick={toggle}>
-        <img className={arrow} src={arrowBottom} alt="arrow dropdown" />
-      </button>
+        <img className={topArrow?  "arrow_content rotate" : "arrow_content"} src={arrowBottom} alt="arrow dropdown" />
     </div>
   )
 }

@@ -1,17 +1,21 @@
 import React from "react";
 import "../cv/cv.css";
+import { useSelector } from "react-redux";
 
 export default function Aptitude() {
+  const { t } = useSelector((state) => state.langReducer);
+
   return (
     <section id="aptitude">
       <div className="aptitude_item">
-        <h3 className="h3_cv">Logiciels:</h3>
+        <h3 className="h3_cv">{t.software}:</h3>
         <div>
           <div className="container_p">
             <p className="col3">
-              AUTOCAD (<span className="italique">avancé </span>), ARCHICAD (
-              <span className="italique"> moyen </span>), 3DS MAX (moyen),
-              PHOTOSHOP (<span className="italique">base </span>), MS OFFICE (
+              AUTOCAD (<span className="italique">{t.advenced} </span>),
+              ARCHICAD (<span className="italique"> {t.medium} </span>), 3DS MAX
+              ({t.medium}), PHOTOSHOP (
+              <span className="italique">{t.basic} </span>), MS OFFICE (
               <span className="italique">word, powerpoint </span>)
             </p>
           </div>
@@ -19,27 +23,23 @@ export default function Aptitude() {
       </div>
 
       <div className="aptitude_item">
-        <h3 className="h3_cv" >
-          Technos de développement:
-        </h3>
+        <h3 className="h3_cv">{t.dev_Technologies}:</h3>
         <div>
           <div className="container_p">
             <p className="col3">
-              HTML (<span className="italique">avancé </span>), CSS (
+              HTML (<span className="italique">{t.advenced} </span>), CSS (
               <span className="italique">flexbox </span>), SASS (
-              <span className="italique">moyen </span>), Javaspcript (
+              <span className="italique">{t.medium} </span>), Javaspcript (
               <span className="italique">junior </span>), React (
-              <span className="italique">Context, Redux (base) </span>), Node
-              (base)
+              <span className="italique">Context, Redux ({t.basic}) </span>),
+              Node ({t.basic})
             </p>
           </div>
         </div>
       </div>
 
       <div className="aptitude_item">
-        <h3 className="h3_cv" >
-          Installation et Entretien:
-        </h3>
+        <h3 className="h3_cv">{t.install}:</h3>
         <div>
           <div className="container_p">
             <p className="col3">WINDOWS, Logiciels et Equipements de bureau.</p>
@@ -48,17 +48,16 @@ export default function Aptitude() {
       </div>
 
       <div className="aptitude_item">
-        <h3 className="h3_cv" >Langues:</h3>
+        <h3 className="h3_cv">{t.languages}:</h3>
         <div>
           <div className="container_p">
             <p className="col3">
-              Roumaine/Moldave (<span className="italique">natif </span>),
-              Russe(<span className="italique">avancé </span>), Français (
-              <span className="italique">avancé </span>), Anglais (
+              {t.rom_mold} (<span className="italique">{t.native} </span>),
+              {t.russian}(<span className="italique">{t.advenced}</span>),{" "}
+              {t.french} (<span className="italique"> {t.advenced} </span>),{" "}
+              {t.english} (
               <span className="italique">
-                expression écrite (le code et le commentaire en englais) ,
-                comprehension écrite (moyen), comprehension orale (moyen),
-                expression orale (débutant)
+                {t.writtenExpression} ,{t.writtenComprehension}
               </span>
               )
             </p>
@@ -67,10 +66,10 @@ export default function Aptitude() {
       </div>
 
       <div className="aptitude_item">
-        <h3 className="h3_cv" >Permis de conduire:</h3>
+        <h3 className="h3_cv">{t.driver_sLicense}:</h3>
         <div>
           <div className="container_p">
-            <p className="col3">Catégorie B</p>
+            <p className="col3">{t.driverCategory}</p>
           </div>
         </div>
       </div>
