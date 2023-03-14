@@ -29,7 +29,7 @@ Add new project "Castle" on devPage
 Card Project - adding new functionalities, Comments, Like, Share
 
 ### 1.11
-Add languages FR-EN-RO, using redux,  bad url is not translated
+Add languages FR-EN-RO, using redux,  but the url is not translated
 
 ### 1.12 
 Change languages FR-EN-RO: 
