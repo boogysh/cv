@@ -9,7 +9,6 @@ export default function LangSelect() {
     el.value === "fr" && dispatch({ type: "FR" });
     el.value === "en" && dispatch({ type: "EN" });
     el.value === "ro" && dispatch({ type: "RO" });
-    // el.value === "ru" && dispatch({ type: "RU" });
   };
 
   return (
@@ -18,7 +17,6 @@ export default function LangSelect() {
         <option value="fr">FR</option>
         <option value="en">EN</option>
         <option value="ro">RO</option>
-        {/* <option value="ru">RU</option> */}
       </select>
     </>
   );
