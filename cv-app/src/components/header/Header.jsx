@@ -132,9 +132,11 @@ function Header() {
       mainScroll && mainScroll.classList.remove("padding_fixed");
     }
   };
-  window.onscroll = scrollFunction;
   window.onload = scrollFunction;
+  window.onscroll = scrollFunction;
 
+  
+  
   //----------
 
   return (
