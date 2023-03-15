@@ -1,12 +1,30 @@
 import { fr } from "../data/lang/fr";
 import { en } from "../data/lang/en";
 import { ro } from "../data/lang/ro";
-// import { ru } from "../data/lang/ru";
 
-const initialState = {
-  t: fr,
+const includesFr = window.location.href.includes("/fr");
+const includesEn = window.location.href.includes("/en");
+const includesRo = window.location.href.includes("/ro");
+
+let initialState;
+
+const localeDetect = () => {
+  if (!includesFr && !includesEn && !includesRo) {
+    return (initialState = { t: fr });
+  }
+  if (includesFr) {
+    return (initialState = { t: fr });
+  }
+  if (includesEn) {
+    return (initialState = { t: en });
+  }
+  if (includesRo) {
+    return (initialState = { t: ro });
+  }
 };
-// reducer
+localeDetect();
+
+// // reducer
 function cardReducer(state = initialState, action) {
   switch (action.type) {
     case "FR":
@@ -24,11 +42,7 @@ function cardReducer(state = initialState, action) {
         ...state,
         t: ro,
       };
-    // case "RU":
-    //   return {
-    //     ...state,
-    //     t: ru,
-    //   };
+
     default:
       return state;
   }

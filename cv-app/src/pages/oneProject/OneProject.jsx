@@ -1,42 +1,27 @@
-import React, { useState, useEffect } from "react";
 import ListPictures from "../../components/listPictures/ListPictures";
-import { UseFetchOneProject } from "../../hooks/useFetchOneProject";
-import Loader from "../../components/loader/Loader";
-import Error500 from "../../components/errors/Error500";
 import Dropdown from "../../components/dropdown/Dropdown";
 import "./oneProject.css";
 import "../../components/header/header.css";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 export default function OneProject() {
-  const [href, setHref] = useState("");
+  const { t } = useSelector((state) => state.langReducer);
+  const { id } = useParams();
+  const hrefArch = window.location.href.includes(t.archNav);
+  const hrefBat = window.location.href.includes(t.batNav);
 
-  const include_ID = window.location.href;
-  useEffect(() => {
-    const href_arch = window.location.href.includes("/architecture");
-    const href_bat = window.location.href.includes("/batiment");
-    href_arch && setHref(`https://boogysh.github.io/cv-api/data_arch.json`);
-    href_bat && setHref(`https://boogysh.github.io/cv-api/data_bat.json`);
-  }, [include_ID]);
+  let data;
 
-  
+  hrefArch && (data = t.cardArch.find((product) => product.id === id));
+  hrefBat && (data = t.cardBat.find((product) => product.id === id));
 
-  
-
-  const { data, isLoading, error } = UseFetchOneProject(href);
+  console.log("data", data);
   const { pictures, title, info } = data;
-
-  if (error) return <Error500 />;
-  return isLoading ? (
-    <Loader />
-  ) : (
+  return (
     <main className="main_oneProjectBtm main-scroll">
-      <h1 className="h1_one_projectBtm">{title}</h1>
       <div className="DD_wrapper">
-        <Dropdown
-          title="Info sur le projet"
-          classTitle="h3_DD"
-          content={info}
-        />
+        <Dropdown title={title} classTitle="h3_DD" content={info} />
       </div>
       <ListPictures pictures={pictures} />
     </main>

@@ -44,7 +44,12 @@ body {
   --card_link: #ffffff;
   --DD_bg_color: #f7f7f7;
   --h1: "Dancing Script";
+
   --h3_DD: #fff;
+  --h3_DD: #000000;
+
+  --h3_DD_FF: "Dancing Script";
+
   --dev_card_h2_hover: #fff;
   /* --h3_DD_about:#FFF; */
   --h3_footer_color: #fff;
@@ -54,7 +59,10 @@ body {
   --slider_nr_color: #fff;
 
   --tags_color: #fff;
+
   --DD_title_bg: rgb(106, 168, 250);
+  --DD_title_bg: transparent;
+
   --box_shadow_dd: rgb(141, 141, 141);
   --box_shadow_slider: rgb(83, 83, 83);
   --p_content: black;

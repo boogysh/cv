@@ -30,7 +30,7 @@ export default function LikeAndCommentCard(props) {
     props.id,
     statePage //refresh after liking or unliked !!!!!!!!!!!
   );
-  console.log("liked", liked);
+  // console.log("liked", liked);
   //--------------------------AXIOS---------------------------------------
   async function getIp() {
     const res = await axios.get("https://geolocation-db.com/json/");
@@ -64,8 +64,8 @@ export default function LikeAndCommentCard(props) {
     const ipListIncludesIp = ipList.includes(ip);
     ipListIncludesIp && setLiked(true);
     FindIdenticalIp.length > 0 && setLiked(true);
-    console.log("isFindIdenticalIp ", FindIdenticalIp);
-    console.log("ipListIncludesIp ", ipListIncludesIp);
+    // console.log("isFindIdenticalIp ", FindIdenticalIp);
+    // console.log("ipListIncludesIp ", ipListIncludesIp);
   }, [ip, ipList, myIpList]);
 
   // //-------LIKE-POST-CONTENT------------------------

@@ -1,4 +1,10 @@
 export const ro = {
+  home: "/",
+  locale: "ro",
+  localeNav: "/ro",
+  archNav: "arhitectura",
+  batNav: "constructie",
+  devNav: "programare",
   archTitle: "Arhitectură",
   batTitle: "Construcţie",
   devTitle: "Programare web",
@@ -7,9 +13,82 @@ export const ro = {
   iLike: "Îmi place",
   comment: "Comentează",
   share: "Distribuie",
-  discoverProject:"Descoperă proiectul...",
-  footer_p1:"Boogysh. Toate drepturile rezervate.",
-  footer_p2:"Actualizat:",
+  discoverProject: "Descoperă proiectul...",
+  footer_p1: "Boogysh. Toate drepturile rezervate.",
+  footer_p2: "Actualizat:",
+  identity: "Identitate",
+  lastName: "Nume",
+  firstName: "Prenume",
+  birthDay: "Ziua de naștere",
+  birthPlace: "Locul de naștere",
+  countryOfBirth: "Țara de naștere",
+  country: "R. Moldova",
+  nationalities: "Naționalități",
+  nationalities_val: "Moldovenească și Română",
+  ssNumber: "Număr de S.S.",
+  adress: "Adresă",
+  tel: "Telefon",
+  email: "E-mail",
+  civilStatus: "Stare civilă",
+  civilStatus_val: "Căsătorit, doi copii.",
+  studies: "Studii și diplome",
+  school: "Școala generală MERENI",
+  highSchool: "Liceul Republican Universitar Real, Profil Fizică-Matematică",
+  bac: "Diplomă de bacalaureat",
+  college:
+    "Universitatea Tehnică a Moldovei, Facultatea de Urbanism și Arhitectură. Specialitatea: Inginerie urbană",
+  master: "Master: Ingineria construcțiilor civile",
+  master_stopped:
+    "Întrerupt, profilul nu corespundea programului dorit, prea îndepărtat de Arhitectură",
+  archicad_3dsMax: "Formațiune AUTOCAD, ARCHICAD, 3DS MAX.",
+  devWeb: "Programator web, Openclassrooms",
+  devWeb_val: "Diplomă de nivel 5 (bac +2)",
+  experience: "Experiența",
+  internship_1: "Stagiu de proiectare “IGC CONSTRUCT”",
+  internship_2: "Stagiu pentru prepararea diplomei “IGC CONSTRUCT”",
+  apprenticeship: "Ucenicie “IGC CONSTRUCT”",
+  armanda:
+    "Activitate multifuncțională nesalariată: Societatea “Armanda” 75012 Paris",
+  armanda_2: "Gerant : Societatea “Armanda” 75012 Paris",
+  catalan:
+    "Activitate nesalariată, multi-specializată compania “Catalan Building”.",
+  heres: "Compania “Hères Construction”",
+
+  heres_val: "Șef de echipă, Șef pe mai multe echipe, Șef de șantier",
+  characteristics: "Caracteristici",
+  characteristics_val:
+    "Responsabilitate, Angajament, Punctualitate, Sociabilitate, Capacitate de a lucra cu clienții pentru a găsi o soluție individuală. Abilitatea de a lucra în echipă, rapid și eficient. Abilitate de a evalua situațiile, de a depăși obstacolele și de a lua măsurile adecvate (soluții) care se potrivesc. Abilitatea și dorința de a de a învăța rapid și eficient, domenii noi.",
+  software: "Programe",
+  advenced: "avansat",
+  medium: "mediu",
+  basic: "baza",
+  dev_Technologies: "Tehnologiile de programare",
+  install: "Instalare și întreținere",
+  install_val: "WINDOWS, software și echipamente de birou.",
+  languages: "Limbi străine",
+  rom_mold: "Română/Moldovenească",
+  french: "Franceza",
+  native: "nativ",
+  russian: "Rusa",
+  english: "Engleza",
+  writtenExpression: "exprimare scrisă (codul și comentariul în limba engleză)",
+  writtenComprehension: "înțelegere scrisă (intermediară), înțelegere orală (intermediară), exprimare orală (începător)",
+  driver_sLicense:"Permis de conducere",
+  driverCategory: "Categoria B",
+  download:"Descărcați",
+
+
+
+
+
+
+
+
+
+
+
+
+
   cardArch: [
     {
       id: "pr3-stade",
@@ -158,8 +237,7 @@ export const ro = {
   cardBat: [
     {
       id: "pr1-terasse",
-      title:
-        "Construirea unei terase din travertin și renovarea piscinei.",
+      title: "Construirea unei terase din travertin și renovarea piscinei.",
       cover: "https://boogysh.github.io/cv-api/images/bat/pr1/pr1-1.jpg",
       pictures: [
         "https://boogysh.github.io/cv-api/images/bat/pr1/pr1-1.jpg",

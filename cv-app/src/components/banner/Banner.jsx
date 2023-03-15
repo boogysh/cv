@@ -1,20 +1,20 @@
 import { useState, useEffect } from "react";
 import "./banner.css";
+import { useSelector } from "react-redux";
+
 function Banner({ src, title }) {
   const [className, setClassName] = useState("banner_title");
+  const { t } = useSelector((state) => state.langReducer);
+
 
   useEffect(() => {
-    // const href_arch = window.location.href.includes("/architecture");
-    // const href_bat = window.location.href.includes("/batiment");
-    // href_arch && setUri("architecture");
-    // href_bat && setUri("batiment");
 
-    const href_bat = window.location.href.includes("/batiment");
-    const href_dev = window.location.href.includes("/developpement");
+    const hrefBat = window.location.href.includes(t.batNav);
+    const hrefDev = window.location.href.includes(t.devNav);
 
-    href_dev && setClassName("banner_title_dev");
-    href_bat && setClassName("banner_title_dev");
-  }, []);
+    hrefDev && setClassName("banner_title_dev");
+    hrefBat && setClassName("banner_title_dev");
+  }, [t.batNav,t.devNav]);
 
   return (
     <div className="banner">

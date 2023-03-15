@@ -3,9 +3,10 @@ import './dropDownContent.css'
 
 
 
-function DropDownContent({ content, classContent, display }) {
+function DropDownContent({ content, classContent, isOpen }) {
   return (
-    <div className={`body_content ${display}`}>
+    // <div className={`body_content ${display}`}>
+    <div className={isOpen? "body_content" : "body_content hidden"}>
       {Array.isArray(content) ? (
         <ul className="list_content">
           {content.map((item, index) => (

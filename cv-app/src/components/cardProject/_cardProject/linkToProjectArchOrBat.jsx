@@ -9,7 +9,7 @@ export default function LinkToProjectArchOrBat({uri,id,show_shareList,show_newCo
   const  {t} =
   useSelector((state) => state.langReducer);
   return (
-    <Link to={`/${uri}/${id}`} className="card__link">
+    <Link to={`/${t.locale}/${uri}/${id}`} className="card__link">
       <div
         className={
           show_shareList || show_newCommentAndLastTwo
