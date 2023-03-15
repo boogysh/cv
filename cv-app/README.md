@@ -36,4 +36,3 @@ Change languages FR-EN-RO:
 The URL is translated, but when the language is changed, the current page is redirected to the home page, with the new language selected.
 
 ### 1.13
-Add branch 1.13
