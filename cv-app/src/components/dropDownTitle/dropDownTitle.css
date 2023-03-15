@@ -42,6 +42,11 @@
 }
 @media all and (max-width: 540px) {
   .h3_DD {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
+  }
+}
+@media all and (max-width: 320px){
+  .h3_DD {
+    font-size: 1.2rem;
   }
 }
