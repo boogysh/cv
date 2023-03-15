@@ -39,10 +39,10 @@ function Footer() {
         </div>
         <h5 className="h5_footer">
           &copy; {t.footer_p1}
-          <span className="h5_footer_span">v_1.11</span>
+          <span className="h5_footer_span">v_1.12</span>
         </h5>
         <h5 className="h6_footer">
-          {t.footer_p2} : <span className="h5_footer_span">10/03/2023</span>{" "}
+          {t.footer_p2} : <span className="h5_footer_span">15/03/2023</span>{" "}
         </h5>
       </footer>
     )
