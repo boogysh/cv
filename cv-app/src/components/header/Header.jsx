@@ -135,8 +135,6 @@ function Header() {
   window.onload = scrollFunction;
   window.onscroll = scrollFunction;
 
-  
-  
   //----------
 
   return (
