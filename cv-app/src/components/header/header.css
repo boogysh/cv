@@ -53,6 +53,7 @@
   font-family: var(--h3_header);
   font-size: 26px;
   padding-right: 15px;
+  /* padding-left: 380px; */
 }
 
 nav {

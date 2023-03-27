@@ -1,6 +1,7 @@
 import React from "react";
 import "../cv/cv.css";
-import myself from "../../assets/eu/eu2.png";
+// import myself from "../../assets/eu/eu2.png";
+import myself from "../../assets/eu/me-gr-1.png";
 import { useSelector } from "react-redux";
 
 
