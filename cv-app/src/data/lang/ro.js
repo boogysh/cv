@@ -72,22 +72,13 @@ export const ro = {
   russian: "Rusa",
   english: "Engleza",
   writtenExpression: "exprimare scrisă (codul și comentariul în limba engleză)",
-  writtenComprehension: "înțelegere scrisă (intermediară), înțelegere orală (intermediară), exprimare orală (începător)",
-  driver_sLicense:"Permis de conducere",
+  writtenComprehension:
+    "înțelegere scrisă (intermediară), înțelegere orală (intermediară), exprimare orală (începător)",
+  driver_sLicense: "Permis de conducere",
   driverCategory: "Categoria B",
-  download:"Descărcați",
+  download: "Descărcați",
 
-
-
-
-
-
-
-
-
-
-
-
+  //----------------------------------------------------------------
 
   cardArch: [
     {
@@ -384,6 +375,44 @@ export const ro = {
     },
   ],
   cardDev: [
+    {
+      id: "pr9-social-media",
+      title: "Crearea unei aplicații web tip rețea socială",
+      cover: "https://boogysh.github.io/cv-api/images/dev/social-media/2.jpg",
+      pictures: [
+        "https://boogysh.github.io/cv-api/images/dev/social-media/0.png",
+        "https://boogysh.github.io/cv-api/images/dev/social-media/00.png",
+        "https://boogysh.github.io/cv-api/images/dev/social-media/1.png",
+        "https://boogysh.github.io/cv-api/images/dev/social-media/2.png",
+        "https://boogysh.github.io/cv-api/images/dev/social-media/3.png",
+        "https://boogysh.github.io/cv-api/images/dev/social-media/4.png",
+        "https://boogysh.github.io/cv-api/images/dev/social-media/5.png",
+        "https://boogysh.github.io/cv-api/images/dev/social-media/6.png",
+        "https://boogysh.github.io/cv-api/images/dev/social-media/7.png",
+        "https://boogysh.github.io/cv-api/images/dev/social-media/8.png",
+        "https://boogysh.github.io/cv-api/images/dev/social-media/9.png",
+        "https://boogysh.github.io/cv-api/images/dev/social-media/10.png",
+        "https://boogysh.github.io/cv-api/images/dev/social-media/11.png",
+        "https://boogysh.github.io/cv-api/images/dev/social-media/12.png",
+        "https://boogysh.github.io/cv-api/images/dev/social-media/13.png",
+        "https://boogysh.github.io/cv-api/images/dev/social-media/14.png",
+        "https://boogysh.github.io/cv-api/images/dev/social-media/15.png",
+        "https://boogysh.github.io/cv-api/images/dev/social-media/16.png",
+        "https://boogysh.github.io/cv-api/images/dev/social-media/17.png",
+        "https://boogysh.github.io/cv-api/images/dev/social-media/18.png",
+        "https://boogysh.github.io/cv-api/images/dev/social-media/19.png",
+        "https://boogysh.github.io/cv-api/images/dev/social-media/20.png",
+      ],
+      info: [
+        "Utilizarea redux și react-redux, MongoDB și S3-AWS.",
+        "Vedeți vizitatorii paginii utilizatorului.",
+        "Dark-mode și butonul de căutare pentru utilizatorii înregistrați.",
+        "Backend pentru a gestiona cererile GET, POST, PATCH, DELETE",
+        "Înregistrarea și ștergerea fișierelor pe S3 și a URL-urilor pe MongoDB.",
+        "Vizualizarea aplicației online cu Vercel.",
+      ],
+      urlProject: "https://sm-boogysh-client.vercel.app/",
+    },
     {
       id: "pr8-castle",
       title: "Crearea unei aplicații web cu elemente de e-comerț",

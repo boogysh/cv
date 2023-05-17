@@ -68,16 +68,10 @@ export const fr = {
   russian: "Russe",
   english: "Anglais",
   writtenExpression: "expression écrite (le code et le commentaire en englais)",
-  driver_sLicense:"Permis de conduire",
+  driver_sLicense: "Permis de conduire",
   driverCategory: "Catégorie B",
-  download:"Télécharger",
+  download: "Télécharger",
 
-
-
-
-
-  
-  
   cardArch: [
     {
       id: "pr3-stade",
@@ -374,6 +368,44 @@ export const fr = {
     },
   ],
   cardDev: [
+    {
+      id: "pr9-social-media",
+      title: "Créez une application web type reseau social",
+      cover: "https://boogysh.github.io/cv-api/images/dev/social-media/2.jpg",
+      pictures: [
+        "https://boogysh.github.io/cv-api/images/dev/social-media/0.png",
+        "https://boogysh.github.io/cv-api/images/dev/social-media/00.png",
+        "https://boogysh.github.io/cv-api/images/dev/social-media/1.png",
+        "https://boogysh.github.io/cv-api/images/dev/social-media/2.png",
+        "https://boogysh.github.io/cv-api/images/dev/social-media/3.png",
+        "https://boogysh.github.io/cv-api/images/dev/social-media/4.png",
+        "https://boogysh.github.io/cv-api/images/dev/social-media/5.png",
+        "https://boogysh.github.io/cv-api/images/dev/social-media/6.png",
+        "https://boogysh.github.io/cv-api/images/dev/social-media/7.png",
+        "https://boogysh.github.io/cv-api/images/dev/social-media/8.png",
+        "https://boogysh.github.io/cv-api/images/dev/social-media/9.png",
+        "https://boogysh.github.io/cv-api/images/dev/social-media/10.png",
+        "https://boogysh.github.io/cv-api/images/dev/social-media/11.png",
+        "https://boogysh.github.io/cv-api/images/dev/social-media/12.png",
+        "https://boogysh.github.io/cv-api/images/dev/social-media/13.png",
+        "https://boogysh.github.io/cv-api/images/dev/social-media/14.png",
+        "https://boogysh.github.io/cv-api/images/dev/social-media/15.png",
+        "https://boogysh.github.io/cv-api/images/dev/social-media/16.png",
+        "https://boogysh.github.io/cv-api/images/dev/social-media/17.png",
+        "https://boogysh.github.io/cv-api/images/dev/social-media/18.png",
+        "https://boogysh.github.io/cv-api/images/dev/social-media/19.png",
+        "https://boogysh.github.io/cv-api/images/dev/social-media/20.png",
+      ],
+      info: [
+        "Utilisation du redux et react-redux, BD MongoDB et S3-AWS.",
+        "Voir les visiteurs de la page de l'utilisateur.",
+        "Dark-mode et le boutton recherche des utilisateurs enregistrés.",
+        "Backend pour gérer les requêtes GET, POST, PATCH, DELETE",
+        "Enregistrer et supprimer les ficiers sur S3 et les URL sur MongoDB.",
+        "Afficher l'ensamble de l'aplication en ligne avec Vercel.",
+      ],
+      urlProject: "https://sm-boogysh-client.vercel.app/",
+    },
     {
       id: "pr8-castle",
       title: "Créez une application web avec des éléments e-commerce",

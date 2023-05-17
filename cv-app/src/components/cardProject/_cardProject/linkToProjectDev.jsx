@@ -2,10 +2,8 @@ import React from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useSelector } from "react-redux";
 
-
 export default function LinkToProjectDev(props) {
-  const  {t} =
-  useSelector((state) => state.langReducer);
+  const { t } = useSelector((state) => state.langReducer);
   return (
     <a
       href={props.urlProject}
@@ -37,7 +35,7 @@ export default function LinkToProjectDev(props) {
             {props.info.map((item) => (
               <li key={uuidv4()}>
                 <span className="span_li">✅</span>
-                {item}
+                <p className="text-description"> {item}</p>
               </li>
             ))}
           </ul>
