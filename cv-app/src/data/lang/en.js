@@ -440,7 +440,7 @@ export const en = {
         "Generate and view the movie trailer dynamically.",
         "View the entire application online with Vercel.",
       ],
-      urlProject: "https://b-netflix.vercel.app",
+      urlProject: "https://b-netflix-git-main-boogysh.vercel.app/",
     },
     {
       id: "pr8-castle",

@@ -429,7 +429,7 @@ export const fr = {
         "Générer et voir le trailer du film de manière dynamique",
         "Afficher l'ensamble de l'aplication en ligne avec Vercel.",
       ],
-      urlProject: "https://b-netflix.vercel.app",
+      urlProject: "https://b-netflix-git-main-boogysh.vercel.app/",
     },
     {
       id: "pr8-castle",
