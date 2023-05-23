@@ -369,7 +369,7 @@ export const fr = {
   ],
   cardDev: [
     {
-      id: "pr9-social-media",
+      id: "pr10-social-media",
       title: "Créez une application web type reseau social",
       cover: "https://boogysh.github.io/cv-api/images/dev/social-media/2.jpg",
       pictures: [
@@ -405,6 +405,31 @@ export const fr = {
         "Afficher l'ensamble de l'aplication en ligne avec Vercel.",
       ],
       urlProject: "https://sm-boogysh-client.vercel.app/",
+    },
+    {
+      id: "pr9-netflix-youtube",
+      title: "Créez une application type netflix",
+      cover: "https://boogysh.github.io/cv-api/images/dev/netflix/1.jpg",
+      pictures: [
+        "https://boogysh.github.io/cv-api/images/dev/netflix/1.jpg",
+        "https://boogysh.github.io/cv-api/images/dev/netflix/2.jpg",
+        "https://boogysh.github.io/cv-api/images/dev/netflix/3.jpg",
+        "https://boogysh.github.io/cv-api/images/dev/netflix/4.jpg",
+        "https://boogysh.github.io/cv-api/images/dev/netflix/5.jpg",
+        "https://boogysh.github.io/cv-api/images/dev/netflix/6.jpg",
+        "https://boogysh.github.io/cv-api/images/dev/netflix/7.jpg",
+        "https://boogysh.github.io/cv-api/images/dev/netflix/8.jpg",
+        "https://boogysh.github.io/cv-api/images/dev/netflix/9.jpg",
+      ],
+      info: [
+        "Utilisation du redux et react-redux, BD MongoDB",
+        "Backend pour gérer les requêtes GET, POST, PATCH, DELETE",
+        "Intégrer l'api du themoviedb et youtube.",
+        "Enregistrer les films dans les favorites",
+        "Générer et voir le trailer du film de manière dynamique",
+        "Afficher l'ensamble de l'aplication en ligne avec Vercel.",
+      ],
+      urlProject: "https://b-netflix.vercel.app",
     },
     {
       id: "pr8-castle",

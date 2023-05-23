@@ -376,7 +376,7 @@ export const ro = {
   ],
   cardDev: [
     {
-      id: "pr9-social-media",
+      id: "pr10-social-media",
       title: "Crearea unei aplicații web tip rețea socială",
       cover: "https://boogysh.github.io/cv-api/images/dev/social-media/2.jpg",
       pictures: [
@@ -412,6 +412,31 @@ export const ro = {
         "Vizualizarea aplicației online cu Vercel.",
       ],
       urlProject: "https://sm-boogysh-client.vercel.app/",
+    },
+    {
+      id: "pr9-netflix-youtube",
+      title: "Créez une application type netflix",
+      cover: "https://boogysh.github.io/cv-api/images/dev/netflix/1.jpg",
+      pictures: [
+        "https://boogysh.github.io/cv-api/images/dev/netflix/1.jpg",
+        "https://boogysh.github.io/cv-api/images/dev/netflix/2.jpg",
+        "https://boogysh.github.io/cv-api/images/dev/netflix/3.jpg",
+        "https://boogysh.github.io/cv-api/images/dev/netflix/4.jpg",
+        "https://boogysh.github.io/cv-api/images/dev/netflix/5.jpg",
+        "https://boogysh.github.io/cv-api/images/dev/netflix/6.jpg",
+        "https://boogysh.github.io/cv-api/images/dev/netflix/7.jpg",
+        "https://boogysh.github.io/cv-api/images/dev/netflix/8.jpg",
+        "https://boogysh.github.io/cv-api/images/dev/netflix/9.jpg",
+      ],
+      info: [
+        "Utilizarea redux și react-redux, MongoDB.",
+        "Backend pentru a gestiona cererile GET, POST, PATCH, DELETE",
+        "Integrarea themoviedb-api și youtube-api.",
+        "Salvarea filmelor la favorite.",
+        "Generarea și vizualizarea dinamică a trailerului filmului",
+        "Vizualizarea aplicației online cu Vercel.",
+      ],
+      urlProject: "https://b-netflix.vercel.app",
     },
     {
       id: "pr8-castle",
