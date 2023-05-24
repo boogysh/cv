@@ -436,7 +436,7 @@ export const ro = {
         "Generarea și vizualizarea dinamică a trailerului filmului",
         "Vizualizarea aplicației online cu Vercel.",
       ],
-      urlProject: "https://b-netflix-git-main-boogysh.vercel.app/",
+      urlProject: "https://boogysh-flix.vercel.app",
     },
     {
       id: "pr8-castle",
