@@ -411,7 +411,7 @@ export const ro = {
         "Înregistrarea și ștergerea fișierelor pe S3 și a URL-urilor pe MongoDB.",
         "Vizualizarea aplicației online cu Vercel.",
       ],
-      urlProject: "https://sm-boogysh-client.vercel.app/",
+      urlProject: "https://sm-boogysh.vercel.app/",
     },
     {
       id: "pr9-netflix-youtube",

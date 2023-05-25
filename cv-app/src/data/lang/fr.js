@@ -404,7 +404,7 @@ export const fr = {
         "Enregistrer et supprimer les ficiers sur S3 et les URL sur MongoDB.",
         "Afficher l'ensamble de l'aplication en ligne avec Vercel.",
       ],
-      urlProject: "https://sm-boogysh-client.vercel.app/",
+      urlProject: "https://sm-boogysh.vercel.app/",
     },
     {
       id: "pr9-netflix-youtube",

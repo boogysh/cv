@@ -415,7 +415,7 @@ export const en = {
         "Save and delete files on S3-AWS and URLs on MongoDB.",
         "View the entire application online with Vercel.",
       ],
-      urlProject: "https://sm-boogysh-client.vercel.app/",
+      urlProject: "https://sm-boogysh.vercel.app/",
     },
     {
       id: "pr9-netflix-youtube",

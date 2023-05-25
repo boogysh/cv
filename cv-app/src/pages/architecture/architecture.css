@@ -2,15 +2,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: rgb(253, 239, 239);
+  background: var(--bg_body);
   width: 100%;
   height: auto;
-  /* padding-top: 70px; */
-  /* padding-top: 0; */
 }
 
 #cards {
   width: 100%;
   height: auto;
   margin-top: 10px;
+  
 }

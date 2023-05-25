@@ -48,7 +48,7 @@ function CardProject({ images, title, info, id, urlProject, urlExistent }) {
     //close Share after a few seconds
     const timeout = setTimeout(() => {
       setShowhareList(false);
-    }, 5000);
+    }, 10000);
     return () => clearTimeout(timeout);
   };
   const closeShareList = () => {
@@ -98,7 +98,8 @@ function CardProject({ images, title, info, id, urlProject, urlExistent }) {
           />
         )}
 
-        {uri === t.devNav && (
+        {/* {uri === t.devNav && ( */}
+        {uri !== t.archNav && uri !== t.batNav && (
           <LinkToProjectDev
             title={title}
             info={info}

@@ -87,8 +87,10 @@ body {
 }
 @media all and (max-width: 767px) {
   body {
-    --card_height: 320px;
-    --cardContent_height: 320px;
+    /* --card_height: 320px; */
+    --card_height: 420px;
+    /* --cardContent_height: 320px; */
+    --cardContent_height: 280px;
   }
 }
 @media all and (max-width: 580px) {
@@ -100,8 +102,7 @@ body {
 }
 @media all and (max-width: 370px) {
   body {
-    --card_height: 340px;
-    
+    --card_height: 320px;
   }
 }
 
@@ -112,4 +113,7 @@ h2 {
 }
 a {
   text-decoration: none;
+}
+#cards{
+  background: transparent!important;
 }
